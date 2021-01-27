@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 
 		String dictionaryFileName = args[0];
-//		String inputWord = args[1];
+		String inputWord = args[1];
 
 		System.out.println("Hello World\n");
 		SpellCorrector myCorrector = new SpellCorrector();
@@ -34,12 +34,12 @@ public class Main {
 
 		int hash = mainTrie.hashCode();
 		System.out.printf("my hash: %d", hash);
-//		String suggestion = corrector.suggestSimilarWord(inputWord);
-//		if (suggestion == null) {
-//		    suggestion = "No similar word found";
-//		}
-//
-//		System.out.println("Suggestion is: " + suggestion);
+		String suggestion = myCorrector.suggestSimilarWord(inputWord);
+		if (suggestion == null) {
+		    suggestion = "No similar word found";
+		}
+
+		System.out.println("Suggestion is: " + suggestion);
 	}
 
 }

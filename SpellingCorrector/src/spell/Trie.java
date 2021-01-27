@@ -1,5 +1,6 @@
 package spell;
 
+import java.util.Locale;
 import java.util.Stack;
 import java.lang.String;
 import java.lang.Object;
@@ -18,6 +19,7 @@ public class Trie implements ITrie{
     public void add(String word)
     {
         Node tmp[] = head.getChildren();
+        word = word.toLowerCase();
         for (int i = 0; i < word.length(); i++)
         {
             int letter = word.charAt(i) - 'a';
@@ -64,7 +66,11 @@ public class Trie implements ITrie{
             tmp2 = tmp[letter];
             tmp = tmp2.getChildren();
         }
-        if (tmp2.getValue() > 0) // if the word exists
+        if (tmp2 == null)
+        {
+            return null;
+        }
+        else if (tmp2.getValue() > 0) // if the word exists
         {
             return tmp2;
         }
@@ -110,7 +116,7 @@ public class Trie implements ITrie{
         return sb2.toString();
     }
 
-
+    //recursive function used to traverse for the toString method
     public void toStringTraverse(StringBuilder sb1, StringBuilder sb2, Node tmp[])
     {
         int i = 0;
@@ -183,6 +189,7 @@ public class Trie implements ITrie{
         return equalsTraverse(this.head.getChildren(), c.head.getChildren());
     }
 
+    //recursive method used to traverse for the equals method
     public boolean equalsTraverse(Node children1[], Node children2[])
     {
         int i = 0;
