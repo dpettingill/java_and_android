@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.*;
 
 public class EvilHangmanGame implements IEvilHangmanGame {
+    public EvilHangmanGame() {}
     private Set<String> myWords = new HashSet<String>();
     private SortedSet<Character> guessedLetters = new TreeSet<Character>();
+    public String key = null;
 
     @Override
     public void startGame(File dictionary, int wordLength) throws IOException, EmptyDictionaryException {
@@ -66,15 +68,16 @@ public class EvilHangmanGame implements IEvilHangmanGame {
 
         //could I probably just assign myWords to the wordGroup? Probably. I feel safer doing this though
         Iterator it = keysToPossibleGroups.iterator();
+        key = (String) it.next();
         try
         {
-            myWords.retainAll(wordGroups.get(it.next()));
+            myWords.retainAll(wordGroups.get(key));
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        
+
         //oh and don't forget to add the guess!
         guessedLetters.add(guess);
 
@@ -213,4 +216,16 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     public SortedSet<Character> getGuessedLetters() {
         return guessedLetters;
     }
+
+    public String getCurrentKey()
+    {
+        return key;
+    }
+
+    public String getWord()
+    {
+        Iterator it = myWords.iterator();
+        return it.next().toString();
+    }
+
 }
