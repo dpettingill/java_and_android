@@ -1,0 +1,127 @@
+You have 26 guesses left
+[]
+------
+Enter guess: a
+Sorry, there are no a
+You have 25 guesses left
+[a]
+------
+Enter guess: b
+Sorry, there are no b
+You have 24 guesses left
+[a, b]
+------
+Enter guess: c
+Sorry, there are no c
+You have 23 guesses left
+[a, b, c]
+------
+Enter guess: d
+Sorry, there are no d
+You have 22 guesses left
+[a, b, c, d]
+------
+Enter guess: e
+Sorry, there are no e
+You have 21 guesses left
+[a, b, c, d, e]
+------
+Enter guess: f
+Sorry, there are no f
+You have 20 guesses left
+[a, b, c, d, e, f]
+------
+Enter guess: g
+Sorry, there are no g
+You have 19 guesses left
+[a, b, c, d, e, f, g]
+------
+Enter guess: h
+Sorry, there are no h
+You have 18 guesses left
+[a, b, c, d, e, f, g, h]
+------
+Enter guess: i
+Sorry, there are no i
+You have 17 guesses left
+[a, b, c, d, e, f, g, h, i]
+------
+Enter guess: j
+Sorry, there are no j
+You have 16 guesses left
+[a, b, c, d, e, f, g, h, i, j]
+------
+Enter guess: k
+Sorry, there are no k
+You have 15 guesses left
+[a, b, c, d, e, f, g, h, i, j, k]
+------
+Enter guess: l
+Sorry, there are no l
+You have 14 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l]
+------
+Enter guess: m
+Sorry, there are no m
+You have 13 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m]
+------
+Enter guess: n
+Sorry, there are no n
+You have 12 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n]
+------
+Enter guess: o
+Sorry, there are no o
+You have 11 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o]
+------
+Enter guess: p
+Sorry, there are no p
+You have 10 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p]
+------
+Enter guess: q
+Sorry, there are no q
+You have 9 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q]
+------
+Enter guess: r
+Yes there is 1 r
+You have 9 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r]
+-r----
+Enter guess: s
+Yes there are 2 s
+You have 9 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s]
+-r-s-s
+Enter guess: t
+Yes there are 2 t
+You have 9 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t]
+tr-sts
+Enter guess: u
+Sorry, there are no u
+You have 8 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u]
+tr-sts
+Enter guess: v
+Sorry, there are no v
+You have 7 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v]
+tr-sts
+Enter guess: w
+Sorry, there are no w
+You have 6 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w]
+tr-sts
+Enter guess: x
+Sorry, there are no x
+You have 5 guesses left
+[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x]
+tr-sts
+Enter guess: y
+Yes there is 1 y
+Congrats! You won the game
+You guessed the word: trysts

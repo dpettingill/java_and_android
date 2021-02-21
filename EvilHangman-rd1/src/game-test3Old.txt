@@ -1,0 +1,79 @@
+You have 12 guesses left
+[]
+-----
+Enter guess: q
+Sorry, there are no q
+You have 11 guesses left
+[q]
+-----
+Enter guess: 1
+invalid input! Enter guess: we
+Sorry, there are no w
+You have 10 guesses left
+[q, w]
+-----
+Enter guess: y
+Sorry, there are no y
+You have 9 guesses left
+[q, w, y]
+-----
+Enter guess: Q
+You've already guessed that! Try again
+Enter guess: w
+You've already guessed that! Try again
+Enter guess: xx
+Sorry, there are no x
+You have 8 guesses left
+[q, w, x, y]
+-----
+Enter guess: x
+You've already guessed that! Try again
+Enter guess: x
+You've already guessed that! Try again
+Enter guess: t
+Sorry, there are no t
+You have 7 guesses left
+[q, t, w, x, y]
+-----
+Enter guess: T
+You've already guessed that! Try again
+Enter guess: e
+Sorry, there are no e
+You have 6 guesses left
+[e, q, t, w, x, y]
+-----
+Enter guess: i
+Sorry, there are no i
+You have 5 guesses left
+[e, i, q, t, w, x, y]
+-----
+Enter guess: o
+Sorry, there are no o
+You have 4 guesses left
+[e, i, o, q, t, w, x, y]
+-----
+Enter guess: u
+Sorry, there are no u
+You have 3 guesses left
+[e, i, o, q, t, u, w, x, y]
+-----
+Enter guess: a
+Yes there is 1 a
+You have 2 guesses left
+[a, e, i, o, q, t, u, w, x, y]
+--a--
+Enter guess: 23
+invalid input! Enter guess: e2
+You've already guessed that! Try again
+Enter guess: 2e
+invalid input! Enter guess: z
+Sorry, there are no z
+You have 1 guesses left
+[a, e, i, o, q, t, u, w, x, y, z]
+--a--
+Enter guess: x
+You've already guessed that! Try again
+Enter guess: c
+Sorry, there are no c
+So I don't want to be the one to say it but you lost :'(
+the correct word was: glads

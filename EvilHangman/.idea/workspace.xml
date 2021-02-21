@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="13d88a10-eae4-4840-8eba-5ac5f02f3caf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../EvilHangman-project/EvilHangman.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpellingCorrector-project/SpellingCorrector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EvilHangman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EvilHangman.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EmptyDictionaryException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EmptyDictionaryException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangman.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangmanGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/GuessAlreadyMadeException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/GuessAlreadyMadeException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/IEvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/IEvilHangmanGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/passoff/HangmanTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/passoff/HangmanTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hangman/EmptyDictionaryException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EmptyDictionaryException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hangman/EvilHangman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EvilHangman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hangman/GuessAlreadyMadeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/GuessAlreadyMadeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stuff.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/SpellingCorrector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellingCorrector/SpellingCorrector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/notsobig.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellingCorrector/notsobig.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/passoff/SpellTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/passoff/TrieTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/INode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/ISpellCorrector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/ITrie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/SpellCorrector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/Trie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/apiguardian-api-1.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/junit-jupiter-api-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/junit-platform-commons-1.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/opentest4j-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/notsobig.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/word.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/words.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/._SpellingCorrectorStudentFiles" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._jars" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._notsobig.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._test_files" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._word.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._words.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/jars/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/test_files/._SpellTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/test_files/._TrieTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/SpellCorrector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Trie.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1bSk7l2Ot3eRXf50oakKFqtarOa" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EvilHangman-rd1" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan Leach\IdeaProjects\EvilHangman" />
+      <recent name="C:\Users\Ryan Leach\IdeaProjects\EvilHangman\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.EvilHangman">
+    <configuration name="EvilHangman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hangman.EvilHangman" />
+      <module name="EvilHangman" />
+      <option name="PROGRAM_PARAMETERS" value="dictionary.txt 5 10" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hangman.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HangmanTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EvilHangman" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="MAIN_CLASS_NAME" value="passoff.HangmanTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HangmanTest.testEmptyFileLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EvilHangman" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="MAIN_CLASS_NAME" value="passoff.HangmanTest" />
+      <option name="METHOD_NAME" value="testEmptyFileLoad" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HangmanTest.testGuessAlreadyMade" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EvilHangman" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="MAIN_CLASS_NAME" value="passoff.HangmanTest" />
+      <option name="METHOD_NAME" value="testGuessAlreadyMade" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HangmanTest.testLetterDoesNotAppear" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EvilHangman" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="MAIN_CLASS_NAME" value="passoff.HangmanTest" />
+      <option name="METHOD_NAME" value="testLetterDoesNotAppear" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.EvilHangman" />
+      <item itemvalue="JUnit.HangmanTest" />
+      <item itemvalue="JUnit.HangmanTest.testEmptyFileLoad" />
+      <item itemvalue="JUnit.HangmanTest.testGuessAlreadyMade" />
+      <item itemvalue="JUnit.HangmanTest.testLetterDoesNotAppear" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EvilHangman" />
+        <item itemvalue="JUnit.HangmanTest" />
+        <item itemvalue="JUnit.HangmanTest.testGuessAlreadyMade" />
+        <item itemvalue="JUnit.HangmanTest.testLetterDoesNotAppear" />
+        <item itemvalue="JUnit.HangmanTest.testEmptyFileLoad" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="13d88a10-eae4-4840-8eba-5ac5f02f3caf" name="Default Changelist" comment="" />
+      <created>1588632716399</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588632716399</updated>
+      <workItem from="1612921302576" duration="10041000" />
+      <workItem from="1613088377002" duration="60000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hangman/EvilHangman.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hangman/EvilHangman.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hangman/EvilHangman.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

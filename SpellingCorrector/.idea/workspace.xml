@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8fff5920-5ff3-499a-806a-886b2bf3cee2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../EvilHangman-project/EvilHangman.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpellingCorrector-project/SpellingCorrector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/EvilHangman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/EvilHangman.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EmptyDictionaryException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EmptyDictionaryException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangman.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangman.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangmanGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/GuessAlreadyMadeException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/GuessAlreadyMadeException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/IEvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/IEvilHangmanGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/passoff/HangmanTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/passoff/HangmanTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/EmptyDictionaryException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/EmptyDictionaryException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangman.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangmanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/GuessAlreadyMadeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/GuessAlreadyMadeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvilHangman/stuff.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpellingCorrector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpellingCorrector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notsobig.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notsobig.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/passoff/SpellTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/passoff/TrieTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/INode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/ISpellCorrector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/ITrie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/SpellCorrector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SpellingCorrector/spell/Trie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/jars/apiguardian-api-1.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/jars/junit-jupiter-api-5.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/jars/junit-platform-commons-1.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/jars/opentest4j-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/notsobig.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/word.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/SpellingCorrectorStudentFiles/words.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/._SpellingCorrectorStudentFiles" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._jars" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._notsobig.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._test_files" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._word.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._words.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/jars/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/test_files/._SpellTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/test_files/._TrieTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spell/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spell/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spell/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spell/SpellCorrector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spell/Trie.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1bSihJJ3GDUcwwALZwcgnyDLaEW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan Leach\IdeaProjects\SpellingCorrector" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan Leach\IdeaProjects\SpellingCorrector\src" />
+      <recent name="C:\Users\Ryan Leach\IdeaProjects\SpellingCorrector" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.SpellTest">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpellTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpellingCorrector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="MAIN_CLASS_NAME" value="passoff.SpellTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrieTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpellingCorrector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="MAIN_CLASS_NAME" value="passoff.TrieTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="passoff in SpellingCorrector" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpellingCorrector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SpellTest" />
+        <item itemvalue="JUnit.passoff in SpellingCorrector" />
+        <item itemvalue="JUnit.TrieTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fff5920-5ff3-499a-806a-886b2bf3cee2" name="Default Changelist" comment="" />
+      <created>1588632012807</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588632012807</updated>
+      <workItem from="1612661124262" duration="442000" />
+      <workItem from="1612924406336" duration="646000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

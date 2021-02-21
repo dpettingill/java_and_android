@@ -1,0 +1,73 @@
+You have 10 guesses left
+Used letters: []
+Word: ------
+Enter Guess: a
+Sorry there are no a's!
+
+You have 9 guesses left
+Used letters: [a]
+Word: ------
+Enter Guess:
+a
+Uh already guessed that bro..try again!
+Enter Guess: a
+Uh already guessed that bro..try again!
+Enter Guess: z
+Sorry there are no z's!
+
+You have 8 guesses left
+Used letters: [a, z]
+Word: ------
+Enter Guess: qw
+Sorry there are no q's!
+
+You have 7 guesses left
+Used letters: [a, q, z]
+Word: ------
+Enter Guess: we
+Sorry there are no w's!
+
+You have 6 guesses left
+Used letters: [a, q, w, z]
+Word: ------
+Enter Guess: er
+Sorry there are no e's!
+
+You have 5 guesses left
+Used letters: [a, e, q, w, z]
+Word: ------
+Enter Guess: y
+Sorry there are no y's!
+
+You have 4 guesses left
+Used letters: [a, e, q, w, y, z]
+Word: ------
+Enter Guess: H
+Sorry there are no h's!
+
+You have 3 guesses left
+Used letters: [a, e, h, q, w, y, z]
+Word: ------
+Enter Guess: h
+Uh already guessed that bro..try again!
+Enter Guess: i
+Sorry there are no i's!
+
+You have 2 guesses left
+Used letters: [a, e, h, i, q, w, y, z]
+Word: ------
+Enter Guess: 1
+Invalid input. Try a letter a-z
+Enter Guess: j
+Sorry there are no j's!
+
+You have 1 guesses left
+Used letters: [a, e, h, i, j, q, w, y, z]
+Word: ------
+Enter Guess: !
+Invalid input. Try a letter a-z
+Enter Guess: k
+Sorry there are no k's!
+
+Sorry you win some and you lose some and you lost this one for sure!
+The word was: glooms

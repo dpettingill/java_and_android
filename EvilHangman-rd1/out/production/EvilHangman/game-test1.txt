@@ -1,0 +1,61 @@
+You have 10 guesses left
+[]
+------
+Enter guess: a
+Sorry, there are no a
+You have 9 guesses left
+[a]
+------
+Enter guess:
+a
+You've already guessed that! Try again
+Enter guess: a
+You've already guessed that! Try again
+Enter guess: z
+Sorry, there are no z
+You have 8 guesses left
+[a, z]
+------
+Enter guess: qw
+Sorry, there are no q
+You have 7 guesses left
+[a, q, z]
+------
+Enter guess: yw
+Sorry, there are no y
+You have 6 guesses left
+[a, q, y, z]
+------
+Enter guess: H
+Sorry, there are no h
+You have 5 guesses left
+[a, h, q, y, z]
+------
+Enter guess: h
+You've already guessed that! Try again
+Enter guess: i
+Sorry, there are no i
+You have 4 guesses left
+[a, h, i, q, y, z]
+------
+Enter guess: 1
+invalid input! Enter guess: j
+Sorry, there are no j
+You have 3 guesses left
+[a, h, i, j, q, y, z]
+------
+Enter guess: !
+invalid input! Enter guess: k
+Sorry, there are no k
+You have 2 guesses left
+[a, h, i, j, k, q, y, z]
+------
+Enter guess: m n
+Sorry, there are no m
+You have 1 guesses left
+[a, h, i, j, k, m, q, y, z]
+------
+Enter guess: n
+Sorry, there are no n
+So I don't want to be the one to say it but you lost :'(
+the correct word was: busses

@@ -7,146 +7,140 @@ import java.util.*;
 public class EvilHangman {
 
     public static void main(String[] args) throws IOException, EmptyDictionaryException, GuessAlreadyMadeException {
-        if (args.length < 3)
-        {
-            System.out.println("Looks like you didn't give enough input params. Try again with dictionary wordLength guesses");
+        try {
+            if (args.length < 3)
+            {
+                throw (new IOException());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        File myFile = new File(args[0]);
-        int wordLength = Integer.parseInt(args[1]);
-        if (wordLength < 2)
-        {
-            System.out.println("Hey. Try giving a word length of 2 or longer");
-        }
-        int guesses = Integer.parseInt(args[2]);
-        if (guesses < 1)
-        {
-            System.out.println("Hey. Try giving at least 1 guess");
-        }
-        EvilHangmanGame myGame = new EvilHangmanGame();
-        myGame.startGame(myFile, wordLength);
-        gamePrintOut(myGame, wordLength, guesses);
-    }
 
-    public static void gamePrintOut(EvilHangmanGame game, int length, int guessesLeft) throws IOException, GuessAlreadyMadeException {
-        char guess = '\0';
-        boolean bad_user_input = true, correctGuess = false;
-        int countCorrectGuesses = 0, totalCorrectGuesses = 0;
-        Map<Integer, Character> correctGuesses = new HashMap<Integer, Character>();
-        String key = null;
-        while (guessesLeft > 0)
-        {
-            System.out.printf("You have %d guesses remaining\n", guessesLeft);
-            System.out.printf("Used Letters: %s\n", game.getGuessedLetters().toString());
-            wordOutput(game, correctGuesses, guess, length);
-            guess = guessOutputInput(game);
-            key = game.getCurrentKey();
-            for (int i = 0; i < key.length(); i++)
-            {
-                if (key.charAt(i) == '1')
-                {
-                    countCorrectGuesses++;
-                    totalCorrectGuesses++;
-                    correctGuess = true;
-                }
-            }
-            if (correctGuess)
-            {
-                if (countCorrectGuesses == 1)
-                {
-                    System.out.printf("Yes, there is %d %c: \n\n", countCorrectGuesses, guess);
-                }
-                else
-                {
-                    System.out.printf("Yes, there are %d %c: \n\n", countCorrectGuesses, guess);
-                }
-            }
-            else
-            {
-                System.out.printf("Sorry, there are no %c's\n\n", guess);
-            }
+        File dictionary = new File(args[0]);
+        int wordLength = Integer.valueOf(args[1]);
+        int guesses = Integer.valueOf(args[2]);
 
-            //check if they won or lost here
-            if (totalCorrectGuesses == length)
+        EvilHangmanGame game = new EvilHangmanGame();
+        try {
+            game.startGame(dictionary, wordLength);
+        } catch (EmptyDictionaryException e) {
+            System.out.println("try giving us a non-empty dictionary or one that will actually produce words!");
+        }
+
+        Map<Integer, Character> correctGuesses = new HashMap<>();
+        Set<String> myWords = new HashSet();
+        boolean correctGuess = false;
+        while (guesses > 0)
+        {
+            System.out.printf("You have %d guesses left\n", guesses);
+            System.out.printf("Used letters: %s\n", game.getGuessedLetters().toString());
+            wordOutput(game, correctGuesses, wordLength); //word output
+            char guess = guessing(game, myWords); //guessing func
+            myWords = game.getMyWords();
+            correctGuess = guessEvaluation(game, myWords, correctGuesses, guess);//guess evaluation
+            if (!correctGuess)
             {
-                System.out.println("Congrats! You beat the system!! :')\n\n\n");
+                guesses--;
+            }
+            if (correctGuesses.size() >= wordLength)
+            {
                 break;
             }
-            guessesLeft--;
-            countCorrectGuesses = 0;
-            correctGuess = false;
         }
-        if (guessesLeft <= 0)
+        if (guesses <= 0 && correctGuesses.size() != wordLength)
         {
-            System.out.println("I don't wanna say you suck, but you did lose...:'(\n\n\n");
-            System.out.printf("The word was: %s\n", game.getWord());
-        }
-
-    }
-
-    public static void wordOutput(EvilHangmanGame game, Map<Integer, Character> correctGuesses, char guess, int length)
-    {
-        String key = game.getCurrentKey();
-        System.out.printf("Word: ");
-        if (key != null)
-        {
-            for (int i = 0; i < key.length(); i++)
-            {
-                if (correctGuesses.containsKey(i))
-                {
-                    System.out.print(correctGuesses.get(i));
-                }
-                else if (key.charAt(i) == '0')
-                {
-                    System.out.print('-');
-                }
-                else
-                {
-                    System.out.print(guess);
-                    correctGuesses.put(i, guess); //add this to my map
-                }
-            }
+            System.out.printf("Sorry you win some and you lose some and you lost this one for sure!\n");
+            Iterator it = myWords.iterator();
+            System.out.printf("The word was: %s", it.next().toString());
         }
         else
         {
-            for (int i = 0; i < length; i++)
-            {
-                System.out.print('-');
-            }
-            System.out.print('\n');
+            System.out.printf("Wow. IDK how you pulled that off but nice win!\n");
+            Iterator it = myWords.iterator();
+            System.out.printf("You guessed the word: %s", it.next().toString());
         }
     }
 
-    public static char guessOutputInput(EvilHangmanGame game)
+    private static void wordOutput(EvilHangmanGame game, Map<Integer, Character> correctGuesses, int wordLength)
     {
-        boolean bad_user_input = true;
-        char guess = '\0';
-        System.out.printf("Enter Guess: ");
-        while (bad_user_input)
+        System.out.printf("Word: ");
+        for (int i = 0; i < wordLength; i++)
         {
+            if (correctGuesses.get(i) == null)
+            {
+                System.out.printf("-");
+            }
+            else
+            {
+                System.out.printf("%c", correctGuesses.get(i));
+            }
+        }
+        System.out.printf("\n");
+    }
+
+    public static char guessing(EvilHangmanGame game, Set<String> myWords) throws GuessAlreadyMadeException {
+        byte valid_input = 0;
+        char guess = '\0';
+        while (valid_input == 0)
+        {
+            System.out.printf("Enter Guess: ");
             Scanner scanner = new Scanner(System.in);
-            guess = scanner.next().charAt(0);
-            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+            String s = scanner.next();
+            guess = s.charAt(0);
             guess = Character.toLowerCase(guess);
             if (guess >= 'a' && guess <= 'z')
             {
-                try
+                try {
+                    myWords = game.makeGuess(guess);
+                    valid_input = 1;
+
+                } catch (GuessAlreadyMadeException e)
                 {
-                    game.makeGuess(guess);
-                    bad_user_input = false;
-                }
-                catch (GuessAlreadyMadeException e)
-                {
-                    System.out.println("Hey so you already guessed that letter...try another one");
-                    bad_user_input = true;
+                    System.out.printf("Uh already guessed that bro..try again!\n");
                 }
             }
             else
             {
-                System.out.println("So uh how about guessing a letter in the alphabet?");
+                valid_input = 0;
+                System.out.printf("Invalid input. Try a letter a-z\n");
             }
         }
         return guess;
     }
+
+    private static boolean guessEvaluation(EvilHangmanGame game, Set<String> myWords, Map<Integer, Character> correctGuesses, char guess)
+    {
+        int count = 0;
+        for (String s : myWords)
+        {
+            for (int i = 0; i < s.length(); i++)
+            {
+                if (s.charAt(i) == guess)
+                {
+                    count++;
+                    correctGuesses.put(i, guess);
+                }
+            }
+            break;
+        }
+        if (count == 0)
+        {
+            System.out.printf("Sorry there are no %c's!\n\n", guess);
+            return false;
+        }
+        else if (count == 1)
+        {
+            System.out.printf("Nice! There is 1 %c!\n\n", guess);
+            return true;
+        }
+        else
+        {
+            System.out.printf("Noice! There are %d %c!\n\n", count, guess);
+            return true;
+        }
+    }
+
+
 
 
 }
