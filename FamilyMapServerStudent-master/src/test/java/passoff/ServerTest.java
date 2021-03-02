@@ -95,10 +95,10 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      */
     @Test
-    @DisplayName("Register Valid New User Test")
+    @DisplayName("Service.Register Valid New User Test")
     public void testValidNewRegister(TestInfo testInfo) {
         printTestName(testInfo);
         try {
@@ -127,10 +127,10 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      */
     @Test
-    @DisplayName("Re-Register User Test")
+    @DisplayName("Re-Service.Register User Test")
     public void testReRegister(TestInfo testInfo) {
         printTestName(testInfo);
         try {
@@ -159,7 +159,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Login
      */
     @Test
@@ -196,7 +196,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Login
      */
     @Test
@@ -217,7 +217,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Login
      */
     @Test
@@ -240,7 +240,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Person/[personID]
      * (Partial) Fill
      */
@@ -317,7 +317,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * (Partial) Person/[personID]
      */
     @Test
@@ -345,7 +345,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * (Partial) All Person
      * (Partial) Fill
      */
@@ -369,7 +369,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * (Partial) All Person
      */
     @Test
@@ -487,7 +487,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * (Partial) All Event
      * (Partial) Fill
      */
@@ -511,7 +511,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * (Partial) All Events
      */
     @Test
@@ -533,7 +533,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * All Person
      * Fill
      */
@@ -557,7 +557,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * All Person
      * All Event
      * Fill
@@ -586,7 +586,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * All Person
      * All Event
      * Fill
@@ -625,7 +625,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * All Person
      * All Event
      * Fill
@@ -700,7 +700,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Fill
      */
     @Test
@@ -740,7 +740,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Fill
      */
     @Test
@@ -780,7 +780,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Fill
      */
     @Test
@@ -820,7 +820,7 @@ public class ServerTest {
 
     /**
      * Required API calls:
-     * Register
+     * Service.Register
      * Load
      */
     @Test

@@ -2,56 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13d88a10-eae4-4840-8eba-5ac5f02f3caf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../EvilHangman-project/EvilHangman.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SpellingCorrector-project/SpellingCorrector.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/EvilHangman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/EvilHangman.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EmptyDictionaryException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EmptyDictionaryException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangman.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/EvilHangmanGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/GuessAlreadyMadeException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/GuessAlreadyMadeException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/IEvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/hangman/IEvilHangmanGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/passoff/HangmanTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/out/production/EvilHangman/passoff/HangmanTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/EmptyDictionaryException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/EmptyDictionaryException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangman.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/EvilHangmanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/src/hangman/GuessAlreadyMadeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EvilHangman/src/hangman/GuessAlreadyMadeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EvilHangman/stuff.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/SpellingCorrector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellingCorrector/SpellingCorrector.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/notsobig.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellingCorrector/notsobig.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/passoff/SpellTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/passoff/TrieTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/INode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/ISpellCorrector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/ITrie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/SpellCorrector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/out/production/SpellingCorrector/spell/Trie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/apiguardian-api-1.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/junit-jupiter-api-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/junit-platform-commons-1.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/jars/opentest4j-1.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/notsobig.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/word.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/SpellingCorrectorStudentFiles/words.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/._SpellingCorrectorStudentFiles" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._.DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._jars" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._notsobig.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._test_files" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._word.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/._words.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/jars/._.DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/test_files/._SpellTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/spelltestfiles/__MACOSX/SpellingCorrectorStudentFiles/test_files/._TrieTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/SpellCorrector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellingCorrector/src/spell/Trie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FamilyMapServerStudent-master/src/main/java/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FamilyMapServerStudent-master/src/test/java/passoff/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FamilyMapServerStudent-master/src/test/java/passoff/ServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FamilyMapServerStudent-master/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FamilyMapServerStudent-master/web/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/game-test3Old.txt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FamilyMapServerStudent-master" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -120,19 +74,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -232,6 +173,9 @@
       <workItem from="1612921016581" duration="220000" />
       <workItem from="1612925062430" duration="310000" />
       <workItem from="1613088468223" duration="2566000" />
+      <workItem from="1613879802949" duration="620000" />
+      <workItem from="1614133750974" duration="625000" />
+      <workItem from="1614637190913" duration="61000" />
     </task>
     <servers />
   </component>

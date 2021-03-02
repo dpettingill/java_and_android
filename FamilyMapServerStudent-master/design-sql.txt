@@ -1,0 +1,46 @@
+CREATE TABLE Users (
+    Username varchar(255) NOT NULL,
+    Password varchar(255) NOT NULL,
+    Email varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    LastName varchar(255) NOT NULL,
+    Gender char(1) NOT NULL,
+    PersonId varchar(255) NOT NULL,
+    CONSTRAINT PK_Users_Username PRIMARY KEY (Username)
+    CONSTRAINT FK_Users_PersonId FOREIGN KEY (PersonId) REFERENCES Persons(PK_Persons_Id)
+);
+
+CREATE TABLE Persons (
+    Id varchar(255) NOT NULL,
+    AssociatedUsername varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    LastName varchar(255) NOT NULL,
+    Gender char(1) NOT NULL,
+    FatherId varchar(255),
+    MotherId varchar(255),
+    SpouseId varchar(255),
+    CONSTRAINT PK_Persons_Id PRIMARY KEY (Id)
+    CONSTRAINT FK_Persons_Username FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
+);
+
+CREATE TABLE Events (
+    Id varchar(255) NOT NULL,
+    AssociatedUsername varchar(255) NOT NULL,
+    PersonId varchar(255) NOT NULL,
+    Latitude float NOT NULL,
+    Longitude float NOT NULL,
+    Country varchar(255) NOT NULL,
+    City varchar(255) NOT NULL,
+    EventType varchar(255) NOT NULL,
+    Year int NOT NULL,
+    PRIMARY KEY (Id)
+    CONSTRAINT FK_Events_Username FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
+    CONSTRAINT FK_Events_PersonId FOREIGN KEY (PersonId) REFERENCES Persons(PK_Persons_Id)
+);
+
+CREATE TABLE AuthTokens (
+    AuthToken varchar(255) NOT NULL,
+    AssociatedUsername varchar(255) NOT NULL,
+    CONSTRAINT PK_AuthToken PRIMARY KEY (AuthToken)
+    CONSTRAINT FK_AuthTokens_AssociatedUsername FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
+);
