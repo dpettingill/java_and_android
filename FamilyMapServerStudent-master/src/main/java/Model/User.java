@@ -30,7 +30,7 @@ public class User {
     /**
      * stores a char representing the user's gender
      */
-    private char gender;
+    private String gender;
     /**
      * stores an id to link to the person table
      */
@@ -47,7 +47,7 @@ public class User {
      * @param gender single char 'f' or 'm' for gender of user
      * @param personId id associated with person object for the user
      */
-    public User(String username, String password, String email, String firstName, String lastName, char gender, String personId) {
+    public User(String username, String password, String email, String firstName, String lastName, String gender, String personId) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -146,7 +146,7 @@ public class User {
      *
      * @return
      */
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -154,7 +154,7 @@ public class User {
      *
      * @param gender
      */
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
