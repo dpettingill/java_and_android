@@ -40,9 +40,9 @@ public class Server {
 
         server.createContext("/", new FileHandler());
         server.createContext("/user/register", new UserRegisterHandler());
+        server.createContext("/user/login", new UserLoginHandler());
+        server.createContext("/clear", new ClearHandler());
         /**
-         * server.createContext("/user/login", new UserLoginHandler());
-         * server.createContext("/clear", new ClearHandler());
          * server.createContext("/fill/[username]/{generations}", new FillHandler(username, generations);
          * server.createContext("/load"), new LoadHandler();
          * server.createContext("/person/[personId]"), new PersonHandler();
