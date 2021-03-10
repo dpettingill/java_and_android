@@ -1,36 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/dptre/School-2021/CS_240/IdeaProjects/FamilyMapServerStudent-master/FamilyMapServer.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="3988"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainAuthTokens"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">
-
-CREATE TABLE Persons (
-    Id varchar(255) NOT NULL,
-    AssociatedUsername varchar(255) NOT NULL,
-    FirstName varchar(255) NOT NULL,
-    LastName varchar(255) NOT NULL,
-    Gender char(1) NOT NULL,
-    FatherId varchar(255),
-    MotherId varchar(255),
-    SpouseId varchar(255),
-    CONSTRAINT PK_Persons_Id PRIMARY KEY (Id)
-    CONSTRAINT FK_Persons_Username FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
-);
-
-CREATE TABLE Events (
-    Id int NOT NULL,
-    AssociatedUsername varchar(255) NOT NULL,
-    PersonId varchar(255) NOT NULL,
-    Latitude float NOT NULL,
-    Longitude float NOT NULL,
-    Country varchar(255) NOT NULL,
-    City varchar(255) NOT NULL,
-    EventType varchar(255) NOT NULL,
-    Year int NOT NULL,
-    PRIMARY KEY (Id)
-    CONSTRAINT FK_Events_Username FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
-    CONSTRAINT FK_Events_PersonId FOREIGN KEY (PersonId) REFERENCES Persons(PK_Persons_Id)
-);
-
-CREATE TABLE AuthTokens (
-    AuthToken varchar(255) NOT NULL,   
-    AssociatedUsername varchar(255) NOT NULL,
-    CONSTRAINT PK_AuthToken PRIMARY KEY (AuthToken)
-    CONSTRAINT FK_AuthTokens_AssociatedUsername FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/dptre/School-2021/CS_240/IdeaProjects/FamilyMapServerStudent-master/FamilyMapServer.sqlite" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4065"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainAuthTokens"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE Users (
+    Username varchar(255) NOT NULL,
+    Password varchar(255) NOT NULL,
+    Email varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    LastName varchar(255) NOT NULL,
+    Gender char(1) NOT NULL,
+    PersonId varchar(255) NOT NULL,
+    CONSTRAINT PK_Users_Username PRIMARY KEY (Username)
+    CONSTRAINT FK_Users_PersonId FOREIGN KEY (PersonId) REFERENCES Persons(PK_Persons_Id)
+);
+
+CREATE TABLE Persons (
+    Id varchar(255) NOT NULL,
+    AssociatedUsername varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    LastName varchar(255) NOT NULL,
+    Gender char(1) NOT NULL,
+    FatherId varchar(255),
+    MotherId varchar(255),
+    SpouseId varchar(255),
+    CONSTRAINT PK_Persons_Id PRIMARY KEY (Id)
+    CONSTRAINT FK_Persons_Username FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
+);
+
+CREATE TABLE Events (
+    Id varchar(255) NOT NULL,
+    AssociatedUsername varchar(255) NOT NULL,
+    PersonId varchar(255) NOT NULL,
+    Latitude float NOT NULL,
+    Longitude float NOT NULL,
+    Country varchar(255) NOT NULL,
+    City varchar(255) NOT NULL,
+    EventType varchar(255) NOT NULL,
+    Year int NOT NULL,
+    PRIMARY KEY (Id)
+    CONSTRAINT FK_Events_Username FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
+    CONSTRAINT FK_Events_PersonId FOREIGN KEY (PersonId) REFERENCES Persons(PK_Persons_Id)
+);
+
+CREATE TABLE AuthTokens (
+    AuthToken varchar(255) NOT NULL,
+    AssociatedUsername varchar(255) NOT NULL,
+    CONSTRAINT PK_AuthToken PRIMARY KEY (AuthToken)
+    CONSTRAINT FK_AuthTokens_AssociatedUsername FOREIGN KEY (AssociatedUsername) REFERENCES Users(PK_Users_Username)
 );</sql><current_tab id="0"/></tab_sql></sqlb_project>

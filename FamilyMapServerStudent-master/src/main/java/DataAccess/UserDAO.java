@@ -1,10 +1,8 @@
 package DataAccess;
 import Model.Event;
 import Model.User;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 /**
  * DAO for users
@@ -79,9 +77,21 @@ public class UserDAO {
                     e.printStackTrace();
                 }
             }
-
         }
         return null;
+    }
+
+    /**
+     * clears the Persons table completely
+     */
+    public void clear() throws DataAccessException
+    {
+        try (Statement stmt = conn.createStatement()){
+            String sql = "DELETE FROM Users";
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while clearing the Users table");
+        }
     }
 
     /**
@@ -89,24 +99,6 @@ public class UserDAO {
      * @param user user object
      */
     public void delete(User user)
-    {
-
-    }
-
-    /**
-     * given a username gets that user from the db
-     * @param username connects to user object
-     * @return a user object
-     */
-    public User getUser(String username)
-    {
-        return null;
-    }
-
-    /**
-     * clears the Users table completely
-     */
-    public void clear()
     {
 
     }

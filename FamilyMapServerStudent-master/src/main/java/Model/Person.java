@@ -62,6 +62,25 @@ public class Person {
     }
 
     /**
+     * constructor w/o optionals
+     * @param id
+     * @param associatedUsername
+     * @param firstName
+     * @param lastName
+     * @param gender
+     */
+    public Person(String id, String associatedUsername, String firstName, String lastName, String gender) {
+        this.id = id;
+        this.associatedUsername = associatedUsername;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.fatherId = null;
+        this.motherId = null;
+        this.spouseId = null;
+    }
+
+    /**
      *
      */
     public Person() {}
@@ -128,5 +147,29 @@ public class Person {
 
     public void setSpouseId(String spouseId) {
         this.spouseId = spouseId;
+    }
+
+    /**
+     *
+     * @param o object
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o instanceof Person) {
+            Person oPerson = (Person) o;
+            return oPerson.getId().equals(getId()) &&
+                    oPerson.getAssociatedUsername().equals(getAssociatedUsername()) &&
+                    oPerson.getFirstName().equals(getFirstName()) &&
+                    oPerson.getLastName().equals(getLastName()) &&
+                    oPerson.getGender().equals(getGender()) &&
+                    oPerson.getFatherId().equals(getFatherId()) &&
+                    oPerson.getMotherId().equals(getMotherId()) &&
+                    oPerson.getSpouseId().equals(getSpouseId());
+        } else {
+            return false;
+        }
     }
 }

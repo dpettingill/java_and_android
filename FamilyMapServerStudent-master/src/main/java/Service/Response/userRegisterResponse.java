@@ -8,15 +8,15 @@ public class userRegisterResponse extends response {
     /**
      * unique authentication token
      */
-    private String authToken;
+    private final String authToken;
     /**
      * associated username
      */
-    private String username;
+    private final String username;
     /**
      * the Id of the person's that we will be registering
      */
-    private String personId;
+    private final String personId;
 
 
     /**
@@ -27,7 +27,7 @@ public class userRegisterResponse extends response {
      * @param message string
      * @param Success boolean
      */
-    public userRegisterResponse(String authToken, String username, String personId, String message, boolean Success) {
+    public userRegisterResponse(String authToken, String username, String personId, String message, boolean success) {
         this.authToken = authToken;
         this.username = username;
         this.personId = personId;

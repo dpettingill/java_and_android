@@ -8,7 +8,7 @@ public class eventEventIdResponse extends response {
     /**
      * event that we got
      */
-    private Event event;
+    private final Event event;
 
 
     /**

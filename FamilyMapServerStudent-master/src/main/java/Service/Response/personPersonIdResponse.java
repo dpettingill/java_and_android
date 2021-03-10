@@ -8,35 +8,35 @@ public class personPersonIdResponse extends response {
     /**
      * username connected to base user
      */
-    private String associatedUsername;
+    private final String associatedUsername;
     /**
      * id connected to person
      */
-    private String personId;
+    private final String personId;
     /**
      * first name of person
      */
-    private String firstName;
+    private final String firstName;
     /**
      * last name of person
      */
-    private String lastName;
+    private final String lastName;
     /**
      * single char of gender of person
      */
-    private char gender;
+    private final char gender;
     /**
      * optional - id of father of person
      */
-    private String fatherId;
+    private final String fatherId;
     /**
      * option - id of mother of person
      */
-    private String motherId;
+    private final String motherId;
     /**
      * optional - id of spouse of person
      */
-    private String spouseId;
+    private final String spouseId;
 
 
     /**

@@ -143,4 +143,29 @@ public class Event {
     public void setYear(int year) {
         this.year = year;
     }
+
+    /**
+     * equals function
+     * @param o Object to test against
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o instanceof Event) {
+            Event oEvent = (Event) o;
+            return oEvent.getId().equals(getId()) &&
+                    oEvent.getAssociatedUsername().equals(getAssociatedUsername()) &&
+                    oEvent.getPersonId().equals(getPersonId()) &&
+                    oEvent.getLatitude() == (getLatitude()) &&
+                    oEvent.getLongitude() == (getLongitude()) &&
+                    oEvent.getCountry().equals(getCountry()) &&
+                    oEvent.getCity().equals(getCity()) &&
+                    oEvent.getEventType().equals(getEventType()) &&
+                    oEvent.getYear() == (getYear());
+        } else {
+            return false;
+        }
+    }
 }

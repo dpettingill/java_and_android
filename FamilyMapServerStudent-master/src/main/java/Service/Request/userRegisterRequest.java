@@ -27,9 +27,29 @@ public class userRegisterRequest {
     /**
      * 'f' or 'm' of user
      */
-    private char gender;
-    /**
-     * whether the request had all the right info or not
-     */
-    private boolean success;
+    private String gender;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
 }

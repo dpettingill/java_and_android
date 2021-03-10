@@ -1,5 +1,7 @@
 package Model;
 
+import DataAccess.AuthTokenDAO;
+
 /**
  * AuthToken Class creates objects of type AuthToken
  * can be stored as entries on AuthTokens table
@@ -44,5 +46,17 @@ public class AuthToken {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public  boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o instanceof AuthToken) {
+            AuthToken oToken = (AuthToken) o;
+            return oToken.getAuthToken().equals(getAuthToken()) &&
+                    oToken.getUsername().equals(getUsername());
+        } else {
+            return false;
+        }
     }
 }

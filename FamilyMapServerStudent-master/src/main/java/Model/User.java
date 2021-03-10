@@ -173,4 +173,27 @@ public class User {
     public void setPersonId(String personId) {
         this.personId = personId;
     }
+
+    /**
+     *
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o instanceof User) {
+            User oUser = (User) o;
+            return oUser.getUsername().equals(getUsername()) &&
+                    oUser.getPassword().equals(getPassword()) &&
+                    oUser.getPersonId().equals(getPersonId()) &&
+                    oUser.getEmail().equals(getEmail()) &&
+                    oUser.getFirstName().equals(getFirstName()) &&
+                    oUser.getLastName().equals(getLastName()) &&
+                    oUser.getGender().equals(getGender());
+        } else {
+            return false;
+        }
+    }
 }

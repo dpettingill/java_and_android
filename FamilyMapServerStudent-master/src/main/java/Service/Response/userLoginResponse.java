@@ -8,15 +8,15 @@ public class userLoginResponse extends response {
     /**
      * unique authentication token
      */
-    private String authToken;
+    private final String authToken;
     /**
      * username assigned to this user
      */
-    private String username;
+    private final String username;
     /**
      * id connecting to person object
      */
-    private String personId;
+    private final String personId;
 
 
     /**

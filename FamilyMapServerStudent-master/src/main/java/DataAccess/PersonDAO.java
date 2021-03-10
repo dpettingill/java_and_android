@@ -1,9 +1,7 @@
 package DataAccess;
 import Model.Person;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 
 /**
@@ -61,6 +59,7 @@ public class PersonDAO {
         ResultSet rs = null;
         String sql = "SELECT * FROM Persons WHERE Id =?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, personId);
             rs = stmt.executeQuery();
             if (rs.next()) {
                 person = new Person(rs.getString("Id"), rs.getString("AssociatedUsername"),
@@ -85,18 +84,23 @@ public class PersonDAO {
     }
 
     /**
+     * clears the Persons table completely
+     */
+    public void clear() throws DataAccessException
+    {
+        try (Statement stmt = conn.createStatement()){
+            String sql = "DELETE FROM Persons";
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while clearing the Persons table");
+        }
+    }
+
+    /**
      * deletes person from db
      * @param person a user or a relative of the user
      */
     public void delete(Person person)
-    {
-
-    }
-
-    /**
-     * clears the Persons table completely
-     */
-    public void clear()
     {
 
     }
