@@ -106,6 +106,27 @@ public class EventDAO {
     {
 
     }
+
+    /**
+     * clears associated events
+     * @param username
+     * @throws DataAccessException
+     */
+    public boolean clear(String username) throws SQLException
+    {
+        PreparedStatement stmt = null;
+        try {
+            String sql = "DELETE FROM Events WHERE AssociatedUsername = ?";
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            int rows_affected = stmt.executeUpdate();
+            return (rows_affected == 1);
+        } finally {
+            if (stmt != null)
+                stmt.close();
+        }
+    }
 }
 
 

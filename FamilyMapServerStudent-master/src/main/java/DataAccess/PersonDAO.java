@@ -49,17 +49,16 @@ public class PersonDAO {
 
     /**
      * finds a person in the persons table
-     * @param personId String
+     * @param Id String
      * @return Person
      * @throws DataAccessException
      */
-    public Person find(String personId) throws DataAccessException
-    {
+    public Person find(String Id) throws DataAccessException {
         Person person;
         ResultSet rs = null;
         String sql = "SELECT * FROM Persons WHERE Id =?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, personId);
+            stmt.setString(1, Id);
             rs = stmt.executeQuery();
             if (rs.next()) {
                 person = new Person(rs.getString("Id"), rs.getString("AssociatedUsername"),
@@ -93,6 +92,22 @@ public class PersonDAO {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             throw new DataAccessException("Error encountered while clearing the Persons table");
+        }
+    }
+
+    public boolean clear(String username) throws SQLException
+    {
+        PreparedStatement stmt = null;
+        try {
+            String sql = "delete from Persons where AssociatedUsername = ?";
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            int rows_affected = stmt.executeUpdate();
+            return (rows_affected == 1);
+        } finally {
+            if (stmt != null)
+                stmt.close();
         }
     }
 
