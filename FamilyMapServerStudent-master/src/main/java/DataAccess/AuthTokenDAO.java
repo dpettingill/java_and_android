@@ -36,16 +36,16 @@ public class AuthTokenDAO {
 
     /**
      * gets token associated with username from db
-     * @param username name of user
+     * @param value name of user
      * @return AuthToken
      */
-    public AuthToken find(String username) throws DataAccessException
+    public AuthToken find(String value, String column) throws DataAccessException
     {
         AuthToken token;
         ResultSet rs = null;
-        String sql = "SELECT * FROM AuthTokens WHERE AssociatedUsername = ?;";
+        String sql = "SELECT * FROM AuthTokens WHERE " + column + " = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, username);
+            stmt.setString(1, value);
             rs = stmt.executeQuery();
             if (rs.next()) {
                 token = new AuthToken(rs.getString("AuthToken"), rs.getString("AssociatedUsername"));

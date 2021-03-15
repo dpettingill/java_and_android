@@ -1,9 +1,9 @@
 package Handler;
 
 import DataAccess.DataAccessException;
-import Service.Request.userRegisterRequest;
-import Service.Response.userRegisterResponse;
-import Service.userRegister;
+import Service.Request.UserRegisterRequest;
+import Service.Response.UserRegisterResponse;
+import Service.UserRegisterService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -17,9 +17,9 @@ public class UserRegisterHandler extends PostRequestHandler implements HttpHandl
     public void handle(HttpExchange exchange) throws IOException {
         this.setExchange(exchange);
         super.handle();
-        userRegisterRequest urReq = this.getGson().fromJson(this.getReqData(), userRegisterRequest.class);
-        userRegister ur = new userRegister();
-        userRegisterResponse urRes = null;
+        UserRegisterRequest urReq = this.getGson().fromJson(this.getReqData(), UserRegisterRequest.class);
+        UserRegisterService ur = new UserRegisterService();
+        UserRegisterResponse urRes = null;
         try {
             urRes = ur.register(urReq);
         } catch (DataAccessException e) {

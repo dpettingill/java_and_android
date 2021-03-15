@@ -42,13 +42,13 @@ public class Server {
         server.createContext("/user/register", new UserRegisterHandler());
         server.createContext("/user/login", new UserLoginHandler());
         server.createContext("/clear", new ClearHandler());
+        server.createContext("/fill", new FillHandler());
+        server.createContext("/event", new EventHandler());
+
         /**
-         * server.createContext("/fill/[username]/{generations}", new FillHandler(username, generations);
          * server.createContext("/load"), new LoadHandler();
          * server.createContext("/person/[personId]"), new PersonHandler();
          * server.createContext("/person"), new PersonsHandler();
-         * server.createContext("/event/[eventId]"), new EventHandler(eventId);
-         * server.createContext("/event"), new EventsHandler();
          */
 
         System.out.println("Starting server"); // Log message indicating the HttpServer soon will be accepting incoming client conns

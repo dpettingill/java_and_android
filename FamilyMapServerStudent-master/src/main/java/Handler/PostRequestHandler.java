@@ -16,7 +16,6 @@ public class PostRequestHandler extends RequestHandler {
         try {
             if (this.getExchange().getRequestMethod().toLowerCase().equals("post"))
             {
-                this.setGson();
                 InputStream reqBody = this.getExchange().getRequestBody(); // Get the HTTP request headers
                 reqData = readString(reqBody);
             }
@@ -27,19 +26,7 @@ public class PostRequestHandler extends RequestHandler {
         }
     }
 
-    /*
-		The readString method shows how to read a String from an InputStream.
-	*/
-    private String readString(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        InputStreamReader sr = new InputStreamReader(is);
-        char[] buf = new char[1024];
-        int len;
-        while ((len = sr.read(buf)) > 0) {
-            sb.append(buf, 0, len);
-        }
-        return sb.toString();
-    }
+
 
     public String getReqData() {
         return reqData;

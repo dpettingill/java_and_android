@@ -48,7 +48,7 @@ public class AuthTokenDAOTest {
         //only that it ran without causing an error
         atDAO.insert(bestToken);
         //So lets use a find method to get the event that we just put in back out
-        AuthToken compareTest = atDAO.find(bestToken.getUsername());
+        AuthToken compareTest = atDAO.find(bestToken.getUsername(), "AssociatedUsername");
         //First lets see if our find found anything at all. If it did then we know that if nothing
         //else something was put into our database, since we cleared it in the beginning
         assertNotNull(compareTest);

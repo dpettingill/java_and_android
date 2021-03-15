@@ -1,10 +1,8 @@
 package Handler;
 
 import DataAccess.DataAccessException;
-import Service.Response.clearResponse;
-import Service.Response.userLoginResponse;
-import Service.clear;
-import Service.userLogin;
+import Service.Response.ClearResponse;
+import Service.ClearService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -23,8 +21,8 @@ public class ClearHandler extends RequestHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         this.setExchange(exchange);
-        clear cl = new clear();
-        clearResponse clRes = null;
+        ClearService cl = new ClearService();
+        ClearResponse clRes = null;
         try {
             clRes = cl.clear();
         } catch (DataAccessException e) {

@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 public class RequestHandler {
     private HttpExchange exchange;
     private boolean success = false;
-    private Gson gson;
+    private Gson gson = new Gson();
 
     public void sendResponse(String resData) throws IOException {
         try {
@@ -42,6 +42,20 @@ public class RequestHandler {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str);
         sw.flush();
+    }
+
+    /*
+		The readString method shows how to read a String from an InputStream.
+	*/
+    public String readString(InputStream is) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        InputStreamReader sr = new InputStreamReader(is);
+        char[] buf = new char[1024];
+        int len;
+        while ((len = sr.read(buf)) > 0) {
+            sb.append(buf, 0, len);
+        }
+        return sb.toString();
     }
 
     public HttpExchange getExchange() {
