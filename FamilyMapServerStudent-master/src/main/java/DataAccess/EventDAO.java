@@ -62,7 +62,7 @@ public class EventDAO {
      */
     public Event find(String eventID) throws DataAccessException
     {
-        Event event;
+        Event event = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM Events WHERE Id = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -73,7 +73,6 @@ public class EventDAO {
                         rs.getString("PersonID"), rs.getFloat("Latitude"), rs.getFloat("Longitude"),
                         rs.getString("Country"), rs.getString("City"), rs.getString("EventType"),
                         rs.getInt("Year"));
-                return event;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,11 +83,12 @@ public class EventDAO {
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    return null; //if not found then return null
                 }
             }
 
         }
-        return null;
+        return event;
     }
 
     /**

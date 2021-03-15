@@ -24,4 +24,11 @@ public class EventResponse extends GenericResponse {
         this.message = message;
         this.success = success;
     }
+
+    public EventResponse(String message, boolean success) {
+        this.associatedUsername = null;
+        this.event = null;
+        this.message = message;
+        this.success = success;
+    }
 }

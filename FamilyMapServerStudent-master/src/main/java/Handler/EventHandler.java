@@ -1,9 +1,7 @@
 package Handler;
 
 import DataAccess.DataAccessException;
-import DataAccess.EventDAO;
 import Model.AuthToken;
-import Model.Event;
 import Service.EventService;
 import Service.Response.EventResponse;
 import Service.Response.EventsResponse;
@@ -33,7 +31,7 @@ public class EventHandler extends GetRequestHandler implements HttpHandler {
             AuthToken authToken = this.getAuthToken();
             if (this.getTokensLength() == 3) //get indiv event
             {
-                EventResponse eRes = eventService.getEvent(this.getTokens()[3], this.getConn()); //getToken()[3] = eventId
+                EventResponse eRes = eventService.getEvent(this.getConn(), this.getTokens()[3]); //getToken()[3] = eventId
                 resData = this.getGson().toJson(eRes);
             }
             else if (this.getTokensLength() == 2)  //get all events

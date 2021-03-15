@@ -24,7 +24,7 @@ public class PersonResponse extends GenericResponse {
     /**
      * single char of gender of person
      */
-    private final char gender;
+    private final String gender;
     /**
      * optional - id of father of person
      */
@@ -52,7 +52,7 @@ public class PersonResponse extends GenericResponse {
      * @param message string
      * @param success boolean
      */
-    public PersonResponse(String associatedUsername, String personId, String firstName, String lastName, char gender, String fatherId, String motherId, String spouseId, String message, boolean success) {
+    public PersonResponse(String associatedUsername, String personId, String firstName, String lastName, String gender, String fatherId, String motherId, String spouseId, String message, boolean success) {
         this.associatedUsername = associatedUsername;
         this.personId = personId;
         this.firstName = firstName;
@@ -61,6 +61,20 @@ public class PersonResponse extends GenericResponse {
         this.fatherId = fatherId;
         this.motherId = motherId;
         this.spouseId = spouseId;
+        this.message = message;
+        this.success = success;
+    }
+
+    public PersonResponse(String message, boolean success)
+    {
+        this.associatedUsername = null;
+        this.personId = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.gender = null;
+        this.fatherId = null;
+        this.motherId = null;
+        this.spouseId = null;
         this.message = message;
         this.success = success;
     }

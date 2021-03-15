@@ -9,17 +9,23 @@ public class PersonsResponse extends GenericResponse {
     /**
      * array of persons obtained
      */
-    Person[] person_arr = {};
+    Person[] data = {};
 
 
     /**
      * constructor for person response data
-     * @param person_arr array of person objects
+     * @param data array of person objects
      * @param message string
      * @param success boolean
      */
-    public PersonsResponse(Person[] person_arr, String message, boolean success) {
-        this.person_arr = person_arr;
+    public PersonsResponse(Person[] data, String message, boolean success) {
+        this.data = data;
+        this.message = message;
+        this.success = success;
+    }
+
+    public PersonsResponse(String message, boolean success) {
+        this.data = null;
         this.message = message;
         this.success = success;
     }

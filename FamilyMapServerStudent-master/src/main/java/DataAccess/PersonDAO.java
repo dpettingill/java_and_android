@@ -1,7 +1,9 @@
 package DataAccess;
+import Model.Event;
 import Model.Person;
 
 import java.sql.*;
+import java.util.Arrays;
 
 
 /**
@@ -54,7 +56,7 @@ public class PersonDAO {
      * @throws DataAccessException
      */
     public Person find(String Id) throws DataAccessException {
-        Person person;
+        Person person = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM Persons WHERE Id =?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -65,7 +67,6 @@ public class PersonDAO {
                         rs.getString("FirstName"), rs.getString("LastName"),
                         rs.getString("Gender"), rs.getString("FatherId"),
                         rs.getString("MotherId"), rs.getString("SpouseId"));
-                return person;
             }
         } catch(SQLException e) {
             e.printStackTrace();
@@ -76,10 +77,47 @@ public class PersonDAO {
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    return null; //if not found then return null
                 }
             }
         }
-        return null;
+        return person;
+    }
+
+    public Person[] findAll(String username) throws DataAccessException {
+        Person[] persons = new Person[100];
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Persons WHERE AssociatedUsername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                Person person = new Person(rs.getString("Id"), rs.getString("AssociatedUsername"),
+                        rs.getString("FirstName"), rs.getString("LastName"),
+                        rs.getString("Gender"), rs.getString("FatherId"),
+                        rs.getString("MotherId"), rs.getString("SpouseId"));
+                if (i > persons.length - 1) //check if i is out of bounds
+                {
+                    persons = Arrays.copyOf(persons, persons.length * 2);
+                }
+                persons[i] = person; //don't forget to make sure events is big enough
+                i++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding event");
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return null; //error occurs return null
+                }
+            }
+        }
+        return persons;
     }
 
     /**

@@ -19,9 +19,14 @@ public class EventsResponse extends GenericResponse {
      * @param message string
      * @param success boolean
      */
-    public EventsResponse(String associatedUsername, Event[] data, String message, boolean success) {
-        this.associatedUsername = associatedUsername;
+    public EventsResponse(Event[] data, String message, boolean success) {
         this.data = data;
+        this.message = message;
+        this.success = success;
+    }
+
+    public EventsResponse(String message, boolean success) {
+        this.data = null;
         this.message = message;
         this.success = success;
     }
