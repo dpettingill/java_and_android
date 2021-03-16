@@ -8,6 +8,7 @@ import Service.Request.*;
 import Service.Response.*;
 
 import java.sql.Connection;
+import java.util.UUID;
 
 /**
  * clears db and then loads posted data into newly cleared db
@@ -32,7 +33,7 @@ public class LoadService {
             while (i < users.length) {
                 User newUser = new User(users[i].getUsername(), users[i].getPassword(),
                         users[i].getEmail(), users[i].getFirstName(), users[i].getLastName(),
-                        users[i].getGender(), users[i].getPersonId());
+                        users[i].getGender(), UUID.randomUUID().toString());
                 uDAO.insert(newUser);
                 i++;
             }

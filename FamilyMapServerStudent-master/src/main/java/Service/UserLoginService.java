@@ -28,20 +28,24 @@ public class UserLoginService {
         UserDAO uDao = new UserDAO(conn);
         UserLoginResponse urRes;
         User user = uDao.find(ulr.getUsername());
-        if (user.getPassword().equals(ulr.getPassword()))
+        try
         {
-            AuthToken authToken = new AuthToken(
-                    UUID.randomUUID().toString(),
-                    user.getUsername());
-            AuthTokenDAO atDao = new AuthTokenDAO(conn);
-            atDao.insert(authToken);
-            urRes = new UserLoginResponse(
-                    authToken.getAuthToken(),
-                    user.getUsername(),
-                    user.getPersonId(), null, true);
-            db.closeConnection(true);
-        }
-        else
+            if (user.getPassword().equals(ulr.getPassword())) {
+                AuthToken authToken = new AuthToken(
+                        UUID.randomUUID().toString(),
+                        user.getUsername());
+                AuthTokenDAO atDao = new AuthTokenDAO(conn);
+                atDao.insert(authToken);
+                urRes = new UserLoginResponse(
+                        authToken.getAuthToken(),
+                        user.getUsername(),
+                        user.getPersonId(), null, true);
+                db.closeConnection(true);
+            }
+            else {
+                throw new Exception("user tried to log in with wrong password");
+            }
+        } catch (Exception e)
         {
             urRes = new UserLoginResponse(
                 null, null, null,

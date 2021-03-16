@@ -29,21 +29,24 @@ public class PersonHandler extends GetRequestHandler implements HttpHandler {
             super.handle();
             PersonService personService = new PersonService();
             AuthToken authToken = this.getAuthToken();
-            if (this.getTokensLength() == 3) //get indiv event
+            PersonResponse singlePersonRes = null;
+            PersonsResponse multiplePersonsRes = null;
+
+            if (this.getTokensLength() == 3 && authToken != null) //get indiv event
             {
-                PersonResponse eRes = personService.getPerson(this.getConn(), this.getTokens()[2]); //getToken()[2] = personId
-                resData = this.getGson().toJson(eRes);
+                singlePersonRes = personService.getPerson(this.getConn(), this.getTokens()[2]); //getToken()[2] = personId
             }
-            else if (this.getTokensLength() == 2)  //get all events
+            else if (this.getTokensLength() == 2 && authToken != null)  //get all events
             {
-                PersonsResponse esRes = personService.getPersons(this.getConn(), authToken.getUsername());
-                resData = this.getGson().toJson(esRes);
+                multiplePersonsRes = personService.getPersons(this.getConn(), authToken.getUsername());
             }
-            else
+
+            if (authToken == null || (singlePersonRes == null && multiplePersonsRes == null))
             {
-                this.getExchange().sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-                this.getExchange().getResponseBody().close();
+                singlePersonRes = new PersonResponse("Error getting the person(s)", false);
             }
+            resData = singlePersonRes == null ? this.getGson().toJson(multiplePersonsRes) : this.getGson().toJson(singlePersonRes);
+
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

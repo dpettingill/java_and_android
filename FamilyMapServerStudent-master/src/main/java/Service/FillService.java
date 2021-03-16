@@ -96,24 +96,24 @@ public class FillService {
     private void recursiveGenerationAdd(Person person, int gen, int num_gens) throws FileNotFoundException, DataAccessException {
         Gson gson = new Gson();
         Random random = new Random();
-        String m_id = UUID.randomUUID().toString();
-        String f_id = UUID.randomUUID().toString();
+        String motherId = UUID.randomUUID().toString();
+        String fatherId = UUID.randomUUID().toString();
 
         //father stuff
         names m_names = gson.fromJson(new FileReader("json/mnames.json"), names.class);
-        Person father = new Person(f_id, person.getAssociatedUsername(),
+        Person father = new Person(fatherId, person.getAssociatedUsername(),
                 m_names.data[random.nextInt(m_names.data.length)],
-                person.getLastName(), "m", null, null, f_id);
-        person.setFatherID(m_id);
+                person.getLastName(), "m", null, null, motherId);
+        person.setFatherID(fatherId);
         pDao.insert(father);
         personCount++;
 
         //mother stuff
         names f_names = gson.fromJson(new FileReader("json/fnames.json"), names.class);
-        Person mother = new Person(m_id, person.getAssociatedUsername(),
+        Person mother = new Person(motherId, person.getAssociatedUsername(),
                 f_names.data[random.nextInt(f_names.data.length)],
-                person.getLastName(), "f", null, null, m_id);
-        person.setMotherID(f_id);
+                person.getLastName(), "f", null, null, fatherId);
+        person.setMotherID(motherId);
         pDao.insert(mother);
         personCount++;
 

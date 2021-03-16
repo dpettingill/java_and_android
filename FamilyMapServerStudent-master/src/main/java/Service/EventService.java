@@ -23,10 +23,6 @@ public class EventService {
         {
             esRes = new EventsResponse(events, null, true);
         }
-        else
-        {
-            esRes = new EventsResponse("Error getting events array", false);
-        }
         return esRes;
     }
 
@@ -44,10 +40,6 @@ public class EventService {
         {
             eRes = new EventResponse(event.getAssociatedUsername(),
                     event, null, true);
-        }
-        else
-        {
-            eRes = new EventResponse("Error getting event", false);
         }
         return eRes;
     }

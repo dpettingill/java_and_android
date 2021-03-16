@@ -16,23 +16,20 @@ public class RequestHandler {
     public void sendResponse(String resData) throws IOException {
         try {
             Headers resHeaders = exchange.getResponseHeaders();
-            //I don't think I actually need this
-//            String[] tokens = resData.split(",");
-//            resHeaders.add("Authorization", tokens[0]);
-            exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0); //send status code
+            if (resData.contains("Error")) //error message coming could also check for failure
+            {
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+            }
+            else {
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0); //send status code
+            }
             OutputStream respBody = exchange.getResponseBody();
             writeString(resData, respBody); // Write the JSON string to the output stream.
             respBody.close();
-            success = true;
         } catch (IOException e) {
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_INTERNAL_ERROR, 0);
             exchange.getResponseBody().close();
             e.printStackTrace(); // Display/log the stack trace
-        }
-
-        if (!success) { // The HTTP request was invalid somehow, so we return a "bad request"
-            exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-            exchange.getResponseBody().close();
         }
     }
 

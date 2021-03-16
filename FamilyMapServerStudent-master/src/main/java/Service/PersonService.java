@@ -24,10 +24,6 @@ public class PersonService {
         {
             psRes = new PersonsResponse(persons, null, true);
         }
-        else
-        {
-            psRes = new PersonsResponse("Error getting persons array", false);
-        }
         return psRes;
     }
 
@@ -41,10 +37,6 @@ public class PersonService {
             pRes = new PersonResponse(person.getPersonID(), person.getAssociatedUsername(),
                     person.getFirstName(), person.getLastName(), person.getGender(),
                     person.getFatherID(), person.getMotherID(), person.getSpouseID(), null, true);
-        }
-        else
-        {
-            pRes = new PersonResponse("Error getting person", false);
         }
         return pRes;
     }

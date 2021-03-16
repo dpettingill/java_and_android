@@ -27,10 +27,6 @@ public class GetRequestHandler extends RequestHandler {
             String authToken = reqHeaders.getFirst("Authorization");
             AuthTokenDAO atDao = new AuthTokenDAO(conn);
             at = atDao.find(authToken, "AuthToken");
-            if (at == null) { //return error headers here
-                this.getExchange().sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-                this.getExchange().getResponseBody().close();
-            }
         }
     }
 

@@ -29,21 +29,23 @@ public class EventHandler extends GetRequestHandler implements HttpHandler {
             super.handle();
             EventService eventService = new EventService();
             AuthToken authToken = this.getAuthToken();
-            if (this.getTokensLength() == 3) //get indiv event
+            EventResponse singleEventRes = null;
+            EventsResponse multipleEventsRes = null;
+            if (this.getTokensLength() == 3 && authToken != null) //get indiv event
             {
-                EventResponse eRes = eventService.getEvent(this.getConn(), this.getTokens()[2]); //getToken()[2] = eventId
-                resData = this.getGson().toJson(eRes);
+                singleEventRes = eventService.getEvent(this.getConn(), this.getTokens()[2]); //getToken()[2] = eventId
             }
-            else if (this.getTokensLength() == 2)  //get all events
+            else if (this.getTokensLength() == 2 && authToken != null)  //get all events
             {
-                EventsResponse esRes = eventService.getEvents(this.getConn(), authToken.getUsername());
-                resData = this.getGson().toJson(esRes);
+                multipleEventsRes = eventService.getEvents(this.getConn(), authToken.getUsername());
             }
-            else
+
+            if (authToken == null || (singleEventRes == null && multipleEventsRes == null))
             {
-                this.getExchange().sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-                this.getExchange().getResponseBody().close();
+                singleEventRes = new EventResponse("Error with the event(s)", false);
             }
+            resData = singleEventRes == null ? this.getGson().toJson(multipleEventsRes) : this.getGson().toJson(singleEventRes);
+
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
