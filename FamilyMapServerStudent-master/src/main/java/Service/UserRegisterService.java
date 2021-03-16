@@ -53,19 +53,8 @@ public class UserRegisterService {
             urRes = new UserRegisterResponse(
                     null, null, null,
                     "Error registering user", false);
+            db.closeConnection(false);
         }
         return urRes;
     }
-
-    //generate events for the new user??
-//        Gson gson = new Gson();
-//        Random random = new Random();
-//        location locations = gson.fromJson(new FileReader("json/locations.json"), location.class);
-//        data my_data = locations.data[random.nextInt(locations.data.length)];
-//        Event birth = new Event(UUID.randomUUID().toString(), newUser.getUsername(), person_newUser.getId(), my_data.latitude,
-//                my_data.longitude, my_data.country, my_data.city, 1996);
-
-
-
-
 }

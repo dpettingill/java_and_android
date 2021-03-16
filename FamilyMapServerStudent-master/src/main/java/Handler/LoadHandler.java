@@ -32,7 +32,7 @@ public class LoadHandler extends PostRequestHandler implements HttpHandler {
         LoadService ls = new LoadService();
         LoadResponse lRes = null;
         try {
-            ls.load(lReq);
+            lRes = ls.load(lReq);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

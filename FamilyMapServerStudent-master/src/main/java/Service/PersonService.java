@@ -27,12 +27,16 @@ public class PersonService {
         return psRes;
     }
 
-    public PersonResponse getPerson(Connection conn, String personId) throws DataAccessException
+    public PersonResponse getPerson(Connection conn, String personId, String associatedUsername) throws DataAccessException
     {
         PersonDAO pDAO = new PersonDAO(conn);
         Person person = pDAO.find(personId);
         PersonResponse pRes = null;
-        if (person != null)
+        if (!person.getAssociatedUsername().equals(associatedUsername))
+        {
+            return pRes;
+        }
+        else if (person != null)
         {
             pRes = new PersonResponse(person.getPersonID(), person.getAssociatedUsername(),
                     person.getFirstName(), person.getLastName(), person.getGender(),

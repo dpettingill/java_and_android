@@ -66,7 +66,7 @@ public class LoadService {
         }
         db.closeConnection(true);
         return new LoadResponse("Successfully added " + lr.getUsers().length +
-                " users " + lr.getPersons() + " persons " + lr.getEvents() + " events " +
+                " users, " + lr.getPersons().length + " persons, and " + lr.getEvents().length + " events " +
                 "to the database", true);
     }
 }

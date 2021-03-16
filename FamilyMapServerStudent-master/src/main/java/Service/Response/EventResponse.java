@@ -9,25 +9,60 @@ public class EventResponse extends GenericResponse {
     /**
      * event that we got
      */
-    private final Event event;
-
+    private String eventID;
 
     /**
-     * constructor for event Id data
-     * @param event event object
-     * @param message string
-     * @param success boolean
+     * person's id
      */
-    public EventResponse(String associatedUsername, Event event, String message, boolean success) {
+    private String personID;
+
+    /**
+     * latitude string
+     */
+    private float latitude;
+
+    /**
+     * longitude string
+     */
+    private float longitude;
+
+    /**
+     * country of event
+     */
+    private String country;
+
+    /**
+     * city of event
+     */
+    private String city;
+
+    /**
+     * what kind of event
+     */
+    private String eventType;
+
+    /**
+     * year of event
+     */
+    private int year;
+
+
+    public EventResponse(String associatedUsername, String eventID, String personID, float latitude, float longitude,
+                          String country, String city, String eventType, int year, String message, boolean success) {
         this.associatedUsername = associatedUsername;
-        this.event = event;
+        this.eventID = eventID;
+        this.personID = personID;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.country = country;
+        this.city = city;
+        this.eventType = eventType;
+        this.year = year;
         this.message = message;
         this.success = success;
     }
 
     public EventResponse(String message, boolean success) {
-        this.associatedUsername = null;
-        this.event = null;
         this.message = message;
         this.success = success;
     }

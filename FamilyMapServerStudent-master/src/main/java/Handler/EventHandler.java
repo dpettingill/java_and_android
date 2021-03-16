@@ -33,7 +33,7 @@ public class EventHandler extends GetRequestHandler implements HttpHandler {
             EventsResponse multipleEventsRes = null;
             if (this.getTokensLength() == 3 && authToken != null) //get indiv event
             {
-                singleEventRes = eventService.getEvent(this.getConn(), this.getTokens()[2]); //getToken()[2] = eventId
+                singleEventRes = eventService.getEvent(this.getConn(), this.getTokens()[2], authToken.getUsername()); //getToken()[2] = eventId
             }
             else if (this.getTokensLength() == 2 && authToken != null)  //get all events
             {

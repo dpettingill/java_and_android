@@ -135,12 +135,16 @@ public class FillService {
         locations = gson.fromJson(new FileReader("json/locations.json"), location.class);
         int year = 0;
 
+        //birth
         year = (1996- gen *25);
         newEvent(father, random, "birth", year);
         newEvent(mother, random, "birth", year);
+
+        //marriage
         year = (1996 - (25 * (gen - 1)) - 2);
-        newEvent(father, random, "marriage", year);
-        newEvent(mother, random, "marriage", year);
+        marriageEvents(father, mother, random, year);
+
+        //deaths
         year = (2021-25*(gen - 1));
         newEvent(father, random, "death", year);
         newEvent(mother, random, "death", year);
@@ -162,14 +166,30 @@ public class FillService {
         eventCount += 3;
     }
 
-    private void newEvent(Person mother, Random random, String eventType, int year) throws DataAccessException {
+    private void newEvent(Person person, Random random, String eventType, int year) throws DataAccessException {
         data my_data;
         my_data = locations.data[random.nextInt(locations.data.length)];
         Event event = new Event(UUID.randomUUID().toString(),
-                mother.getAssociatedUsername(), mother.getPersonID(),
+                person.getAssociatedUsername(), person.getPersonID(),
                 my_data.latitude, my_data.longitude, my_data.country,
                 my_data.city, eventType, year);
         eDao.insert(event);
+    }
+
+
+    private void marriageEvents(Person father, Person mother, Random random, int year) throws DataAccessException {
+        data my_data;
+        my_data = locations.data[random.nextInt(locations.data.length)];
+        Event marriageMother = new Event(UUID.randomUUID().toString(),
+                mother.getAssociatedUsername(), mother.getPersonID(),
+                my_data.latitude, my_data.longitude, my_data.country,
+                my_data.city, "marriage", year);
+        eDao.insert(marriageMother);
+        Event marriageFather = new Event(UUID.randomUUID().toString(),
+                father.getAssociatedUsername(), father.getPersonID(),
+                my_data.latitude, my_data.longitude, my_data.country,
+                my_data.city, "marriage", year);
+        eDao.insert(marriageFather);
     }
 
     //births
