@@ -8,7 +8,7 @@ public class Event {
     /**
      * uniquely defines event
      */
-    private String id;
+    private String eventID;
     /**
      * connects to user table
      */
@@ -16,7 +16,7 @@ public class Event {
     /**
      * connects to person table
      */
-    private String personId;
+    private String personID;
     /**
      * latitude of event occurrence
      */
@@ -56,9 +56,9 @@ public class Event {
      * @param year year of occurrence
      */
     public Event(String id, String associatedUsername, String personId, float latitude, float longitude, String country, String city, String eventType, int year) {
-        this.id = id;
+        this.eventID = id;
         this.associatedUsername = associatedUsername;
-        this.personId = personId;
+        this.personID = personId;
         this.latitude = latitude;
         this.longitude = longitude;
         this.country = country;
@@ -72,12 +72,12 @@ public class Event {
      */
     public Event() {}
 
-    public String getId() {
-        return id;
+    public String getEventID() {
+        return eventID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEventID(String eventID) {
+        this.eventID = eventID;
     }
 
     public String getAssociatedUsername() {
@@ -88,12 +88,12 @@ public class Event {
         this.associatedUsername = associatedUsername;
     }
 
-    public String getPersonId() {
-        return personId;
+    public String getPersonID() {
+        return personID;
     }
 
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setPersonID(String personID) {
+        this.personID = personID;
     }
 
     public float getLatitude() {
@@ -155,9 +155,9 @@ public class Event {
             return false;
         if (o instanceof Event) {
             Event oEvent = (Event) o;
-            return oEvent.getId().equals(getId()) &&
+            return oEvent.getEventID().equals(getEventID()) &&
                     oEvent.getAssociatedUsername().equals(getAssociatedUsername()) &&
-                    oEvent.getPersonId().equals(getPersonId()) &&
+                    oEvent.getPersonID().equals(getPersonID()) &&
                     oEvent.getLatitude() == (getLatitude()) &&
                     oEvent.getLongitude() == (getLongitude()) &&
                     oEvent.getCountry().equals(getCountry()) &&

@@ -50,7 +50,7 @@ public class EventDAOTest {
         //only that it ran without causing an error
         eDao.insert(bestEvent);
         //So lets use a find method to get the event that we just put in back out
-        Event compareTest = eDao.find(bestEvent.getId());
+        Event compareTest = eDao.find(bestEvent.getEventID());
         //First lets see if our find found anything at all. If it did then we know that if nothing
         //else something was put into our database, since we cleared it in the beginning
         assertNotNull(compareTest);

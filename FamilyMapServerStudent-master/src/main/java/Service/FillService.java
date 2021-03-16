@@ -39,7 +39,7 @@ public class FillService {
         boolean success = this.fillGenerations(username, generations);
         if (success)
         {
-            return new FillResponse("successfully added " + personCount +
+            return new FillResponse("Successfully added " + personCount +
                     " persons and " + eventCount + " events to the data base", true);
         } else
         {
@@ -64,6 +64,8 @@ public class FillService {
                         user.getFirstName(), user.getLastName(), user.getGender(),
                         null, null, null);
                 pDao.insert(person);
+                personCount++;
+                eventGeneratorPerson(person);
                 recursiveGenerationAdd(person, 1, num_generations);
             }
             else
@@ -102,7 +104,7 @@ public class FillService {
         Person father = new Person(f_id, person.getAssociatedUsername(),
                 m_names.data[random.nextInt(m_names.data.length)],
                 person.getLastName(), "m", null, null, f_id);
-        person.setFatherId(m_id);
+        person.setFatherID(m_id);
         pDao.insert(father);
         personCount++;
 
@@ -111,15 +113,17 @@ public class FillService {
         Person mother = new Person(m_id, person.getAssociatedUsername(),
                 f_names.data[random.nextInt(f_names.data.length)],
                 person.getLastName(), "f", null, null, m_id);
-        person.setMotherId(f_id);
+        person.setMotherID(f_id);
         pDao.insert(mother);
         personCount++;
+
+        pDao.update(person); //update new father and mother ids for person
 
         //event stuff
         eventGenerator(father, mother, gen);
 
         //recursion stuff
-        if (gen <= num_gens) {
+        if (gen < num_gens) {
             recursiveGenerationAdd(father, (gen + 1), num_gens);
             recursiveGenerationAdd(mother, (gen + 1), num_gens);
         }
@@ -143,14 +147,29 @@ public class FillService {
         eventCount += 6;
     }
 
+    private void eventGeneratorPerson(Person person) throws FileNotFoundException, DataAccessException {
+        Gson gson = new Gson();
+        Random random = new Random();
+        locations = gson.fromJson(new FileReader("json/locations.json"), location.class);
+        int year = 0;
+
+        year = 1996;
+        newEvent(person, random, "birth", year);
+        year = 2006;
+        newEvent(person, random, "baseball practice", year);
+        year = 2014;
+        newEvent(person, random, "high school grad", year);
+        eventCount += 3;
+    }
+
     private void newEvent(Person mother, Random random, String eventType, int year) throws DataAccessException {
         data my_data;
         my_data = locations.data[random.nextInt(locations.data.length)];
-        Event mother_birth = new Event(UUID.randomUUID().toString(),
-                mother.getAssociatedUsername(), mother.getId(),
+        Event event = new Event(UUID.randomUUID().toString(),
+                mother.getAssociatedUsername(), mother.getPersonID(),
                 my_data.latitude, my_data.longitude, my_data.country,
-                my_data.city, "birth", year);
-        eDao.insert(mother_birth);
+                my_data.city, eventType, year);
+        eDao.insert(event);
     }
 
     //births

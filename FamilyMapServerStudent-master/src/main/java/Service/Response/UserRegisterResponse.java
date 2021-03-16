@@ -8,7 +8,7 @@ public class UserRegisterResponse extends GenericResponse {
     /**
      * unique authentication token
      */
-    private final String authToken;
+    private final String authtoken;
     /**
      * associated username
      */
@@ -16,7 +16,7 @@ public class UserRegisterResponse extends GenericResponse {
     /**
      * the Id of the person's that we will be registering
      */
-    private final String personId;
+    private final String personID;
 
 
     /**
@@ -25,12 +25,12 @@ public class UserRegisterResponse extends GenericResponse {
      * @param username string connects to a user object
      * @param personId string connects to a person object
      * @param message string
-     * @param Success boolean
+     * @param success boolean
      */
     public UserRegisterResponse(String authToken, String username, String personId, String message, boolean success) {
-        this.authToken = authToken;
+        this.authtoken = authToken;
         this.username = username;
-        this.personId = personId;
+        this.personID = personId;
         this.message = message;
         this.success = success;
     }

@@ -52,7 +52,7 @@ public class PersonDAOTest {
         //only that it ran without causing an error
         pDAO.insert(bestPerson);
         //So lets use a find method to get the event that we just put in back out
-        Person compareTest = pDAO.find(bestPerson.getId());
+        Person compareTest = pDAO.find(bestPerson.getPersonID());
         //First lets see if our find found anything at all. If it did then we know that if nothing
         //else something was put into our database, since we cleared it in the beginning
         assertNotNull(compareTest);
@@ -79,8 +79,8 @@ public class PersonDAOTest {
     public void findPass() throws DataAccessException {
         pDAO.insert(bestPerson);
         pDAO.insert(secondBestPerson);
-        Person compareTest = pDAO.find(bestPerson.getId());
-        Person compareTest2 = pDAO.find(secondBestPerson.getId());
+        Person compareTest = pDAO.find(bestPerson.getPersonID());
+        Person compareTest2 = pDAO.find(secondBestPerson.getPersonID());
         assertNotNull(compareTest);
         assertNotNull(compareTest2);
         assertNotEquals(compareTest, compareTest2);
@@ -89,7 +89,7 @@ public class PersonDAOTest {
     @Test
     public void findFail() throws DataAccessException {
         pDAO.insert(bestPerson);
-        Person find = pDAO.find(secondBestPerson.getId());
+        Person find = pDAO.find(secondBestPerson.getPersonID());
         assertNull(find);
     }
 
@@ -98,8 +98,8 @@ public class PersonDAOTest {
         pDAO.insert(bestPerson);
         pDAO.insert(secondBestPerson);
         pDAO.clear();
-        Person find1 = pDAO.find(bestPerson.getId());
-        Person find2 = pDAO.find(secondBestPerson.getId());
+        Person find1 = pDAO.find(bestPerson.getPersonID());
+        Person find2 = pDAO.find(secondBestPerson.getPersonID());
         assertNull(find1);
         assertNull(find2);
     }

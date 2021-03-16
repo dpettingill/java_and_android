@@ -29,7 +29,6 @@ public class UserRegisterService {
     public UserRegisterResponse register(UserRegisterRequest urReq) throws DataAccessException, FileNotFoundException {
         db = new Database();
         conn = db.getConnection();
-        db.clearTables();
         UserRegisterResponse urRes;
         try {
             UserDAO uDAO = new UserDAO(conn);

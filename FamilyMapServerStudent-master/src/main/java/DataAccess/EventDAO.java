@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 /**
  * used to access events from Events table in db
@@ -38,9 +37,9 @@ public class EventDAO {
             //Using the statements built-in set(type) functions we can pick the question mark we want
             //to fill in and give it a proper value. The first argument corresponds to the first
             //question mark found in our sql String
-            stmt.setString(1, event.getId());
+            stmt.setString(1, event.getEventID());
             stmt.setString(2, event.getAssociatedUsername());
-            stmt.setString(3, event.getPersonId());
+            stmt.setString(3, event.getPersonID());
             stmt.setFloat(4, event.getLatitude());
             stmt.setFloat(5, event.getLongitude());
             stmt.setString(6, event.getCountry());
@@ -99,20 +98,30 @@ public class EventDAO {
     public Event[] findAll(String username) throws DataAccessException {
         Event[] events = new Event[100];
         ResultSet rs = null;
-        String sql = "SELECT * FROM Events WHERE AssociatedUsername = ?;";
+        int size = 0;
+
+        //get the count real quick
+        String sql = "SELECT COUNT(AssociatedUsername) AS total FROM Events WHERE AssociatedUsername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            size = rs.getInt("total");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //now the real stuff
+        sql = "SELECT * FROM Events WHERE AssociatedUsername = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
             rs = stmt.executeQuery();
             int i = 0;
+            events = new Event[size];
             while (rs.next()) {
                 Event event = new Event(rs.getString("Id"), rs.getString("AssociatedUsername"),
                         rs.getString("PersonID"), rs.getFloat("Latitude"), rs.getFloat("Longitude"),
                         rs.getString("Country"), rs.getString("City"), rs.getString("EventType"),
                         rs.getInt("Year"));
-                if (i > events.length - 1) //check if i is out of bounds
-                {
-                    events = Arrays.copyOf(events, events.length * 2);
-                }
                 events[i] = event; //don't forget to make sure events is big enough
                 i++;
             }

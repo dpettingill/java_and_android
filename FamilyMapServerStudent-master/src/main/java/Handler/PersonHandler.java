@@ -31,7 +31,7 @@ public class PersonHandler extends GetRequestHandler implements HttpHandler {
             AuthToken authToken = this.getAuthToken();
             if (this.getTokensLength() == 3) //get indiv event
             {
-                PersonResponse eRes = personService.getPerson(this.getConn(), this.getTokens()[3]); //getToken()[3] = eventId
+                PersonResponse eRes = personService.getPerson(this.getConn(), this.getTokens()[2]); //getToken()[2] = personId
                 resData = this.getGson().toJson(eRes);
             }
             else if (this.getTokensLength() == 2)  //get all events

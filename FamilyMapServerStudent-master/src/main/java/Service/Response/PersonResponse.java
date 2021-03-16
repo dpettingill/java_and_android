@@ -12,7 +12,7 @@ public class PersonResponse extends GenericResponse {
     /**
      * id connected to person
      */
-    private final String personId;
+    private final String personID;
     /**
      * first name of person
      */
@@ -28,15 +28,15 @@ public class PersonResponse extends GenericResponse {
     /**
      * optional - id of father of person
      */
-    private final String fatherId;
+    private final String fatherID;
     /**
      * option - id of mother of person
      */
-    private final String motherId;
+    private final String motherID;
     /**
      * optional - id of spouse of person
      */
-    private final String spouseId;
+    private final String spouseID;
 
 
     /**
@@ -54,13 +54,13 @@ public class PersonResponse extends GenericResponse {
      */
     public PersonResponse(String associatedUsername, String personId, String firstName, String lastName, String gender, String fatherId, String motherId, String spouseId, String message, boolean success) {
         this.associatedUsername = associatedUsername;
-        this.personId = personId;
+        this.personID = personId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.fatherId = fatherId;
-        this.motherId = motherId;
-        this.spouseId = spouseId;
+        this.fatherID = fatherId;
+        this.motherID = motherId;
+        this.spouseID = spouseId;
         this.message = message;
         this.success = success;
     }
@@ -68,13 +68,13 @@ public class PersonResponse extends GenericResponse {
     public PersonResponse(String message, boolean success)
     {
         this.associatedUsername = null;
-        this.personId = null;
+        this.personID = null;
         this.firstName = null;
         this.lastName = null;
         this.gender = null;
-        this.fatherId = null;
-        this.motherId = null;
-        this.spouseId = null;
+        this.fatherID = null;
+        this.motherID = null;
+        this.spouseID = null;
         this.message = message;
         this.success = success;
     }

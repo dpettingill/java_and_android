@@ -38,9 +38,9 @@ public class PersonService {
         PersonResponse pRes = null;
         if (person != null)
         {
-            pRes = new PersonResponse(person.getAssociatedUsername(),
-                    person.getId(), person.getFirstName(), person.getLastName(), person.getGender(),
-                    person.getFatherId(), person.getMotherId(), person.getSpouseId(), null, true);
+            pRes = new PersonResponse(person.getPersonID(), person.getAssociatedUsername(),
+                    person.getFirstName(), person.getLastName(), person.getGender(),
+                    person.getFatherID(), person.getMotherID(), person.getSpouseID(), null, true);
         }
         else
         {

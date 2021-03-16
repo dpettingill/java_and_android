@@ -20,12 +20,13 @@ public class ClearService {
         try {
             db.clearTables(); //clear everything
             clRes = new ClearResponse("Clear succeeded", true);
+            db.closeConnection(true);
         } catch (DataAccessException e){
             clRes = new ClearResponse(
                     "Error clearing the database",
                     false);
+            db.closeConnection(false);
         }
-        db.closeConnection(true);
         return clRes;
     }
 }

@@ -36,20 +36,16 @@ public class Server {
             return;
         }
         server.setExecutor(null); // This line is necessary, but its function is unimportant for our purposes.
-        System.out.println("Creating contexts");
 
+        System.out.println("Creating contexts");
         server.createContext("/", new FileHandler());
         server.createContext("/user/register", new UserRegisterHandler());
         server.createContext("/user/login", new UserLoginHandler());
         server.createContext("/clear", new ClearHandler());
         server.createContext("/fill", new FillHandler());
         server.createContext("/event", new EventHandler());
-
-        /**
-         * server.createContext("/load"), new LoadHandler();
-         * server.createContext("/person/[personId]"), new PersonHandler();
-         * server.createContext("/person"), new PersonsHandler();
-         */
+        server.createContext("/person", new PersonHandler());
+        server.createContext("/load", new LoadHandler());
 
         System.out.println("Starting server"); // Log message indicating the HttpServer soon will be accepting incoming client conns
         server.start();

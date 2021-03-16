@@ -16,8 +16,9 @@ public class RequestHandler {
     public void sendResponse(String resData) throws IOException {
         try {
             Headers resHeaders = exchange.getResponseHeaders();
-            String[] tokens = resData.split(",");
-            resHeaders.add("Authorization", tokens[0]);
+            //I don't think I actually need this
+//            String[] tokens = resData.split(",");
+//            resHeaders.add("Authorization", tokens[0]);
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0); //send status code
             OutputStream respBody = exchange.getResponseBody();
             writeString(resData, respBody); // Write the JSON string to the output stream.

@@ -8,7 +8,7 @@ public class UserLoginResponse extends GenericResponse {
     /**
      * unique authentication token
      */
-    private final String authToken;
+    private final String authtoken;
     /**
      * username assigned to this user
      */
@@ -16,7 +16,7 @@ public class UserLoginResponse extends GenericResponse {
     /**
      * id connecting to person object
      */
-    private final String personId;
+    private final String personID;
 
 
     /**
@@ -28,9 +28,9 @@ public class UserLoginResponse extends GenericResponse {
      * @param success boolean
      */
     public UserLoginResponse(String authToken, String username, String personId, String message, boolean success) {
-        this.authToken = authToken;
+        this.authtoken = authToken;
         this.username = username;
-        this.personId = personId;
+        this.personID = personId;
         this.message = message;
         this.success = success;
     }

@@ -1,9 +1,7 @@
 package DataAccess;
-import Model.Event;
 import Model.Person;
 
 import java.sql.*;
-import java.util.Arrays;
 
 
 /**
@@ -34,14 +32,28 @@ public class PersonDAO {
         String sql = "INSERT INTO Persons (Id, AssociatedUsername, FirstName, LastName, " +
                 "Gender, FatherId, MotherId, SpouseId) VALUES(?,?,?,?,?,?,?,?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, person.getId());
+            stmt.setString(1, person.getPersonID());
             stmt.setString(2, person.getAssociatedUsername());
             stmt.setString(3, person.getFirstName());
             stmt.setString(4, person.getLastName());
             stmt.setString(5, person.getGender());
-            stmt.setString(6, person.getFatherId());
-            stmt.setString(7, person.getMotherId());
-            stmt.setString(8, person.getSpouseId());
+            stmt.setString(6, person.getFatherID());
+            stmt.setString(7, person.getMotherID());
+            stmt.setString(8, person.getSpouseID());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataAccessException("Error while trying to insert into Persons table");
+        }
+    }
+
+    public void update(Person person) throws DataAccessException
+    {
+        String sql = "UPDATE Persons SET FatherId = ?, MotherId = ? WHERE Id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, person.getFatherID());
+            stmt.setString(2, person.getMotherID());
+            stmt.setString(3, person.getPersonID());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -85,22 +97,32 @@ public class PersonDAO {
     }
 
     public Person[] findAll(String username) throws DataAccessException {
-        Person[] persons = new Person[100];
+        Person[] persons = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM Persons WHERE AssociatedUsername = ?;";
+        int size = 0;
+
+        //get the count real quick
+        String sql = "SELECT COUNT(AssociatedUsername) AS total FROM Persons WHERE AssociatedUsername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            size = rs.getInt("total");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //now the actual stuff
+        sql = "SELECT * FROM Persons WHERE AssociatedUsername = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
             rs = stmt.executeQuery();
             int i = 0;
+            persons = new Person[size];
             while (rs.next()) {
                 Person person = new Person(rs.getString("Id"), rs.getString("AssociatedUsername"),
                         rs.getString("FirstName"), rs.getString("LastName"),
                         rs.getString("Gender"), rs.getString("FatherId"),
                         rs.getString("MotherId"), rs.getString("SpouseId"));
-                if (i > persons.length - 1) //check if i is out of bounds
-                {
-                    persons = Arrays.copyOf(persons, persons.length * 2);
-                }
                 persons[i] = person; //don't forget to make sure events is big enough
                 i++;
             }
