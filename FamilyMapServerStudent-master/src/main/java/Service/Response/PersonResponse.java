@@ -6,13 +6,13 @@ import Service.GenericResponse;
  */
 public class PersonResponse extends GenericResponse {
     /**
-     * username connected to base user
-     */
-    private final String associatedUsername;
-    /**
      * id connected to person
      */
     private final String personID;
+    /**
+     * username connected to base user
+     */
+    private final String associatedUsername;
     /**
      * first name of person
      */
@@ -52,9 +52,9 @@ public class PersonResponse extends GenericResponse {
      * @param message string
      * @param success boolean
      */
-    public PersonResponse(String associatedUsername, String personId, String firstName, String lastName, String gender, String fatherId, String motherId, String spouseId, String message, boolean success) {
-        this.associatedUsername = associatedUsername;
+    public PersonResponse(String personId, String associatedUsername, String firstName, String lastName, String gender, String fatherId, String motherId, String spouseId, String message, boolean success) {
         this.personID = personId;
+        this.associatedUsername = associatedUsername;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;

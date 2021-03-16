@@ -38,6 +38,11 @@ public class FileHandler implements HttpHandler {
         else
         {
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, 0); //return 404 error
+            filePath = "web/HTML/404.html";
+            file = new File(filePath);
+            OutputStream respBody = exchange.getResponseBody();
+            Files.copy(file.toPath(), respBody);
+            respBody.close();
         }
     }
 }
