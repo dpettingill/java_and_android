@@ -14,7 +14,7 @@ public class PostRequestHandler extends RequestHandler {
     public void handle() throws IOException {
         this.setSuccess(false);
         try {
-            if (this.getExchange().getRequestMethod().toLowerCase().equals("post"))
+            if (this.getExchange().getRequestMethod().equalsIgnoreCase("post"))
             {
                 InputStream reqBody = this.getExchange().getRequestBody(); // Get the HTTP request headers
                 reqData = readString(reqBody);

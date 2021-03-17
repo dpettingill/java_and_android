@@ -111,6 +111,9 @@ public class PersonDAO {
             e.printStackTrace();
         }
 
+        if (size == 0) //if none to be had return null array
+            return persons;
+
         //now the actual stuff
         sql = "SELECT * FROM Persons WHERE AssociatedUsername = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {

@@ -82,11 +82,13 @@ public class EventDAO {
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    return null; //if not found then return null
+                    throw new DataAccessException("Error encountered in sql to get event");
                 }
             }
 
         }
+//        if (event == null)
+//            throw new DataAccessException("Error encountered in sql to get event");
         return event;
     }
 
@@ -96,7 +98,7 @@ public class EventDAO {
      * @return
      */
     public Event[] findAll(String username) throws DataAccessException {
-        Event[] events = new Event[100];
+        Event[] events = null;
         ResultSet rs = null;
         int size = 0;
 
@@ -111,6 +113,9 @@ public class EventDAO {
         }
 
         //now the real stuff
+        if (size == 0)
+            return events;
+
         sql = "SELECT * FROM Events WHERE AssociatedUsername = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);

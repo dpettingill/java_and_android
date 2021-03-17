@@ -18,11 +18,14 @@ public class PersonService {
     public PersonsResponse getPersons(Connection conn, String associatedUsername) throws DataAccessException
     {
         PersonDAO pDAO = new PersonDAO(conn);
-        Person persons[] = pDAO.findAll(associatedUsername);
+        Person[] persons = pDAO.findAll(associatedUsername);
         PersonsResponse psRes = null;
         if (persons != null)
         {
             psRes = new PersonsResponse(persons, null, true);
+        }
+        else {
+            psRes = new PersonsResponse("Error getting the persons", false);
         }
         return psRes;
     }
@@ -32,9 +35,9 @@ public class PersonService {
         PersonDAO pDAO = new PersonDAO(conn);
         Person person = pDAO.find(personId);
         PersonResponse pRes = null;
-        if (!person.getAssociatedUsername().equals(associatedUsername))
+        if (person == null || !person.getAssociatedUsername().equals(associatedUsername))
         {
-            return pRes;
+            pRes = new PersonResponse("Error getting the person", false);
         }
         else if (person != null)
         {

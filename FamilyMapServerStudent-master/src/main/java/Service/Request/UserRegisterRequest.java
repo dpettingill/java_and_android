@@ -7,27 +7,36 @@ public class UserRegisterRequest {
     /**
      * username for user
      */
-    private String username;
+    private final String username;
     /**
      * password for user
      */
-    private String password;
+    private final String password;
     /**
      * email of user
      */
-    private String email;
+    private final String email;
     /**
      * first name of user
      */
-    private String firstName;
+    private final String firstName;
     /**
      * last name of user
      */
-    private String lastName;
+    private final String lastName;
     /**
      * 'f' or 'm' of user
      */
-    private String gender;
+    private final String gender;
+
+    public UserRegisterRequest(String username, String password, String email, String firstName, String lastName, String gender) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+    }
 
     public String getUsername() {
         return username;

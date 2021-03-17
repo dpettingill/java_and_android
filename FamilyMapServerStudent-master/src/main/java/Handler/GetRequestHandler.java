@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.sql.Connection;
 
 public class GetRequestHandler extends RequestHandler {
-    private String tokens[];
+    private String[] tokens;
     private Database db;
     private Connection conn;
     private AuthToken at;

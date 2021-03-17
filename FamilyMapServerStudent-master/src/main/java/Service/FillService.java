@@ -205,20 +205,20 @@ public class FillService {
 
     class names
     {
-        private String data[];
+        private String[] data;
     }
 
     class location
     {
-        private data data[];
+        private data[] data;
     }
 
     class data
     {
-        private String country;
-        private String city;
-        private float latitude;
-        private float longitude;
+        private final String country;
+        private final String city;
+        private final float latitude;
+        private final float longitude;
 
         /**
          *

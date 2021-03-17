@@ -57,4 +57,8 @@ public class UserRegisterService {
         }
         return urRes;
     }
+
+    public Database getDb() {
+        return db;
+    }
 }

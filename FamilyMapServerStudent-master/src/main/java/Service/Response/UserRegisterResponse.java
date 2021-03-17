@@ -34,4 +34,16 @@ public class UserRegisterResponse extends GenericResponse {
         this.message = message;
         this.success = success;
     }
+
+    public String getauthtoken() {
+        return authtoken;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPersonID() {
+        return personID;
+    }
 }

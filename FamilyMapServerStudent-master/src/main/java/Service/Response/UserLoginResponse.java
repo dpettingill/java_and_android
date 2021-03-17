@@ -18,6 +18,17 @@ public class UserLoginResponse extends GenericResponse {
      */
     private final String personID;
 
+    public String getAuthtoken() {
+        return authtoken;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPersonID() {
+        return personID;
+    }
 
     /**
      * constructor

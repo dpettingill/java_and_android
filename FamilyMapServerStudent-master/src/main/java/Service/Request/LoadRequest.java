@@ -8,15 +8,15 @@ public class LoadRequest {
     /**
      * array of users to be loaded in
      */
-    private User[] users = {};
+    private final User[] users = {};
     /**
      * array of persons same format as in /person/personId
      */
-    private Person[] persons = {};
+    private final Person[] persons = {};
     /**
      * array of events to be loaded in
      */
-    private Event[] events = {};
+    private final Event[] events = {};
 
     public User[] getUsers() {
         return users;

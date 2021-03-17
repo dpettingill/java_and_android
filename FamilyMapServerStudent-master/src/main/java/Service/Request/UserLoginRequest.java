@@ -7,11 +7,11 @@ public class UserLoginRequest {
     /**
      * potential username
      */
-    private String username;
+    private final String username;
     /**
      * attempted password
      */
-    private String password;
+    private final String password;
 
     public String getUsername() {
         return username;
@@ -19,5 +19,10 @@ public class UserLoginRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public UserLoginRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 }

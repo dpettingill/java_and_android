@@ -46,9 +46,20 @@ public class EventResponse extends GenericResponse {
      */
     private int year;
 
+    public String getAssociatedUsername() {
+        return associatedUsername;
+    }
+
+    public String getEventID() {
+        return eventID;
+    }
+
+    public String getPersonID() {
+        return personID;
+    }
 
     public EventResponse(String associatedUsername, String eventID, String personID, float latitude, float longitude,
-                          String country, String city, String eventType, int year, String message, boolean success) {
+                         String country, String city, String eventType, int year, String message, boolean success) {
         this.associatedUsername = associatedUsername;
         this.eventID = eventID;
         this.personID = personID;

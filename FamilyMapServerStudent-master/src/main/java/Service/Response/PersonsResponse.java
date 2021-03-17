@@ -11,6 +11,9 @@ public class PersonsResponse extends GenericResponse {
      */
     Person[] data = {};
 
+    public Person[] getData() {
+        return data;
+    }
 
     /**
      * constructor for person response data
@@ -28,5 +31,19 @@ public class PersonsResponse extends GenericResponse {
         this.data = null;
         this.message = message;
         this.success = success;
+    }
+
+    public Person getPerson(String personID)
+    {
+        int i = 0;
+        while (i < data.length - 1)
+        {
+            if (data[i].getPersonID().equals(personID))
+            {
+                return data[i];
+            }
+            i++;
+        }
+        return null;
     }
 }

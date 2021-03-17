@@ -23,7 +23,7 @@ public class FillHandler extends RequestHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         this.setExchange(exchange);
         String reqPath = this.getExchange().getRequestURI().getPath();
-        String tokens[] = reqPath.split("/");
+        String[] tokens = reqPath.split("/");
 
         FillService phil = new FillService();
         FillResponse fRes = null;

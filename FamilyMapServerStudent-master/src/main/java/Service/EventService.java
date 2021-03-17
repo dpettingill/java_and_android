@@ -17,11 +17,15 @@ public class EventService {
      */
     public EventsResponse getEvents(Connection conn, String associatedUsername) throws DataAccessException {
         EventDAO eDao = new EventDAO(conn);
-        Event events[] = eDao.findAll(associatedUsername); //find all events method here using this username
+        Event[] events = eDao.findAll(associatedUsername); //find all events method here using this username
         EventsResponse esRes = null;
         if (events != null)
         {
             esRes = new EventsResponse(events, null, true);
+        }
+        else
+        {
+            esRes = new EventsResponse("Error getting events", false);
         }
         return esRes;
     }
@@ -36,9 +40,9 @@ public class EventService {
         EventDAO eDao = new EventDAO(conn);
         Event event = eDao.find(eventId);
         EventResponse eRes = null;
-        if (!event.getAssociatedUsername().equals(associatedUsername))
+        if (event == null || !event.getAssociatedUsername().equals(associatedUsername))
         {
-            return eRes;
+            eRes = new EventResponse("Error getting the event", false);
         }
         else if (event != null)
         {

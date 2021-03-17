@@ -12,6 +12,9 @@ public class EventsResponse extends GenericResponse {
      */
     private Event[] data = {};
 
+    public Event[] getData() {
+        return data;
+    }
 
     /**
      * constructor for event response data
