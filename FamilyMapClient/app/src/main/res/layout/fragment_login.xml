@@ -119,14 +119,12 @@
                     android:id="@+id/gender_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
                     android:text="@string/gender_male" />
 
                 <RadioButton
                     android:id="@+id/gender_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
                     android:text="@string/gender_female" />
             </RadioGroup>
         </LinearLayout>

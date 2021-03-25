@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import Model.User;
 
@@ -37,7 +38,7 @@ public class LoginFragment extends Fragment {
     private Button mLoginButton;
     private Button mRegisterButton;
     private EditText mHost, mPort, mUsername, mPassword, mFirstName, mLastName, mEmail;
-    private RadioButton gender;
+    private RadioGroup mGender;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -204,6 +205,19 @@ public class LoginFragment extends Fragment {
         });
 
         // BUTTONS //
+        mGender = (RadioGroup) v.findViewById(R.id.genderGroup);
+        mGender.clearCheck();
+        mGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.gender_male) {
+                    newUser.setGender("m");
+                } else if (checkedId == R.id.gender_female) {
+                    newUser.setGender("f");
+                }
+            }
+        });
+
         mLoginButton = (Button) v.findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,25 +234,6 @@ public class LoginFragment extends Fragment {
             }
         });
 
-//        gender = (RadioButton) v.findViewById(R.id.gen) //should I implement this here instead of in xml? how would I with a radio button? set an id for the group?
-
         return v;
-    }
-
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.gender_male:
-                if (checked)
-                    newUser.setGender("m");
-                    break;
-            case R.id.gender_female:
-                if (checked)
-                    newUser.setGender("f");
-                    break;
-        }
     }
 }
