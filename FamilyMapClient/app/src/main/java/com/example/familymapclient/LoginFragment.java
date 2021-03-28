@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                //so is this one
+                checkNeededButtonInfo();
             }
         });
 
@@ -110,7 +110,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkNeededButtonInfo();
             }
         });
 
@@ -128,7 +128,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkNeededButtonInfo();
             }
         });
 
@@ -146,7 +146,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkNeededButtonInfo();
             }
         });
 
@@ -164,7 +164,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkNeededButtonInfo();
             }
         });
 
@@ -182,7 +182,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkNeededButtonInfo();
             }
         });
 
@@ -200,7 +200,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkNeededButtonInfo();
             }
         });
 
@@ -215,25 +215,39 @@ public class LoginFragment extends Fragment {
                 } else if (checkedId == R.id.gender_female) {
                     newUser.setGender("f");
                 }
+                checkNeededButtonInfo();
             }
         });
 
         mLoginButton = (Button) v.findViewById(R.id.login_button);
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        mLoginButton.setEnabled(false);
         mRegisterButton = (Button) v.findViewById(R.id.register_button);
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
-            }
-        });
+        mRegisterButton.setEnabled(false);
+        //instead build a helper function and call it in all of the text changed things. Then if we hit our criteria update the button(s)
+        //allow login
 
         return v;
+    }
+
+    public void checkNeededButtonInfo() {
+        if (Host != null && Port != null && newUser.getUsername() != null && newUser.getPassword() != null) {
+            mLoginButton.setEnabled(true);
+            mLoginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
+                }
+            });
+            //allow register
+            if (newUser.getFirstName() != null && newUser.getLastName() != null && newUser.getEmail() != null && newUser.getGender() != null) {
+                mRegisterButton.setEnabled(true);
+                mRegisterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
     }
 }
