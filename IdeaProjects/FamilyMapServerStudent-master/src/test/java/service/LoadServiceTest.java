@@ -45,9 +45,9 @@ public class LoadServiceTest {
     @Test
     public void loadPass1() throws DataAccessException, FileNotFoundException {
         LoadResponse loadResponse = ls.load(loadRequest);
-        assertNotNull(loadResponse.getMessage(), "message was null OR its variable name did not match that of the expected JSon (see API)");
-        assertNotEquals(EMPTY_STRING, loadResponse.getMessage(), "message was empty string");
-        assertFalse(loadResponse.getMessage().toLowerCase().contains("error"), "message contained an error");
+        Assertions.assertNotNull(loadResponse.getMessage(), "message was null OR its variable name did not match that of the expected JSon (see API)");
+        Assertions.assertNotEquals(EMPTY_STRING, loadResponse.getMessage(), "message was empty string");
+        Assertions.assertFalse(loadResponse.getMessage().toLowerCase().contains("error"), "message contained an error");
 
     }
 

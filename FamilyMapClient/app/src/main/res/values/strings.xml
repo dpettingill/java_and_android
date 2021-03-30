@@ -19,8 +19,7 @@
     <string name="gender_female">Female</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
-    <string name="correct_toast">Correct!</string>
-    <string name="incorrect_toast">Incorrect!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_toast">First Name: %s and Last Name: %s</string>
+    <string name="login_fail_toast">Your login attempt failed!</string>
+    <string name="register_fail_toast">Your register attempt failed!</string>
 </resources>

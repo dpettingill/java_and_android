@@ -1,20 +1,33 @@
 package com.example.familymapclient;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import com.google.gson.Gson;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import Model.User;
+import Request.UserLoginRequest;
+import Request.UserRegisterRequest;
+import Response.EventsResponse;
+import Response.PersonsResponse;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,18 +40,22 @@ public class LoginFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String LOG_TAG = "LoginFragment";
+    private static final String PERSON_KEY = "personKey";
+    private static final String EVENT_KEY = "eventKey";
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    private User newUser = new User();
-    private String Host;
-    private String Port;
+    private User newUser = new User("", "", "", "", "", "", "");
+    private String Host = "";
+    private String Port = "";
     private Button mLoginButton;
     private Button mRegisterButton;
-    private EditText mHost, mPort, mUsername, mPassword, mFirstName, mLastName, mEmail;
-    private RadioGroup mGender;
+    private PersonsResponse pRes;
+    private EventsResponse eRes;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -78,7 +95,7 @@ public class LoginFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         // USER STUFF //
-        mHost = (EditText) v.findViewById(R.id.server_host_hint);
+        EditText mHost = (EditText) v.findViewById(R.id.server_host_hint);
         mHost.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -96,7 +113,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mPort = (EditText) v.findViewById(R.id.server_port_hint);
+        EditText mPort = (EditText) v.findViewById(R.id.server_port_hint);
         mPort.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -114,7 +131,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mUsername = (EditText) v.findViewById(R.id.username_hint);
+        EditText mUsername = (EditText) v.findViewById(R.id.username_hint);
         mUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,7 +149,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mPassword = (EditText) v.findViewById(R.id.password_hint);
+        EditText mPassword = (EditText) v.findViewById(R.id.password_hint);
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -150,7 +167,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mFirstName = (EditText) v.findViewById(R.id.first_name_hint);
+        EditText mFirstName = (EditText) v.findViewById(R.id.first_name_hint);
         mFirstName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -168,7 +185,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mLastName = (EditText) v.findViewById(R.id.last_name_hint);
+        EditText mLastName = (EditText) v.findViewById(R.id.last_name_hint);
         mLastName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -186,7 +203,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mEmail = (EditText) v.findViewById(R.id.email_hint);
+        EditText mEmail = (EditText) v.findViewById(R.id.email_hint);
         mEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -205,7 +222,7 @@ public class LoginFragment extends Fragment {
         });
 
         // BUTTONS //
-        mGender = (RadioGroup) v.findViewById(R.id.genderGroup);
+        RadioGroup mGender = (RadioGroup) v.findViewById(R.id.genderGroup);
         mGender.clearCheck();
         mGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -230,24 +247,94 @@ public class LoginFragment extends Fragment {
     }
 
     public void checkNeededButtonInfo() {
-        if (Host != null && Port != null && newUser.getUsername() != null && newUser.getPassword() != null) {
+        if (!Host.isEmpty() && !Port.isEmpty() && !newUser.getUsername().isEmpty() && !newUser.getPassword().isEmpty()) {
             mLoginButton.setEnabled(true);
-            mLoginButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
+            mLoginButton.setOnClickListener(v -> {
+                try {
+                    Handler uiThreadMessageHandler = new Handler() {
+                        @Override
+                        public void handleMessage(Message message) {
+                            Bundle bundle = message.getData();
+                            String personResult = bundle.getString(PERSON_KEY, null);
+                            if (personResult != null)
+                            {
+                                pRes = new Gson().fromJson(personResult, PersonsResponse.class);
+                                String eventResult = bundle.getString(EVENT_KEY, null);
+                                eRes = new Gson().fromJson(eventResult, EventsResponse.class);
+                                if (pRes.success == true)
+                                {
+                                    Toast.makeText(getActivity(), getString(R.string.login_toast,
+                                            pRes.getData()[0].getFirstName(), pRes.getData()[0].getLastName()),
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(), R.string.login_fail_toast,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
+
+                    LoginTask loginTask = new LoginTask
+                            (uiThreadMessageHandler,
+                            new URL("http", Host, Integer.parseInt(Port), "user/login"),
+                            new UserLoginRequest(newUser.getUsername(), newUser.getPassword())
+                            );
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.submit(loginTask);
+                } catch (MalformedURLException e) {
+                    Log.e(LOG_TAG, e.getMessage(), e);
                 }
             });
             //allow register
-            if (newUser.getFirstName() != null && newUser.getLastName() != null && newUser.getEmail() != null && newUser.getGender() != null) {
+            if (!newUser.getFirstName().isEmpty() && !newUser.getLastName().isEmpty() && !newUser.getEmail().isEmpty() && !newUser.getGender().isEmpty()) {
                 mRegisterButton.setEnabled(true);
-                mRegisterButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
-                    }
+                mRegisterButton.setOnClickListener(v -> {
+                  try {
+                    Handler uiThreadMessageHandler = new Handler() {
+                        @Override
+                        public void handleMessage(Message message) {
+                            Bundle bundle = message.getData();
+                            String personResult = bundle.getString(PERSON_KEY, null);
+                            if (personResult != null)
+                            {
+                            pRes = new Gson().fromJson(personResult, PersonsResponse.class);
+                            String eventResult = bundle.getString(EVENT_KEY, null);
+                            eRes = new Gson().fromJson(eventResult, EventsResponse.class);
+                                Toast.makeText(getActivity(), getString(R.string.login_toast,
+                                        pRes.getData()[0].getFirstName(), pRes.getData()[0].getLastName()),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(), R.string.register_fail_toast,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
+
+                    RegisterTask registerTask = new RegisterTask
+                            (uiThreadMessageHandler,
+                            new URL("http", Host, Integer.parseInt(Port), "user/register"),
+                            new UserRegisterRequest(newUser.getUsername(), newUser.getPassword(),
+                            newUser.getEmail(), newUser.getFirstName(), newUser.getLastName(), newUser.getGender())
+                            );
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.submit(registerTask);
+                } catch (MalformedURLException e) {
+                    Log.e(LOG_TAG, e.getMessage(), e);
+                }
                 });
             }
+            else
+            {
+                mRegisterButton.setEnabled(false);
+            }
+        }
+        else
+        {
+            mLoginButton.setEnabled(false);
         }
     }
 }
