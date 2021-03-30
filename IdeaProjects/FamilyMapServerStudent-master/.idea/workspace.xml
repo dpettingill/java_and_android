@@ -9,54 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e6c8a4f-27cc-4776-a76d-33060710916f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FamilyMapServer.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyMapServer.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/LoadServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/LoadServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/ClearHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/ClearHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/EventHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/EventHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/FillHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/FillHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/LoadHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/LoadHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/PersonHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/PersonHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/UserLoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/UserLoginHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handler/UserRegisterHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handler/UserRegisterHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/AuthToken.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Event.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Person.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/ClearService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/ClearService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/EventService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/FillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/FillService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/GenericResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/LoadService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/LoadService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/PersonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Request/LoadRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Request/UserLoginRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Request/UserRegisterRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/ClearResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/EventResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/EventsResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/FillResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/LoadResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/PersonResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/PersonsResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/UserLoginResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/Response/UserRegisterResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/UserLoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/UserLoginService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/UserRegisterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/UserRegisterService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/ClearServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/ClearServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/EventServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/EventServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/FillServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/FillServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/LoadServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/LoadServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/PersonServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/PersonServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/UserLoginServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/UserLoginServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/service/UserRegisterServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/service/UserRegisterServiceTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="7e6c8a4f-27cc-4776-a76d-33060710916f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1616689699543</updated>
       <workItem from="1616689723240" duration="1149000" />
-      <workItem from="1616704900212" duration="8375000" />
+      <workItem from="1616704900212" duration="9045000" />
     </task>
     <servers />
   </component>

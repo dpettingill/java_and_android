@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import Model.AuthToken;
+import Model.Event;
 import Model.Person;
 
 public class Datacache {
@@ -14,6 +15,7 @@ public class Datacache {
     private String authToken;
     private Person user;
     private Map<String, Person> personsMap = new HashMap<>();
+    private Map<String, Set<Event>> eventsMap = new HashMap<>();
 
     //immediate family
     private final Set<Person> immediateFamilyMales = new HashSet<>();
@@ -41,6 +43,10 @@ public class Datacache {
 
     public Map<String, Person> getPersonsMap() {
         return personsMap;
+    }
+
+    public Map<String, Set<Event>> getEventsMap() {
+        return eventsMap;
     }
 
     public String getAuthToken() {

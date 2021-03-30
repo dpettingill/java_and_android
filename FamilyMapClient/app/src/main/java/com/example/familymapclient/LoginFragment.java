@@ -22,9 +22,12 @@ import com.google.gson.Gson;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import Model.Event;
 import Model.Person;
 import Model.User;
 import Request.UserLoginRequest;
@@ -358,6 +361,25 @@ public class LoginFragment extends Fragment {
         //now that we have the user's person and authToken we can set their family data
         setImmediateFamilyMembers(instance); //immediate family
         setFamilyMembers(instance, instance.getUser(), true);
+        //a map of personIds to a set of associated events
+        generateEventMap(instance);
+    }
+
+    public void generateEventMap(Datacache instance)
+    {
+        for (Event e : eRes.getData())
+        {
+            if (instance.getEventsMap().containsKey(e.getPersonID()))
+            {
+                instance.getEventsMap().get(e.getPersonID()).add(e);
+            }
+            else
+            {
+                Set<Event> eventSet = new HashSet<Event>();
+                eventSet.add(e);
+                instance.getEventsMap().put(e.getPersonID(), eventSet);
+            }
+        }
     }
 
     //get the father and then go through and get the father's father etc until it is null
@@ -402,9 +424,6 @@ public class LoginFragment extends Fragment {
                 instance.getImmediateFamilyMales().add(user);
             else
                 instance.getImmediateFamilyFemales().add(user);
-            //parents
-            instance.getImmediateFamilyMales().add(pRes.getPerson(spouse.getFatherID())); //father
-            instance.getImmediateFamilyMales().add(pRes.getPerson(spouse.getMotherID())); //mother
         }
     }
 
