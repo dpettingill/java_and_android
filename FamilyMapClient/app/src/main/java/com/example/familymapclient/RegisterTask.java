@@ -6,7 +6,6 @@ import android.os.Handler;
 
 import java.net.URL;
 
-import Request.UserLoginRequest;
 import Request.UserRegisterRequest;
 
 
@@ -16,8 +15,9 @@ public class RegisterTask implements Runnable {
     private final Handler messageHandler;
     private final URL url;
     private final UserRegisterRequest urReq;
-    private static final String PERSON_KEY = "personKey";
-    private static final String EVENT_KEY = "eventKey";
+    private static final String USER_KEY = "userKey";
+    private static final String PERSONS_KEY = "personsKey";
+    private static final String EVENTS_KEY = "eventsKey";
 
     public RegisterTask(Handler messageHandler, URL url, UserRegisterRequest urReq) {
         this.messageHandler = messageHandler;
@@ -39,8 +39,9 @@ public class RegisterTask implements Runnable {
         Message message = Message.obtain();
 
         Bundle messageBundle = new Bundle();
-        messageBundle.putString(PERSON_KEY, result[1]);
-        messageBundle.putString(EVENT_KEY, result[2]);
+        messageBundle.putString(USER_KEY, result[0]);
+        messageBundle.putString(PERSONS_KEY, result[1]);
+        messageBundle.putString(EVENTS_KEY, result[2]);
         message.setData(messageBundle);
 
         messageHandler.sendMessage(message);

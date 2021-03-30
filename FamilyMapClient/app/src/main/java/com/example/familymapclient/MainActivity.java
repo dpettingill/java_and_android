@@ -20,6 +20,4 @@ public class MainActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
     }
-    //need to program the createThread stuff
-    //as well as implement the url function
 }

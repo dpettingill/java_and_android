@@ -22,7 +22,7 @@
             android:id="@+id/server_host_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/server_host_hint" />
+            android:text="@string/server_host_hint" />
 
         <TextView
             style="@style/Base.CardView"
@@ -34,7 +34,7 @@
             android:id="@+id/server_port_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/server_port_hint" />
+            android:text="@string/server_port_hint" />
 
         <TextView
             style="@style/Base.CardView"
@@ -46,7 +46,7 @@
             android:id="@+id/username_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/user_name_hint" />
+            android:text="@string/user_name_hint" />
 
         <TextView
             style="@style/Base.CardView"
@@ -58,7 +58,7 @@
             android:id="@+id/password_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password_hint" />
+            android:text="@string/password_hint" />
 
         <TextView
             style="@style/Base.CardView"

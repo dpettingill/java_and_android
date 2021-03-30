@@ -15,8 +15,9 @@ public class LoginTask implements Runnable {
         private final Handler messageHandler;
         private final URL url;
         private final UserLoginRequest ulReq;
-        private static final String PERSON_KEY = "personKey";
-        private static final String EVENT_KEY = "eventKey";
+        private static final String USER_KEY = "userKey";
+        private static final String PERSONS_KEY = "personsKey";
+        private static final String EVENTS_KEY = "eventsKey";
 
         public LoginTask(Handler messageHandler, URL url, UserLoginRequest ulReq) {
             this.messageHandler = messageHandler;
@@ -38,8 +39,9 @@ public class LoginTask implements Runnable {
             Message message = Message.obtain();
 
             Bundle messageBundle = new Bundle();
-            messageBundle.putString(PERSON_KEY, result[1]);
-            messageBundle.putString(EVENT_KEY, result[2]);
+            messageBundle.putString(USER_KEY, result[0]);
+            messageBundle.putString(PERSONS_KEY, result[1]);
+            messageBundle.putString(EVENTS_KEY, result[2]);
             message.setData(messageBundle);
 
             messageHandler.sendMessage(message);

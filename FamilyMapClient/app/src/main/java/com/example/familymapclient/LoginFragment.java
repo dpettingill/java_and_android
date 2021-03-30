@@ -3,6 +3,7 @@ package com.example.familymapclient;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.gson.Gson;
 
@@ -23,11 +25,14 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import Model.Person;
 import Model.User;
 import Request.UserLoginRequest;
 import Request.UserRegisterRequest;
 import Response.EventsResponse;
 import Response.PersonsResponse;
+import Response.UserLoginResponse;
+import Response.UserRegisterResponse;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,8 +46,9 @@ public class LoginFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String LOG_TAG = "LoginFragment";
-    private static final String PERSON_KEY = "personKey";
-    private static final String EVENT_KEY = "eventKey";
+    private static final String USER_KEY = "userKey";
+    private static final String PERSONS_KEY = "personsKey";
+    private static final String EVENTS_KEY = "eventsKey";
 
 
     // TODO: Rename and change types of parameters
@@ -56,6 +62,7 @@ public class LoginFragment extends Fragment {
     private Button mRegisterButton;
     private PersonsResponse pRes;
     private EventsResponse eRes;
+    private UserLoginResponse ulRes;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -96,6 +103,7 @@ public class LoginFragment extends Fragment {
 
         // USER STUFF //
         EditText mHost = (EditText) v.findViewById(R.id.server_host_hint);
+        Host = mHost.getText().toString();
         mHost.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -114,6 +122,7 @@ public class LoginFragment extends Fragment {
         });
 
         EditText mPort = (EditText) v.findViewById(R.id.server_port_hint);
+        Port = mPort.getText().toString();
         mPort.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,6 +141,7 @@ public class LoginFragment extends Fragment {
         });
 
         EditText mUsername = (EditText) v.findViewById(R.id.username_hint);
+        newUser.setUsername(mUsername.getText().toString());
         mUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -150,6 +160,7 @@ public class LoginFragment extends Fragment {
         });
 
         EditText mPassword = (EditText) v.findViewById(R.id.password_hint);
+        newUser.setPassword(mPassword.getText().toString());
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -240,13 +251,13 @@ public class LoginFragment extends Fragment {
         mLoginButton.setEnabled(false);
         mRegisterButton = (Button) v.findViewById(R.id.register_button);
         mRegisterButton.setEnabled(false);
-        //instead build a helper function and call it in all of the text changed things. Then if we hit our criteria update the button(s)
-        //allow login
+        checkNeededButtonInfo();
 
         return v;
     }
 
     public void checkNeededButtonInfo() {
+        //login
         if (!Host.isEmpty() && !Port.isEmpty() && !newUser.getUsername().isEmpty() && !newUser.getPassword().isEmpty()) {
             mLoginButton.setEnabled(true);
             mLoginButton.setOnClickListener(v -> {
@@ -255,17 +266,17 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void handleMessage(Message message) {
                             Bundle bundle = message.getData();
-                            String personResult = bundle.getString(PERSON_KEY, null);
+                            String userResult = bundle.getString(USER_KEY, null);
+                            ulRes = new Gson().fromJson(userResult, UserLoginResponse.class);
+                            String personResult = bundle.getString(PERSONS_KEY, null);
                             if (personResult != null)
                             {
                                 pRes = new Gson().fromJson(personResult, PersonsResponse.class);
-                                String eventResult = bundle.getString(EVENT_KEY, null);
+                                String eventResult = bundle.getString(EVENTS_KEY, null);
                                 eRes = new Gson().fromJson(eventResult, EventsResponse.class);
                                 if (pRes.success == true)
                                 {
-                                    Toast.makeText(getActivity(), getString(R.string.login_toast,
-                                            pRes.getData()[0].getFirstName(), pRes.getData()[0].getLastName()),
-                                            Toast.LENGTH_SHORT).show();
+                                    switchFragments(); //switches to the map fragment
                                 }
                             }
                             else
@@ -296,15 +307,15 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void handleMessage(Message message) {
                             Bundle bundle = message.getData();
-                            String personResult = bundle.getString(PERSON_KEY, null);
+                            String userResult = bundle.getString(USER_KEY, null);
+                            ulRes = new Gson().fromJson(userResult, UserLoginResponse.class);
+                            String personResult = bundle.getString(PERSONS_KEY, null);
                             if (personResult != null)
                             {
                             pRes = new Gson().fromJson(personResult, PersonsResponse.class);
-                            String eventResult = bundle.getString(EVENT_KEY, null);
+                            String eventResult = bundle.getString(EVENTS_KEY, null);
                             eRes = new Gson().fromJson(eventResult, EventsResponse.class);
-                                Toast.makeText(getActivity(), getString(R.string.login_toast,
-                                        pRes.getData()[0].getFirstName(), pRes.getData()[0].getLastName()),
-                                        Toast.LENGTH_SHORT).show();
+                                switchFragments(); //switches to the map fragment
                             }
                             else
                             {
@@ -337,4 +348,73 @@ public class LoginFragment extends Fragment {
             mLoginButton.setEnabled(false);
         }
     }
+
+    public void cacheData()
+    {
+        Datacache instance = Datacache.getInstance();
+        instance.setAuthToken(ulRes.getAuthtoken());
+        instance.setUser(pRes.getPerson(ulRes.getPersonID()));
+        instance.getPersonsMap().put(instance.getUser().getPersonID(), instance.getUser()); //put the user's person into the map
+        //now that we have the user's person and authToken we can set their family data
+        setImmediateFamilyMembers(instance); //immediate family
+        setFamilyMembers(instance, instance.getUser(), true);
+    }
+
+    //get the father and then go through and get the father's father etc until it is null
+    //pass in a user will need to be recursive
+    public void setFamilyMembers(Datacache instance, Person person, boolean fSide)
+    {
+        if (person.getFatherID() != null) {
+            Person father = pRes.getPerson(person.getFatherID());
+            instance.getPersonsMap().put(father.getPersonID(), father);
+            Person mother = pRes.getPerson(person.getMotherID());
+            instance.getPersonsMap().put(mother.getPersonID(), mother);
+            if (fSide) {
+                instance.getFatherSideMales().add(father);
+                instance.getFatherSideFemales().add(mother);
+                setFamilyMembers(instance, father, true);
+                setFamilyMembers(instance, mother, true);
+            } else {
+                instance.getMotherSideMales().add(father);
+                instance.getMotherSideFemales().add(mother);
+                setFamilyMembers(instance, father, false);
+                setFamilyMembers(instance, mother, false);
+            }
+        }
+    }
+
+    //set immediate family
+    public void setImmediateFamilyMembers(Datacache instance)
+    {
+        Person user = instance.getUser();
+        if (user.getGender() == "m")
+            instance.getImmediateFamilyMales().add(user);
+        else
+            instance.getImmediateFamilyFemales().add(user);
+        //parents
+        instance.getImmediateFamilyMales().add(pRes.getPerson(user.getFatherID())); //father
+        instance.getImmediateFamilyMales().add(pRes.getPerson(user.getMotherID())); //mother
+        //spouse??
+        if (user.getSpouseID() != null)
+        {
+            Person spouse = pRes.getPerson(user.getSpouseID());
+            if (spouse.getGender() == "m")
+                instance.getImmediateFamilyMales().add(user);
+            else
+                instance.getImmediateFamilyFemales().add(user);
+            //parents
+            instance.getImmediateFamilyMales().add(pRes.getPerson(spouse.getFatherID())); //father
+            instance.getImmediateFamilyMales().add(pRes.getPerson(spouse.getMotherID())); //mother
+        }
+    }
+
+
+    //creates an instance of map fragment and switches to it
+    public void switchFragments()
+    {
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        Fragment mapFragment = new MapFragment();
+        fm.beginTransaction().replace(R.id.fragment_container, mapFragment).commit();
+    }
+
 }

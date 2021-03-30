@@ -5,9 +5,9 @@
     <string name="server_port_label">Server Port: </string>
     <string name="server_port_hint">8080</string>
     <string name="user_name_label">Username: </string>
-    <string name="user_name_hint">janedoe</string>
+    <string name="user_name_hint">dannyboi</string>
     <string name="password_label">Password: </string>
-    <string name="password_hint">1234</string>
+    <string name="password_hint">password</string>
     <string name="first_name_label">First Name: </string>
     <string name="first_name_hint">Jane</string>
     <string name="last_name_label">Last Name: </string>
@@ -22,4 +22,6 @@
     <string name="login_toast">First Name: %s and Last Name: %s</string>
     <string name="login_fail_toast">Your login attempt failed!</string>
     <string name="register_fail_toast">Your register attempt failed!</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="mapFragmentMessage">This is my map fragment!</string>
 </resources>
