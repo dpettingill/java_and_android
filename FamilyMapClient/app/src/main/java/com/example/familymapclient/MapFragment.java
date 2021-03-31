@@ -37,6 +37,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         LatLng sydney = new LatLng(-34, 151);
         map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         map.animateCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        //k let's draw all of our markers here :)
+        
     }
 
     @Override

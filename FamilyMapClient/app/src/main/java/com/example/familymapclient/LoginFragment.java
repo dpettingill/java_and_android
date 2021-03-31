@@ -3,7 +3,6 @@ package com.example.familymapclient;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -35,11 +34,9 @@ import Request.UserRegisterRequest;
 import Response.EventsResponse;
 import Response.PersonsResponse;
 import Response.UserLoginResponse;
-import Response.UserRegisterResponse;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class LoginFragment extends Fragment {
@@ -53,12 +50,7 @@ public class LoginFragment extends Fragment {
     private static final String PERSONS_KEY = "personsKey";
     private static final String EVENTS_KEY = "eventsKey";
 
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private User newUser = new User("", "", "", "", "", "", "");
+    private final User newUser = new User("", "", "", "", "", "", "");
     private String Host = "";
     private String Port = "";
     private Button mLoginButton;
@@ -71,31 +63,10 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -105,7 +76,7 @@ public class LoginFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         // USER STUFF //
-        EditText mHost = (EditText) v.findViewById(R.id.server_host_hint);
+        EditText mHost = v.findViewById(R.id.server_host_hint);
         Host = mHost.getText().toString();
         mHost.addTextChangedListener(new TextWatcher() {
             @Override
@@ -124,7 +95,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        EditText mPort = (EditText) v.findViewById(R.id.server_port_hint);
+        EditText mPort = v.findViewById(R.id.server_port_hint);
         Port = mPort.getText().toString();
         mPort.addTextChangedListener(new TextWatcher() {
             @Override
@@ -143,7 +114,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        EditText mUsername = (EditText) v.findViewById(R.id.username_hint);
+        EditText mUsername = v.findViewById(R.id.username_hint);
         newUser.setUsername(mUsername.getText().toString());
         mUsername.addTextChangedListener(new TextWatcher() {
             @Override
@@ -162,7 +133,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        EditText mPassword = (EditText) v.findViewById(R.id.password_hint);
+        EditText mPassword = v.findViewById(R.id.password_hint);
         newUser.setPassword(mPassword.getText().toString());
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -181,7 +152,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        EditText mFirstName = (EditText) v.findViewById(R.id.first_name_hint);
+        EditText mFirstName = v.findViewById(R.id.first_name_hint);
         mFirstName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -199,7 +170,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        EditText mLastName = (EditText) v.findViewById(R.id.last_name_hint);
+        EditText mLastName = v.findViewById(R.id.last_name_hint);
         mLastName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -217,7 +188,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        EditText mEmail = (EditText) v.findViewById(R.id.email_hint);
+        EditText mEmail = v.findViewById(R.id.email_hint);
         mEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -236,7 +207,7 @@ public class LoginFragment extends Fragment {
         });
 
         // BUTTONS //
-        RadioGroup mGender = (RadioGroup) v.findViewById(R.id.genderGroup);
+        RadioGroup mGender = v.findViewById(R.id.genderGroup);
         mGender.clearCheck();
         mGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -250,9 +221,9 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mLoginButton = (Button) v.findViewById(R.id.login_button);
+        mLoginButton = v.findViewById(R.id.login_button);
         mLoginButton.setEnabled(false);
-        mRegisterButton = (Button) v.findViewById(R.id.register_button);
+        mRegisterButton = v.findViewById(R.id.register_button);
         mRegisterButton.setEnabled(false);
         checkNeededButtonInfo();
 
@@ -279,6 +250,7 @@ public class LoginFragment extends Fragment {
                                 eRes = new Gson().fromJson(eventResult, EventsResponse.class);
                                 if (pRes.success == true)
                                 {
+                                    cacheData();
                                     switchFragments(); //switches to the map fragment
                                 }
                             }
@@ -318,7 +290,11 @@ public class LoginFragment extends Fragment {
                             pRes = new Gson().fromJson(personResult, PersonsResponse.class);
                             String eventResult = bundle.getString(EVENTS_KEY, null);
                             eRes = new Gson().fromJson(eventResult, EventsResponse.class);
-                                switchFragments(); //switches to the map fragment
+                                if (pRes.success == true)
+                                {
+                                    cacheData();
+                                    switchFragments(); //switches to the map fragment
+                                }
                             }
                             else
                             {
@@ -360,12 +336,13 @@ public class LoginFragment extends Fragment {
         instance.getPersonsMap().put(instance.getUser().getPersonID(), instance.getUser()); //put the user's person into the map
         //now that we have the user's person and authToken we can set their family data
         setImmediateFamilyMembers(instance); //immediate family
-        setFamilyMembers(instance, instance.getUser(), true);
-        //a map of personIds to a set of associated events
-        generateEventMap(instance);
+        setFamilyMembers(instance, instance.getPersonsMap().get(instance.getUser().getFatherID()), true);
+        setFamilyMembers(instance, instance.getPersonsMap().get(instance.getUser().getMotherID()), false);
+        //Events
+        mapEventstoPersons(instance); //a map of personIds to a set of associated events
     }
 
-    public void generateEventMap(Datacache instance)
+    public void mapEventstoPersons(Datacache instance)
     {
         for (Event e : eRes.getData())
         {
@@ -378,6 +355,11 @@ public class LoginFragment extends Fragment {
                 Set<Event> eventSet = new HashSet<Event>();
                 eventSet.add(e);
                 instance.getEventsMap().put(e.getPersonID(), eventSet);
+            }
+            //fill event types while we are here :)
+            if (!instance.getEventTypes().contains(e.getEventType()))
+            {
+                instance.getEventTypes().add(e.getEventType());
             }
         }
     }
@@ -409,18 +391,25 @@ public class LoginFragment extends Fragment {
     public void setImmediateFamilyMembers(Datacache instance)
     {
         Person user = instance.getUser();
-        if (user.getGender() == "m")
+        if (user.getGender().equals("m"))
             instance.getImmediateFamilyMales().add(user);
         else
             instance.getImmediateFamilyFemales().add(user);
         //parents
-        instance.getImmediateFamilyMales().add(pRes.getPerson(user.getFatherID())); //father
-        instance.getImmediateFamilyMales().add(pRes.getPerson(user.getMotherID())); //mother
+        Person father = pRes.getPerson(user.getFatherID());
+        instance.getImmediateFamilyMales().add(father); //father
+        instance.getFatherSideMales().add(father); //father
+        instance.getPersonsMap().put(user.getFatherID(), father);
+        Person mother = pRes.getPerson(user.getMotherID());
+        instance.getImmediateFamilyFemales().add(mother); //mother
+        instance.getMotherSideFemales().add(mother); //mother
+        instance.getPersonsMap().put(user.getMotherID(), mother);
         //spouse??
         if (user.getSpouseID() != null)
         {
             Person spouse = pRes.getPerson(user.getSpouseID());
-            if (spouse.getGender() == "m")
+            instance.getPersonsMap().put(user.getSpouseID(), spouse);
+            if (spouse.getGender().equals("m"))
                 instance.getImmediateFamilyMales().add(user);
             else
                 instance.getImmediateFamilyFemales().add(user);

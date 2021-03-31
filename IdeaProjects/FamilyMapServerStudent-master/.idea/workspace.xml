@@ -9,7 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e6c8a4f-27cc-4776-a76d-33060710916f" name="Default Changelist" comment="" />
+    <list default="true" id="7e6c8a4f-27cc-4776-a76d-33060710916f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/libs/shared.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/LoginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/ServerProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FamilyMapServer.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyMapServer.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shared_jar/shared.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/shared/Response/PersonsResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/Response/PersonsResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/Response/PersonsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/Response/PersonsResponse.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,15 +62,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -81,6 +89,7 @@
       <updated>1616689699543</updated>
       <workItem from="1616689723240" duration="1149000" />
       <workItem from="1616704900212" duration="9045000" />
+      <workItem from="1617210923557" duration="1833000" />
     </task>
     <servers />
   </component>

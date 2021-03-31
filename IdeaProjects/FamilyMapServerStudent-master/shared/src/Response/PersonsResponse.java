@@ -34,15 +34,12 @@ public class PersonsResponse extends GenericResponse {
 
     public Person getPerson(String personID)
     {
-        int i = 0;
-        while (i < data.length - 1)
-        {
-            if (data[i].getPersonID().equals(personID))
-            {
-                return data[i];
+        for(int i = 0; i < this.data.length; i++) {
+            if (this.data[i].getPersonID().equals(personID)) {
+                return this.data[i];
             }
-            i++;
         }
+
         return null;
     }
 }
