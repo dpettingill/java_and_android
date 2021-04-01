@@ -1,35 +1,44 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
-
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/sync_header">
+        <SwitchPreferenceCompat
+            app:key="life-story"
+            app:summary="show life story lines"
+            app:title="Life Story Lines" />
 
         <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+            app:key="family-tree"
+            app:summary="show family tree lines"
+            app:title="Family Tree Lines" />
 
         <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+            app:key="spouse"
+            app:summary="show spouse lines"
+            app:title="Spouse Lines" />
 
-    </PreferenceCategory>
+        <SwitchPreferenceCompat
+            app:key="father-side"
+            app:summary="filter by father's side of the family"
+            app:title="Father's Side" />
+
+        <SwitchPreferenceCompat
+            app:key="mother-side"
+            app:summary="filter by mother's side of the family"
+            app:title="Mother's Side" />
+
+        <SwitchPreferenceCompat
+            app:key="male-event"
+            app:summary="filter by gender"
+            app:title="Male Events" />
+
+        <SwitchPreferenceCompat
+            app:key="female-event"
+            app:summary="filter by gender"
+            app:title="Female Events" />
+
+        <SwitchPreferenceCompat
+            app:key="logout"
+            app:summary="return to the login screen"
+            app:title="Logout" />
+
 
 </PreferenceScreen>
