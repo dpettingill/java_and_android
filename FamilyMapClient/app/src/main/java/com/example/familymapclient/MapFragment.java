@@ -1,35 +1,52 @@
 package com.example.familymapclient;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import java.util.Map;
 import java.util.Set;
 
 import Model.Event;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLoadedCallback {
     private GoogleMap map;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getActivity() instanceof MainActivity)
+        {
+            setHasOptionsMenu(true);
+        }
+        Iconify.with(new FontAwesomeModule());
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,12 +59,54 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         return view;
     }
 
+    //make this into an override
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu, menu);
+        MenuItem settingsIcon = menu.findItem(R.id.settingsIcon);
+        settingsIcon.setIcon(new IconDrawable(getContext(), FontAwesomeIcons.fa_gear).colorRes(R.color.white).actionBarSize());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem)
+    {
+        switch (menuItem.getItemId())
+        {
+            case R.id.settingsIcon:
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
+        //create a switch statement
+        //if it is the case of your settings menu
+        //create a new intent
+        //start activity with the new intent and return true
+        return true;
+    }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-
         //k let's draw all of our markers here :)
         addMarkers();
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            /** Called when the user clicks a marker. */
+            public boolean onMarkerClick(Marker marker) {
+                // Check if a click count was set, then display the click count.
+                Toast.makeText(getActivity(),
+                        marker.getTitle() +
+                                " has been clicked ",
+                        LENGTH_SHORT).show();
+                // Return false to indicate that we have not consumed the event and that we wish
+                // for the default behavior to occur (which is for the camera to move such that the
+                // marker is centered and for the marker's info window to open, if it has one).
+                return false;
+            }
+        });
 
 //        map.animateCamera(CameraUpdateFactory.newLatLng(sydney));
 
@@ -63,7 +122,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     //Okay I may want to rethink this
     public void addMarkers() {
         Datacache instance = Datacache.getInstance();
-        int[] markerColors = {0, 240, 120, 30, 270, 150, 60, 90, 180, 210, 300, 330}; //color wheel pts. 0 == red, 120 == green, 240 == blue
+        int[] markerColors = {120, 240, 270, 30, 0, 150, 60, 90, 180, 210, 300, 330}; //color wheel pts. 0 == red, 120 == green, 240 == blue
         int index = 0;
 
         for (Map.Entry<String, Set<Event>> entry : instance.getEventsMap().entrySet()) {
@@ -75,36 +134,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
                 MarkerOptions marker = new MarkerOptions()
                         .icon(BitmapDescriptorFactory.defaultMarker(markerColors[index])).position(position).title(e.getEventType());
-                map.addMarker(marker);
-//                map.setOnMarkerClickListener(this);
+                Marker myMarker = map.addMarker(marker);
+                myMarker.setTag(e.getPersonID()); //set tags for markers before putting them on the map
             }
         }
     }
-
-
-//    /** Called when the user clicks a marker. */
-//    @Override
-//    public boolean onMarkerClick(final Marker marker) {
-//
-//        // Retrieve the data from the marker.
-//        Integer clickCount = (Integer) marker.getTag();
-//
-//        // Check if a click count was set, then display the click count.
-//        if (clickCount != null) {
-//            clickCount = clickCount + 1;
-//            marker.setTag(clickCount);
-//            Toast.makeText(this,
-//                    marker.getTitle() +
-//                            " has been clicked " + clickCount + " times.",
-//                    Toast.LENGTH_SHORT).show();
-//        }
-//
-//        // Return false to indicate that we have not consumed the event and that we wish
-//        // for the default behavior to occur (which is for the camera to move such that the
-//        // marker is centered and for the marker's info window to open, if it has one).
-//        return false;
-//    }
-
 
     @Override
     public void onMapLoaded() {
