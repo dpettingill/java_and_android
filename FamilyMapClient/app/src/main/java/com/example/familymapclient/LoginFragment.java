@@ -344,6 +344,7 @@ public class LoginFragment extends Fragment {
 
     public void mapEventstoPersons(Datacache instance)
     {
+        int i = 0;
         for (Event e : eRes.getData())
         {
             if (instance.getEventsMap().containsKey(e.getPersonID()))
@@ -357,9 +358,10 @@ public class LoginFragment extends Fragment {
                 instance.getEventsMap().put(e.getPersonID(), eventSet);
             }
             //fill event types while we are here :)
-            if (!instance.getEventTypes().contains(e.getEventType()))
+            if (!instance.getEventTypes().containsKey(e.getEventType()))
             {
-                instance.getEventTypes().add(e.getEventType());
+                instance.getEventTypes().put(e.getEventType(), i);
+                i++;
             }
         }
     }

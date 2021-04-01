@@ -28,7 +28,7 @@ public class Datacache {
     private final Set<Person> motherSideFemales = new HashSet<>();
 
     //events
-    private final Set<String> eventTypes = new HashSet<>();
+    private final Map<String, Integer> eventTypes = new HashMap<>();
 
     private Datacache() {}
 
@@ -89,7 +89,7 @@ public class Datacache {
         return motherSideFemales;
     }
 
-    public Set<String> getEventTypes() {
+    public Map<String, Integer> getEventTypes() {
         return eventTypes;
     }
 
