@@ -1,6 +1,7 @@
 package com.example.familymapclient;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,6 +38,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLoadedCallback {
     private GoogleMap map;
+//    private
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,10 +82,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 startActivity(intent);
                 break;
         }
-        //create a switch statement
-        //if it is the case of your settings menu
-        //create a new intent
-        //start activity with the new intent and return true
         return true;
     }
 
@@ -110,8 +109,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
 //        map.animateCamera(CameraUpdateFactory.newLatLng(sydney));
 
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //get the sharedPreferences stuff
+//       getSharedPreferences();
+//       addMarkers();
+        //addMarkers and lines here
+    }
 
+    public void getSharedPreferences()
+    {
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
+//        boolean life_story = sharedPreferences.getBoolean("life-story", true);
     }
 
 //        int[] colors = {R.color.yellow, R.color.red, R.color.blue, R.color.green, R.color.black,
@@ -122,6 +141,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     //Okay I may want to rethink this
     public void addMarkers() {
         Datacache instance = Datacache.getInstance();
+//        SharedPreferences settings = getActivity().getSharedPreferences(R.xml.root_preferences, getActivity().MODE_PRIVATE);
         int[] markerColors = {120, 240, 270, 30, 0, 150, 60, 90, 180, 210, 300, 330}; //color wheel pts. 0 == red, 120 == green, 240 == blue
         int index = 0;
 

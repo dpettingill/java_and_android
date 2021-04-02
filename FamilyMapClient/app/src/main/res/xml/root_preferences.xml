@@ -35,10 +35,11 @@
             app:summary="filter by gender"
             app:title="Female Events" />
 
-        <SwitchPreferenceCompat
+        <Preference
             app:key="logout"
+            app:enabled="true"
             app:summary="return to the login screen"
-            app:title="Logout" />
-
+            app:title="Logout"
+                />
 
 </PreferenceScreen>
