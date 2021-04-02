@@ -5,17 +5,19 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import Model.AuthToken;
 import Model.Event;
 import Model.Person;
 
+@SuppressWarnings("ALL")
 public class Datacache {
     private static Datacache instance;
 
     private String authToken;
     private Person user;
-    private Map<String, Person> personsMap = new HashMap<>();
-    private Map<String, Set<Event>> eventsMap = new HashMap<>();
+
+    //maps
+    private final Map<String, Person> personsMap = new HashMap<>(); //maps personIds to persons
+    private final Map<String, Set<Event>> eventsMap = new HashMap<>(); //maps personIds to sets of events
 
     //immediate family
     private final Set<Person> immediateFamilyMales = new HashSet<>();

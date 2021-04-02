@@ -9,7 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,13 +27,11 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
-import java.util.Map;
+import java.util.Iterator;
 import java.util.Set;
 
 import Model.Event;
 import Model.Person;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLoadedCallback {
@@ -102,9 +100,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     }
 
 
+    //okay so here is the problem. Currently a personId is associated with 3+ diff events
+    //but if I set the tag as the event id then how will I retrieve it?
+    //I can either create a new map of eventIds to events just for this or...
+    //I create an object with a personId and an eventId which I then set as the tag
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        Datacache instance = Datacache.getInstance();
 
         addMarkers(true); //k let's draw all of our markers here :)
 
@@ -112,29 +115,32 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             @Override
             /** Called when the user clicks a marker. */
             public boolean onMarkerClick(Marker marker) {
-                // Check if a click count was set, then display the click count.
-                Toast.makeText(getActivity(),
-                        marker.getTitle() +
-                                " has been clicked ",
-                        LENGTH_SHORT).show();
-                // Return false to indicate that we have not consumed the event and that we wish
-                // for the default behavior to occur (which is for the camera to move such that the
-                // marker is centered and for the marker's info window to open, if it has one).
-                return false;
+                setText(marker, instance);
+                return false; //centers on this marker
             }
         });
         firstRun = false;
     }
 
-    //dilema
-    //so here's the thing is that I save the sharedPreferences thing from the settings page
-    //but will those persist? And if not, do I just not check them the first time that the user
-    //opens the map? Will that be a problem? Seems like I need those settings to persist
-    //let's see what is breaking our thing rn though
-    //so here's the real dilema...I am trying to add markers to a map that hasn't loaded yet
-    //how am I going to deal with that?
-    //so I could maybe check if this is the first time through or not, bc when I come back the map
-    // will already have been loaded but will need to be cleared
+    private void setText(Marker marker, Datacache instance) {
+        String output;
+        TextView tv = (TextView) getView().findViewById(R.id.mapTextView);
+        MarkerTag mt = (MarkerTag) marker.getTag();
+        Person person = instance.getPersonsMap().get(mt.getPersonId()); //use the person id to get the person
+        output = person.getFirstName() + " " + person.getLastName() + '\n';
+        Set<Event> mySet = instance.getEventsMap().get(mt.getPersonId()); //use the person id to get the set of events
+        for (Event event : mySet) {
+            if (event.getEventID() == mt.getEventId()) {
+                output += event.getEventType().toUpperCase() + ": " + event.getCity() + ", " +
+                        event.getCountry() + " (" + event.getYear() + ")";
+            }
+        }
+        if (output != null)
+            tv.setText(output);
+        else
+            tv.setText(R.string.error_msg);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -222,9 +228,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             LatLng position = new LatLng(e.getLatitude(), e.getLongitude()); //get pos of this marker
 
             MarkerOptions marker = new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.defaultMarker(marker_colors[index])).position(position).title(e.getEventType());
+                    .icon(BitmapDescriptorFactory.defaultMarker(marker_colors[index])).position(position);
             Marker myMarker = map.addMarker(marker);
-            myMarker.setTag(e.getPersonID()); //set tags for markers before putting them on the map
+            myMarker.setTag(new MarkerTag(e.getPersonID(), e.getEventID())); //set tags for markers before putting them on the map
         }
     }
 
@@ -240,6 +246,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             createEventMarkers(instance, user);
         }
     }
+
+    //use this for my markers tags
+    public class MarkerTag
+    {
+        private String personId;
+        private String eventId;
+
+        public MarkerTag(String personId, String eventId)
+        {
+            this.eventId = eventId;
+            this.personId = personId;
+        }
+
+        public String getPersonId() {
+            return personId;
+        }
+
+        public String getEventId() {
+            return eventId;
+        }
+    }
+
 
 
     @Override

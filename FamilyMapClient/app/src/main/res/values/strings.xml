@@ -23,7 +23,7 @@
     <string name="login_fail_toast">Your login attempt failed!</string>
     <string name="register_fail_toast">Your register attempt failed!</string>
     <string name="title_activity_maps">Map</string>
-    <string name="mapFragmentMessage">This is my map fragment!</string>
+    <string name="mapFragmentMessage">Click on a Marker to see the Event Details</string>
     <string name="title_activity_settings">Family Map: Settings</string>
     <string name="settings_menu">settings menu</string>
     <string name="life_story">life-story</string>
@@ -33,4 +33,5 @@
     <string name="mother_side">mother-s-side</string>
     <string name="male_event">male-event</string>
     <string name="female_event">female-event</string>
+    <string name="error_msg">Uhhh something bad happened</string>
 </resources>
