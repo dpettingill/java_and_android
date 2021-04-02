@@ -22,12 +22,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import Model.Event;
@@ -47,11 +51,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private static final int MALE = 5;
     private static final int FEMALE = 6;
     private static final int[] marker_colors = {120, 240, 270, 30, 0, 150, 60, 90, 180, 210, 300, 330}; //color wheel pts. 0 == red, 120 == green, 240 == blue
-
+    private static final int COLOR_GREEN_ARGB = 0xff81C784;
+    private static final int COLOR_ORANGE_ARGB = 0xffF57F17;
+    private static final int COLOR_YELLOW_ARGB = 0xffffff00;
+    private static final int POLYGON_STROKE_WIDTH_PX = 14;
 
 
     private GoogleMap map;
     private boolean firstRun;
+    private List<Polyline> polylines = new ArrayList<Polyline>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,30 +123,88 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             @Override
             /** Called when the user clicks a marker. */
             public boolean onMarkerClick(Marker marker) {
-                setText(marker, instance);
+                //get Person and Event from MarkerTag
+                MarkerTag mt = (MarkerTag) marker.getTag();
+                Person person = instance.getPersonsMap().get(mt.getPersonId()); //use the person id to get the person
+                Event event = null;
+                Set<Event> mySet = instance.getEventsMap().get(mt.getPersonId()); //use the person id to get the set of events
+                for (Event e : mySet) { //find the right event
+                    if (e.getEventID() == mt.getEventId()) {
+                        event = e;
+                    }
+                }
+
+                //now do stuff with it
+                setText(instance, person, event);
+                drawLines(instance, person, event);
+
                 return false; //centers on this marker
             }
         });
         firstRun = false;
     }
 
-    private void setText(Marker marker, Datacache instance) {
+    private void setText(Datacache instance, Person person, Event event) {
         String output;
         TextView tv = (TextView) getView().findViewById(R.id.mapTextView);
-        MarkerTag mt = (MarkerTag) marker.getTag();
-        Person person = instance.getPersonsMap().get(mt.getPersonId()); //use the person id to get the person
         output = person.getFirstName() + " " + person.getLastName() + '\n';
-        Set<Event> mySet = instance.getEventsMap().get(mt.getPersonId()); //use the person id to get the set of events
-        for (Event event : mySet) {
-            if (event.getEventID() == mt.getEventId()) {
-                output += event.getEventType().toUpperCase() + ": " + event.getCity() + ", " +
-                        event.getCountry() + " (" + event.getYear() + ")";
-            }
-        }
+        output += event.getEventType().toUpperCase() + ": " + event.getCity() + ", " +
+                event.getCountry() + " (" + event.getYear() + ")";
         if (output != null)
             tv.setText(output);
         else
             tv.setText(R.string.error_msg);
+    }
+
+    //k one at a time
+    //spouse lines
+    //father and mother lines -> line to the father's father (get thinner as it does so)
+    //life story lines
+
+    private void drawLines(Datacache instance, Person person, Event event)
+    {
+        //first erase any old lines
+        for(Polyline line : polylines)
+        {
+            line.remove();
+        }
+
+        //spouse lines
+        //check settings here
+        if (person.getSpouseID() != null) {
+            LatLng pos1 = new LatLng(event.getLatitude(), event.getLongitude());
+            Person spouse = instance.getPersonsMap().get(person.getSpouseID());
+            Iterator<Event> it = instance.getEventsMap().get(spouse.getPersonID()).iterator();
+            Event spouseEvent = it.next();
+            LatLng pos2 = new LatLng(spouseEvent.getLatitude(), spouseEvent.getLongitude());
+            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_YELLOW_ARGB))); //yellow is for spouse lines
+        }
+
+        //family tree lines
+        //check settings here
+        familyTreeLines(instance, person, event, POLYGON_STROKE_WIDTH_PX);
+    }
+
+    private void familyTreeLines(Datacache instance, Person person, Event event, float width) {
+        if (person.getFatherID() != null) {
+            LatLng pos1 = new LatLng(event.getLatitude(), event.getLongitude());
+            Person father = instance.getPersonsMap().get(person.getFatherID());
+            Iterator<Event> it = instance.getEventsMap().get(father.getPersonID()).iterator();
+            Event fatherEvent = it.next();
+            LatLng pos2 = new LatLng(fatherEvent.getLatitude(), fatherEvent.getLongitude());
+            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_GREEN_ARGB).width(width))); //yellow is for family lines
+            familyTreeLines(instance, father, fatherEvent, width/2);
+        }
+
+        if (person.getMotherID() != null) {
+            LatLng pos1 = new LatLng(event.getLatitude(), event.getLongitude());
+            Person mother = instance.getPersonsMap().get(person.getMotherID());
+            Iterator<Event> it = instance.getEventsMap().get(mother.getPersonID()).iterator();
+            Event motherEvent = it.next();
+            LatLng pos2 = new LatLng(motherEvent.getLatitude(), motherEvent.getLongitude());
+            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_GREEN_ARGB).width(width))); //green is for family lines
+            familyTreeLines(instance, mother, motherEvent, width/2);
+        }
     }
 
     @Override
