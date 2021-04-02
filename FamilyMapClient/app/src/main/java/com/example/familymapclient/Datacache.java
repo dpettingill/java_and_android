@@ -31,7 +31,7 @@ public class Datacache {
     private final Map<String, Integer> eventTypes = new HashMap<>();
 
     //settings
-    private boolean[] MapMarkerSettings = new boolean[7]; //stores our map marker settings
+    private boolean[] MapMarkerSettings = {true, true, true, true, true, true, true}; //stores our map marker settings
 
     private Datacache() {}
 

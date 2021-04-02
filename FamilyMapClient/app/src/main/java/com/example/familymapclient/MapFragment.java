@@ -2,9 +2,7 @@ package com.example.familymapclient;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.fonts.Font;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 
 import Model.Event;
+import Model.Person;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -45,6 +44,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private static final String mother_side = "mother-s-side";
     private static final String male_event = "male-event";
     private static final String female_event = "female-event";
+    private static final int FATHER_SIDE = 3;
+    private static final int MOTHER_SIDE = 4;
+    private static final int MALE = 5;
+    private static final int FEMALE = 6;
+    private static final int[] marker_colors = {120, 240, 270, 30, 0, 150, 60, 90, 180, 210, 300, 330}; //color wheel pts. 0 == red, 120 == green, 240 == blue
+
+
 
     private GoogleMap map;
     private boolean firstRun;
@@ -138,7 +144,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             }
     }
 
-    public boolean getSharedPreferences() {
+    private boolean getSharedPreferences() {
         Datacache instance = Datacache.getInstance();
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -173,32 +179,68 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 //                R.color.spring_green, R.color.chartreuse, R.color.violet, R.color.cyan};
     //draws all of the markers on the map
     //creates their color based on what type of event it is
-    //Okay I may want to rethink this
-    public void addMarkers(boolean settingsChanged) {
+    private void addMarkers(boolean settingsChanged) {
         Datacache instance = Datacache.getInstance();
         boolean[] mapMarkerSettings = instance.getMapMarkerSettings();
-        int[] markerColors = {120, 240, 270, 30, 0, 150, 60, 90, 180, 210, 300, 330}; //color wheel pts. 0 == red, 120 == green, 240 == blue
-        int index = 0;
 
         if (settingsChanged)
         {
             if (!firstRun)
                 map.clear();
-            for (Map.Entry<String, Set<Event>> entry : instance.getEventsMap().entrySet()) {
-                for (Event e : entry.getValue()) {
-                    index = instance.getEventTypes().get(e.getEventType()); //get the appropriate color index for this marker
-                    if (index > markerColors.length - 1) //if the index is too high
-                        index -= markerColors.length - 1; //reset it to an in-bounds value
-                    LatLng position = new LatLng(e.getLatitude(), e.getLongitude()); //get pos of this marker
 
-                    MarkerOptions marker = new MarkerOptions()
-                            .icon(BitmapDescriptorFactory.defaultMarker(markerColors[index])).position(position).title(e.getEventType());
-                    Marker myMarker = map.addMarker(marker);
-                    myMarker.setTag(e.getPersonID()); //set tags for markers before putting them on the map
-                }
+            if (mapMarkerSettings[FATHER_SIDE]) {
+                peopleMarkers(instance, mapMarkerSettings, instance.getFatherSideMales(), instance.getFatherSideFemales());
+            }
+
+            if (mapMarkerSettings[MOTHER_SIDE]) {
+                peopleMarkers(instance, mapMarkerSettings, instance.getMotherSideMales(), instance.getMotherSideFemales());
+            }
+
+            userMapMarkers(instance); //draw the user's stuff??
+        }
+    }
+
+    private void peopleMarkers(Datacache instance, boolean[] mapMarkerSettings, Set<Person> Males, Set<Person> Females) {
+        if (mapMarkerSettings[MALE]) {
+            for (Person p : Males) {
+                createEventMarkers(instance, p);
+            }
+        }
+        if (mapMarkerSettings[FEMALE]) {
+            for (Person p : Females) {
+                createEventMarkers(instance, p);
             }
         }
     }
+
+    private void createEventMarkers(Datacache instance, Person p)
+    {
+        for (Event e : instance.getEventsMap().get(p.getPersonID())) {
+            int index = instance.getEventTypes().get(e.getEventType()); //get the appropriate color index for this marker
+            if (index > marker_colors.length - 1) //if the index is too high
+                index -= marker_colors.length - 1; //reset it to an in-bounds value
+            LatLng position = new LatLng(e.getLatitude(), e.getLongitude()); //get pos of this marker
+
+            MarkerOptions marker = new MarkerOptions()
+                    .icon(BitmapDescriptorFactory.defaultMarker(marker_colors[index])).position(position).title(e.getEventType());
+            Marker myMarker = map.addMarker(marker);
+            myMarker.setTag(e.getPersonID()); //set tags for markers before putting them on the map
+        }
+    }
+
+    private void userMapMarkers(Datacache instance)
+    {
+        Person user = instance.getUser();
+        if (user.getGender().equals("m") && instance.getMapMarkerSettings()[MALE])
+        {
+            createEventMarkers(instance, user);
+        }
+        else if (user.getGender().equals("f") && instance.getMapMarkerSettings()[FEMALE])
+        {
+            createEventMarkers(instance, user);
+        }
+    }
+
 
     @Override
     public void onMapLoaded() {
