@@ -1,37 +1,37 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <SwitchPreferenceCompat
-            app:key="life-story"
+            app:key="@string/life_story"
             app:summary="show life story lines"
             app:title="Life Story Lines" />
 
         <SwitchPreferenceCompat
-            app:key="family-tree"
+            app:key="@string/family_tree_lines"
             app:summary="show family tree lines"
             app:title="Family Tree Lines" />
 
         <SwitchPreferenceCompat
-            app:key="spouse"
+            app:key="@string/spouse_lines"
             app:summary="show spouse lines"
             app:title="Spouse Lines" />
 
         <SwitchPreferenceCompat
-            app:key="father-side"
+            app:key="@string/father_side"
             app:summary="filter by father's side of the family"
             app:title="Father's Side" />
 
         <SwitchPreferenceCompat
-            app:key="mother-side"
+            app:key="@string/mother_side"
             app:summary="filter by mother's side of the family"
             app:title="Mother's Side" />
 
         <SwitchPreferenceCompat
-            app:key="male-event"
+            app:key="@string/male_event"
             app:summary="filter by gender"
             app:title="Male Events" />
 
         <SwitchPreferenceCompat
-            app:key="female-event"
+            app:key="@string/female_event"
             app:summary="filter by gender"
             app:title="Female Events" />
 

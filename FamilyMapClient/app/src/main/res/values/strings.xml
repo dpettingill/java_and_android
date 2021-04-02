@@ -26,4 +26,11 @@
     <string name="mapFragmentMessage">This is my map fragment!</string>
     <string name="title_activity_settings">Family Map: Settings</string>
     <string name="settings_menu">settings menu</string>
+    <string name="life_story">life-story</string>
+    <string name="family_tree_lines">family-tree-lines</string>
+    <string name="spouse_lines">spouse-lines</string>
+    <string name="father_side">father-s-side</string>
+    <string name="mother_side">mother-s-side</string>
+    <string name="male_event">male-event</string>
+    <string name="female_event">female-event</string>
 </resources>

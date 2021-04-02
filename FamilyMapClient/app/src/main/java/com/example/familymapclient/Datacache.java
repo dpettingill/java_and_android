@@ -30,6 +30,9 @@ public class Datacache {
     //events
     private final Map<String, Integer> eventTypes = new HashMap<>();
 
+    //settings
+    private boolean[] MapMarkerSettings = new boolean[7]; //stores our map marker settings
+
     private Datacache() {}
 
     public static Datacache getInstance()
@@ -93,6 +96,11 @@ public class Datacache {
         return eventTypes;
     }
 
+    public boolean[] getMapMarkerSettings() {
+        return MapMarkerSettings;
+    }
 
-
+    public void setMapMarkerSettings(boolean[] mapMarkerSettings) {
+        MapMarkerSettings = mapMarkerSettings;
+    }
 }
