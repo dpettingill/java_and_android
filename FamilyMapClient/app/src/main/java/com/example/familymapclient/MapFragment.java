@@ -46,6 +46,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private static final String mother_side = "mother-s-side";
     private static final String male_event = "male-event";
     private static final String female_event = "female-event";
+    private static final int LIFE_LINES = 0;
+    private static final int FAMILY_TREE_LINES = 1;
+    private static final int SPOUSE_LINES = 2;
     private static final int FATHER_SIDE = 3;
     private static final int MOTHER_SIDE = 4;
     private static final int MALE = 5;
@@ -169,20 +172,47 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             line.remove();
         }
 
+        boolean[] settings = instance.getMapMarkerSettings();
+
         //spouse lines
-        //check settings here
-        if (person.getSpouseID() != null) {
-            LatLng pos1 = new LatLng(event.getLatitude(), event.getLongitude());
-            Person spouse = instance.getPersonsMap().get(person.getSpouseID());
-            Iterator<Event> it = instance.getEventsMap().get(spouse.getPersonID()).iterator();
-            Event spouseEvent = it.next();
-            LatLng pos2 = new LatLng(spouseEvent.getLatitude(), spouseEvent.getLongitude());
-            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_YELLOW_ARGB))); //yellow is for spouse lines
+        if (settings[SPOUSE_LINES]) { //check settings here
+            if (person.getSpouseID() != null) {
+                LatLng pos1 = new LatLng(event.getLatitude(), event.getLongitude());
+                Person spouse = instance.getPersonsMap().get(person.getSpouseID());
+                Iterator<Event> it = instance.getEventsMap().get(spouse.getPersonID()).iterator();
+                Event spouseEvent = it.next();
+                LatLng pos2 = new LatLng(spouseEvent.getLatitude(), spouseEvent.getLongitude());
+                polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_YELLOW_ARGB))); //yellow is for spouse lines
+            }
         }
 
         //family tree lines
-        //check settings here
-        familyTreeLines(instance, person, event, POLYGON_STROKE_WIDTH_PX);
+        if (settings[FAMILY_TREE_LINES]) { //check settings here
+            familyTreeLines(instance, person, event, POLYGON_STROKE_WIDTH_PX);
+        }
+
+        //life story lines here
+        if (settings[LIFE_LINES]) { //check settings as well
+            lifeStoryLines(instance, person);
+        }
+    }
+
+    private void lifeStoryLines(Datacache instance, Person person)
+    {
+        Set<Event> events = instance.getEventsMap().get(person.getPersonID());
+        Iterator<Event> it = events.iterator();
+        Event event1 = it.next();
+        Event event2 = null;
+        LatLng pos1 = null;
+        LatLng pos2 = null;
+        while (it.hasNext())
+        {
+            pos1 = new LatLng(event1.getLatitude(), event1.getLongitude());
+            event2 = it.next();
+            pos2 = new LatLng(event2.getLatitude(), event2.getLongitude());
+            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_ORANGE_ARGB))); //orange is for life lines
+            event1 = event2;
+        }
     }
 
     private void familyTreeLines(Datacache instance, Person person, Event event, float width) {
@@ -192,7 +222,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             Iterator<Event> it = instance.getEventsMap().get(father.getPersonID()).iterator();
             Event fatherEvent = it.next();
             LatLng pos2 = new LatLng(fatherEvent.getLatitude(), fatherEvent.getLongitude());
-            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_GREEN_ARGB).width(width))); //yellow is for family lines
+            polylines.add(map.addPolyline(new PolylineOptions().add(pos1, pos2).color(COLOR_GREEN_ARGB).width(width))); //green is for family tree lines
             familyTreeLines(instance, father, fatherEvent, width/2);
         }
 
