@@ -93,6 +93,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu, menu);
+        MenuItem searchIcon = menu.findItem(R.id.searchIcon);
+        searchIcon.setIcon(new IconDrawable(getContext(), FontAwesomeIcons.fa_search).colorRes(R.color.white).actionBarSize());
         MenuItem settingsIcon = menu.findItem(R.id.settingsIcon);
         settingsIcon.setIcon(new IconDrawable(getContext(), FontAwesomeIcons.fa_gear).colorRes(R.color.white).actionBarSize());
     }
@@ -100,10 +102,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {
+        Intent intent = null;
         switch (menuItem.getItemId())
         {
             case R.id.settingsIcon:
-                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                intent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.searchIcon:
+                intent = new Intent(getContext(), SearchActivity.class);
                 startActivity(intent);
                 break;
         }
