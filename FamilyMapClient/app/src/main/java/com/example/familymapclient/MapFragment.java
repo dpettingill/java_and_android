@@ -2,6 +2,7 @@ package com.example.familymapclient;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -158,6 +160,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 {
                     map.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition())); //on that event's marker?
                     setText(instance, instance.getPersonsMap().get(mt.personId), instance.getMyEvent());
+                    drawLines(instance, instance.getPersonsMap().get(mt.personId), instance.getMyEvent());
                 }
             }
         }
@@ -179,6 +182,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 //now do stuff with it
                 setText(instance, person, clickedEvent);
                 drawLines(instance, person, clickedEvent);
+                if (person.getGender().equals("m"))
+                {
+                    Drawable genderIcon = new IconDrawable(getActivity(), FontAwesomeIcons.fa_male).
+                            colorRes(R.color.blue).sizeDp(40);
+                    ImageView itemIcon = getView().findViewById(R.id.gender_icon);
+                    itemIcon.setImageDrawable(genderIcon);
+                }
+                else
+                {
+                    Drawable genderIcon = new IconDrawable(getActivity(), FontAwesomeIcons.fa_female).
+                            colorRes(R.color.magenta).sizeDp(40);
+                    ImageView itemIcon = getView().findViewById(R.id.gender_icon);
+                    itemIcon.setImageDrawable(genderIcon);
+                }
 
                 return false; //centers on this marker
             }

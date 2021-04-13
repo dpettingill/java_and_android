@@ -11,15 +11,26 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/mapTextView"/>
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/gender_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        />
+
     <TextView
         android:id="@+id/mapTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_margin="8dp"
         android:text="@string/mapFragmentMessage"
         android:layout_alignParentBottom="true"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:layout_toRightOf="@id/gender_icon"
+        android:layout_toEndOf="@id/gender_icon"
+        android:focusable="true" />
 
 </RelativeLayout>

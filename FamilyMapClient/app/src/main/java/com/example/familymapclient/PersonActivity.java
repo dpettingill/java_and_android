@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -15,8 +16,12 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -35,6 +40,8 @@ public class PersonActivity extends AppCompatActivity {
     private List<String> eventIds = new ArrayList<>();
     private List<String> personIds = new ArrayList<>();
     private Person currentPerson = null;
+
+    private ImageView icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,6 +221,28 @@ public class PersonActivity extends AppCompatActivity {
             TextView txtListChild = (TextView) convertView
                     .findViewById(R.id.lblListItem);
 
+            icon = (ImageView) convertView.findViewById(R.id.icon_persons);
+
+            Drawable genderIcon = null;
+            if (groupPosition == 0) //events
+            {
+                genderIcon = new IconDrawable(convertView.getContext(), FontAwesomeIcons.fa_map_marker).
+                        colorRes(R.color.black).sizeDp(40);
+            }
+            else
+            {
+                Datacache instance = Datacache.getInstance();
+                Person person = instance.getPersonsMap().get(personIds.get(childPosition)); //this is the person we are outputting to the screen
+                if (person.getGender().equals("m")) {
+                    genderIcon = new IconDrawable(convertView.getContext(), FontAwesomeIcons.fa_male).
+                        colorRes(R.color.blue).sizeDp(40);
+                } else {
+                     genderIcon = new IconDrawable(convertView.getContext(), FontAwesomeIcons.fa_female).
+                            colorRes(R.color.magenta).sizeDp(40);
+                }
+            }
+
+            icon.setImageDrawable(genderIcon);
             txtListChild.setText(childText);
             return convertView;
         }

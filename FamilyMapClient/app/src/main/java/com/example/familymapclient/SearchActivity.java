@@ -7,12 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -212,6 +217,7 @@ public class SearchActivity extends AppCompatActivity {
     {
         private final TextView name;
         private final TextView eventInfo;
+        private final ImageView icon;
 
         private final int viewType;
         private Person person;
@@ -226,9 +232,11 @@ public class SearchActivity extends AppCompatActivity {
             if(viewType == PERSON_VIEW_TYPE) {
                 name = itemView.findViewById(R.id.personName);
                 eventInfo = null;
+                icon = itemView.findViewById(R.id.person_gender_icon);
             } else {
                 name = itemView.findViewById(R.id.personsName);
                 eventInfo = itemView.findViewById(R.id.eventInfo);
+                icon = itemView.findViewById(R.id.event_icon);
             }
         }
 
@@ -253,6 +261,16 @@ public class SearchActivity extends AppCompatActivity {
             person = myPerson;
             String personName = person.getFirstName() + " " + person.getLastName();
             name.setText(personName);
+            if (person.getGender().equals("m")) {
+                Drawable genderIcon = new IconDrawable(itemView.getContext(), FontAwesomeIcons.fa_male).
+                        colorRes(R.color.blue).sizeDp(40);
+
+                icon.setImageDrawable(genderIcon);
+            } else {
+                Drawable genderIcon = new IconDrawable(itemView.getContext(), FontAwesomeIcons.fa_female).
+                        colorRes(R.color.magenta).sizeDp(40);
+                icon.setImageDrawable(genderIcon);
+            }
         }
 
         private void bind(Event myEvent) {
@@ -264,6 +282,9 @@ public class SearchActivity extends AppCompatActivity {
                     + event.getCountry() + " (" + Integer.toString(event.getYear()) + ")";
             name.setText(personName);
             eventInfo.setText(myEventInfo);
+            Drawable eventIcon = new IconDrawable(itemView.getContext(), FontAwesomeIcons.fa_map_marker).
+                    colorRes(R.color.black).sizeDp(40);
+            icon.setImageDrawable(eventIcon);
         }
     }
 }

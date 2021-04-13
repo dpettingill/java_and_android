@@ -4,13 +4,26 @@
     android:layout_height="55dip"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/icon_persons"
+        android:layout_margin="10dp" />
+
     <TextView
         android:id="@+id/lblListItem"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
+        android:textSize="17sp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+        android:layout_toRightOf="@id/icon_persons"
+        android:layout_toEndOf="@id/icon_persons" />
+
+    </RelativeLayout>
 
 </LinearLayout>
