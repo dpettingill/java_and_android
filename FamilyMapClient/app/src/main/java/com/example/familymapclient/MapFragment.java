@@ -71,6 +71,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private boolean eventMap = false;
     private List<Polyline> polylines = new ArrayList<Polyline>();
     private List<Marker> markers = new ArrayList<>();
+    private Event clickedEvent = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -156,6 +157,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 if (mt.getEventId().equals(instance.getMyEvent().getEventID()))
                 {
                     map.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition())); //on that event's marker?
+                    setText(instance, instance.getPersonsMap().get(mt.personId), instance.getMyEvent());
                 }
             }
         }
@@ -167,19 +169,31 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 //get Person and Event from MarkerTag
                 MarkerTag mt = (MarkerTag) marker.getTag();
                 Person person = instance.getPersonsMap().get(mt.getPersonId()); //use the person id to get the person
-                Event event = null;
                 Set<Event> mySet = instance.getEventsMap().get(mt.getPersonId()); //use the person id to get the set of events
                 for (Event e : mySet) { //find the right event
                     if (e.getEventID() == mt.getEventId()) {
-                        event = e;
+                        clickedEvent = e;
                     }
                 }
 
                 //now do stuff with it
-                setText(instance, person, event);
-                drawLines(instance, person, event);
+                setText(instance, person, clickedEvent);
+                drawLines(instance, person, clickedEvent);
 
                 return false; //centers on this marker
+            }
+        });
+
+        TextView mapEventInfo = getView().findViewById(R.id.mapTextView);
+        mapEventInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickedEvent != null)
+                {
+                    instance.setMyPerson(instance.getPersonsMap().get(clickedEvent.getPersonID()));
+                    Intent intent = new Intent(getContext(), PersonActivity.class);
+                    startActivity(intent);;
+                }
             }
         });
         firstRun = false;

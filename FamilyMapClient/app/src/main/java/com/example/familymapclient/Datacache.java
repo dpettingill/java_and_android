@@ -15,6 +15,7 @@ public class Datacache {
     private String authToken;
     private Person user;
     private Event myEvent; //this is the event to focus on when a new Event Activity is created
+    private Person myPerson; //used when creating a new person activity
 
     //maps
     private final Map<String, Person> personsMap = new HashMap<>(); //maps personIds to persons
@@ -113,5 +114,13 @@ public class Datacache {
 
     public void setMyEvent(Event myEvent) {
         this.myEvent = myEvent;
+    }
+
+    public Person getMyPerson() {
+        return myPerson;
+    }
+
+    public void setMyPerson(Person myPerson) {
+        this.myPerson = myPerson;
     }
 }

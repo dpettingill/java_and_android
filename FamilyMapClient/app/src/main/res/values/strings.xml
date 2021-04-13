@@ -35,4 +35,7 @@
     <string name="female_event">female-event</string>
     <string name="error_msg">Uhhh something bad happened</string>
     <string name="search_icon">search_icon</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="gender2">Gender</string>
 </resources>
