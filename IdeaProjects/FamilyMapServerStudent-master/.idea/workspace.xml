@@ -10,9 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e6c8a4f-27cc-4776-a76d-33060710916f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/EventActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/EventActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/PersonActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/PersonActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FamilyMapServer.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyMapServer.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/LoadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/LoadService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,7 @@
       <workItem from="1616704900212" duration="9045000" />
       <workItem from="1617210923557" duration="2569000" />
       <workItem from="1617670226377" duration="1588000" />
-      <workItem from="1617999902063" duration="1841000" />
+      <workItem from="1617999902063" duration="4690000" />
     </task>
     <servers />
   </component>
@@ -98,5 +98,16 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Service/LoadService.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

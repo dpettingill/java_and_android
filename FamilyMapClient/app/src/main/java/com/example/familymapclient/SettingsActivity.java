@@ -2,6 +2,7 @@ package com.example.familymapclient;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
@@ -36,6 +37,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             Preference logout = (Preference) findPreference("logout");
             logout.setOnPreferenceClickListener(preference -> {
+                Datacache instance = Datacache.getInstance();
+                instance.clearCache();
                 Intent intent = new Intent(getContext(), MainActivity.class);
                 intent.putExtra("logout", true);
                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);

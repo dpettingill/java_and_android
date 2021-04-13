@@ -39,6 +39,11 @@ public class Datacache {
 
     private Datacache() {}
 
+    public void clearCache()
+    {
+        instance = null;
+    }
+
     public static Datacache getInstance()
     {
         if (instance == null)

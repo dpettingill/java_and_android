@@ -358,9 +358,9 @@ public class LoginFragment extends Fragment {
                 instance.getEventsMap().put(e.getPersonID(), eventSet);
             }
             //fill event types while we are here :)
-            if (!instance.getEventTypes().containsKey(e.getEventType()))
+            if (!instance.getEventTypes().containsKey(e.getEventType().toLowerCase()))
             {
-                instance.getEventTypes().put(e.getEventType(), i);
+                instance.getEventTypes().put(e.getEventType().toLowerCase(), i);
                 i++;
             }
         }

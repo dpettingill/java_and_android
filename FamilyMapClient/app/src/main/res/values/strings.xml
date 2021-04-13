@@ -5,9 +5,9 @@
     <string name="server_port_label">Server Port: </string>
     <string name="server_port_hint">8080</string>
     <string name="user_name_label">Username: </string>
-    <string name="user_name_hint">dannyboi</string>
+    <string name="user_name_hint">sheila</string>
     <string name="password_label">Password: </string>
-    <string name="password_hint">password</string>
+    <string name="password_hint">parker</string>
     <string name="first_name_label">First Name: </string>
     <string name="first_name_hint">Jane</string>
     <string name="last_name_label">Last Name: </string>

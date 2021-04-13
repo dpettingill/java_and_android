@@ -14,9 +14,6 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -69,43 +66,63 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    //so what was he saying?
+    //you only want to filter events not people
+    //ok now we won't filter out people and it will include the user
+    //but we will only look at events if the right settings are on
+    //still won't show the user's events though
     private void getData(String search)
     {
         Datacache instance = Datacache.getInstance();
         boolean[] settings = instance.getMapMarkerSettings();
         search = search.toLowerCase();
+        checkPeople(search, instance);
         if (settings[MALE])
         {
+            if (instance.getUser().getGender().equals("m")) //only checks user if events if male and male events turned on
+            {
+                checkUserEvents(search, instance);
+            }
             if (settings[FATHER_SIDE])
             {
-                checkPeopleAndEvents(search, instance, instance.getFatherSideMales());
+                checkEvents(search, instance, instance.getFatherSideMales());
             }
             if (settings[MOTHER_SIDE])
             {
-                checkPeopleAndEvents(search, instance, instance.getFatherSideFemales());
+                checkEvents(search, instance, instance.getFatherSideFemales());
             }
         }
         if (settings[FEMALE])
         {
+            if (instance.getUser().getGender().equals("f")) //only checks the user events if female and female events turned on
+            {
+                checkUserEvents(search, instance);
+            }
             if (settings[FATHER_SIDE])
             {
-                checkPeopleAndEvents(search, instance, instance.getMotherSideMales());
+                checkEvents(search, instance, instance.getMotherSideMales());
             }
             if (settings[MOTHER_SIDE])
             {
-                checkPeopleAndEvents(search, instance, instance.getMotherSideFemales());
+                checkEvents(search, instance, instance.getMotherSideFemales());
             }
         }
     }
 
-    private void checkPeopleAndEvents(String search, Datacache instance, Set<Person> peopleToCheck) {
-        for (Person person : peopleToCheck)
-        {
-            if (person.getFirstName().toLowerCase().contains(search) || person.getLastName().toLowerCase().contains(search))
-            {
+    private void checkPeople(String search, Datacache instance)
+    {
+        for (Person person : instance.getPersonsMap().values()) {
+            if (person.getFirstName().toLowerCase().contains(search) || person.getLastName().toLowerCase().contains(search)) {
                 persons.add(person); //then add to list to display
             }
-            //also check each event associated with that person
+        }
+    }
+
+
+    private void checkEvents(String search, Datacache instance, Set<Person> peopleToCheck) {
+        for (Person person : peopleToCheck)
+        {
+            //check each event associated with that person
             for (Event event : instance.getEventsMap().get(person.getPersonID()))
             {
                 //check country, city, type and year
@@ -114,6 +131,19 @@ public class SearchActivity extends AppCompatActivity {
                 {
                     events.add(event);
                 }
+            }
+        }
+    }
+
+    private void checkUserEvents(String search, Datacache instance) {
+        //check each event associated with that person
+        for (Event event : instance.getEventsMap().get(instance.getUser().getPersonID()))
+        {
+            //check country, city, type and year
+            if (event.getCountry().toLowerCase().contains(search) || Integer.toString(event.getYear()).contains(search) ||
+                    event.getCity().toLowerCase().contains(search) || event.getEventType().toLowerCase().contains(search))
+            {
+                events.add(event);
             }
         }
     }

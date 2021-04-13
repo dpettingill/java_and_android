@@ -33,7 +33,7 @@ public class LoadService {
             while (i < users.length) {
                 User newUser = new User(users[i].getUsername(), users[i].getPassword(),
                         users[i].getEmail(), users[i].getFirstName(), users[i].getLastName(),
-                        users[i].getGender(), UUID.randomUUID().toString());
+                        users[i].getGender(), users[i].getPersonId());
                 uDAO.insert(newUser);
                 i++;
             }

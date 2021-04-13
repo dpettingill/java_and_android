@@ -370,7 +370,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private void createEventMarkers(Datacache instance, Person p)
     {
         for (Event e : instance.getEventsMap().get(p.getPersonID())) {
-            int index = instance.getEventTypes().get(e.getEventType()); //get the appropriate color index for this marker
+            int index = instance.getEventTypes().get(e.getEventType().toLowerCase()); //get the appropriate color index for this marker
             if (index > marker_colors.length - 1) //if the index is too high
                 index -= marker_colors.length - 1; //reset it to an in-bounds value
             LatLng position = new LatLng(e.getLatitude(), e.getLongitude()); //get pos of this marker
@@ -386,14 +386,31 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private void userMapMarkers(Datacache instance)
     {
         Person user = instance.getUser();
+        Person user_spouse = null;
+        if (user.getSpouseID() != null)
+        {
+            user_spouse = instance.getPersonsMap().get(user.getSpouseID());
+        }
+
         if (user.getGender().equals("m") && instance.getMapMarkerSettings()[MALE])
         {
-            createEventMarkers(instance, user);
+            createEventMarkers(instance, user); //draw user
+            //draw spouse?
+            if (instance.getMapMarkerSettings()[FEMALE] && user_spouse != null)
+            {
+                createEventMarkers(instance, user_spouse);
+            }
         }
         else if (user.getGender().equals("f") && instance.getMapMarkerSettings()[FEMALE])
         {
-            createEventMarkers(instance, user);
+            createEventMarkers(instance, user); //draw user
+            //draw spouse?
+            if (instance.getMapMarkerSettings()[MALE] && user_spouse != null)
+            {
+                createEventMarkers(instance, user_spouse);
+            }
         }
+
     }
 
     //use this for my markers tags
