@@ -71,6 +71,7 @@ public class SearchActivity extends AppCompatActivity {
     {
         Datacache instance = Datacache.getInstance();
         boolean[] settings = instance.getMapMarkerSettings();
+        search = search.toLowerCase();
         if (settings[MALE])
         {
             if (settings[FATHER_SIDE])
@@ -98,7 +99,7 @@ public class SearchActivity extends AppCompatActivity {
     private void checkPeopleAndEvents(String search, Datacache instance, Set<Person> peopleToCheck) {
         for (Person person : peopleToCheck)
         {
-            if (person.getFirstName().contains(search) || person.getLastName().contains(search))
+            if (person.getFirstName().toLowerCase().contains(search) || person.getLastName().toLowerCase().contains(search))
             {
                 persons.add(person); //then add to list to display
             }
@@ -106,8 +107,8 @@ public class SearchActivity extends AppCompatActivity {
             for (Event event : instance.getEventsMap().get(person.getPersonID()))
             {
                 //check country, city, type and year
-                if (event.getCountry().contains(search) || Integer.toString(event.getYear()).contains(search) ||
-                    event.getCity().contains(search) || event.getEventType().contains(search))
+                if (event.getCountry().toLowerCase().contains(search) || Integer.toString(event.getYear()).contains(search) ||
+                    event.getCity().toLowerCase().contains(search) || event.getEventType().toLowerCase().contains(search))
                 {
                     events.add(event);
                 }
@@ -162,7 +163,7 @@ public class SearchActivity extends AppCompatActivity {
             if(position < persons.size()) {
                 holder.bind(persons.get(position));
             } else {
-                holder.bind(events.get(position - persons.size()), persons.get(position)); //figure out the right person to get
+                holder.bind(events.get(position - persons.size())); //figure out the right person to get
             }
         }
 
@@ -201,25 +202,33 @@ public class SearchActivity extends AppCompatActivity {
                 name = itemView.findViewById(R.id.personName);
                 eventInfo = null;
             } else {
-                name = itemView.findViewById(R.id.personName);
+                name = itemView.findViewById(R.id.personsName);
                 eventInfo = itemView.findViewById(R.id.eventInfo);
             }
         }
 
         @Override
         public void onClick(View v) {
+            if(viewType == PERSON_VIEW_TYPE)
+            {
 
+            }
+            else
+            {
+
+            }
         }
 
-        private void bind(Person person) {
-            this.person = person;
+        private void bind(Person myPerson) {
+            person = myPerson;
             String personName = person.getFirstName() + " " + person.getLastName();
             name.setText(personName);
         }
 
-        private void bind(Event event, Person person) {
-            this.event = event;
-            this.person = person;
+        private void bind(Event myEvent) {
+            Datacache instance = Datacache.getInstance();
+            person = instance.getPersonsMap().get(myEvent.getPersonID());
+            event = myEvent;
             String personName = person.getFirstName() + " " + person.getLastName();
             String myEventInfo = event.getEventType().toUpperCase() + ": " + event.getCity() + ", "
                     + event.getCountry() + " (" + Integer.toString(event.getYear()) + ")";
