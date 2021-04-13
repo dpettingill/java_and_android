@@ -2,6 +2,7 @@ package com.example.familymapclient;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,11 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -62,7 +68,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     private GoogleMap map;
     private boolean firstRun;
+    private boolean eventMap = false;
     private List<Polyline> polylines = new ArrayList<Polyline>();
+    private List<Marker> markers = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,10 +80,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         {
             setHasOptionsMenu(true);
         }
+        else if (getActivity() instanceof EventActivity)
+        {
+            eventMap = true;
+            AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+            ActionBar actionBar = appCompatActivity.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setHomeButtonEnabled(true);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            }
+        }
         Iconify.with(new FontAwesomeModule());
         firstRun = true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(layoutInflater, container, savedInstanceState);
@@ -128,6 +147,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         Datacache instance = Datacache.getInstance();
 
         addMarkers(true); //k let's draw all of our markers here :)
+
+        if (eventMap)
+        {
+            for (Marker marker : markers)
+            {
+                MarkerTag mt = (MarkerTag) marker.getTag();
+                if (mt.getEventId().equals(instance.getMyEvent().getEventID()))
+                {
+                    map.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition())); //on that event's marker?
+                }
+            }
+        }
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -334,6 +365,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                     .icon(BitmapDescriptorFactory.defaultMarker(marker_colors[index])).position(position);
             Marker myMarker = map.addMarker(marker);
             myMarker.setTag(new MarkerTag(e.getPersonID(), e.getEventID())); //set tags for markers before putting them on the map
+            markers.add(myMarker);
         }
     }
 

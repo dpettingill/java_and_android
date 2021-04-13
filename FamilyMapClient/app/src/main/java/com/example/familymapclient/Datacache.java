@@ -14,6 +14,7 @@ public class Datacache {
 
     private String authToken;
     private Person user;
+    private Event myEvent; //this is the event to focus on when a new Event Activity is created
 
     //maps
     private final Map<String, Person> personsMap = new HashMap<>(); //maps personIds to persons
@@ -104,5 +105,13 @@ public class Datacache {
 
     public void setMapMarkerSettings(boolean[] mapMarkerSettings) {
         MapMarkerSettings = mapMarkerSettings;
+    }
+
+    public Event getMyEvent() {
+        return myEvent;
+    }
+
+    public void setMyEvent(Event myEvent) {
+        this.myEvent = myEvent;
     }
 }

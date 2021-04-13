@@ -21,7 +21,8 @@
         android:theme="@style/Theme.FamilyMapClient"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".EventActivity"></activity>
+        <activity android:name=".SearchActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings">

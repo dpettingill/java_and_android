@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private List<Person> persons = new ArrayList<>();
     private  List<Event> events = new ArrayList<>();
+    private RecyclerView recyclerView;
 
 
     @Override
@@ -50,21 +52,21 @@ public class SearchActivity extends AppCompatActivity {
         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                persons.clear();
+                events.clear();
+                getData(query);
+                recyclerView = findViewById(R.id.recycler_view);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                SearchAdapter adapter = new SearchAdapter(persons, events);
+                recyclerView.setAdapter(adapter);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                getData(newText);
                 return false;
             }
         });
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //then create an adapter and pass in that data
-        SearchAdapter adapter = new SearchAdapter(this.persons, this.events);
-        recyclerView.setAdapter(adapter);
     }
 
     private void getData(String search)
@@ -209,13 +211,17 @@ public class SearchActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            Intent intent = null;
+            Datacache instance = Datacache.getInstance();
             if(viewType == PERSON_VIEW_TYPE)
             {
 
             }
             else
             {
-
+                instance.setMyEvent(event);
+                intent = new Intent(itemView.getContext(), EventActivity.class);
+                startActivity(intent);
             }
         }
 
