@@ -176,13 +176,6 @@ public class SearchActivity extends AppCompatActivity {
             else
                 return 0;
         }
-        //override these 3 functions
-        //ignore viewType unless you support multiple types of views
-        //onCreateViewHolder(ViewGroup, int viewType) {}
-        //get item at position and pass it to 'bind' method in ViewHolder
-        //onBindViewHolder(VH holder, int postition) {}
-        //return the total number of items to be displayed
-        //getItemCount() {}
     }
 
     private class searchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
@@ -217,14 +210,13 @@ public class SearchActivity extends AppCompatActivity {
             {
                 instance.setMyPerson(person);
                 intent = new Intent(itemView.getContext(), PersonActivity.class);
-                startActivity(intent);
             }
             else
             {
                 instance.setMyEvent(event);
                 intent = new Intent(itemView.getContext(), EventActivity.class);
-                startActivity(intent);
             }
+            startActivity(intent);
         }
 
         private void bind(Person myPerson) {
@@ -243,13 +235,5 @@ public class SearchActivity extends AppCompatActivity {
             name.setText(personName);
             eventInfo.setText(myEventInfo);
         }
-
-
-        //provides a constructor that does that following
-        //inflates the view for the item to be displayed and passes it on to its parent constructor
-        //sets itself as onClick listener so that the items can be clickable
-        //gets references to the UI items that will need to be manipulated to interact with the views
-
-        //uses an itemView from parent class that can be used to interact with views
     }
 }
