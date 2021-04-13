@@ -226,6 +226,7 @@ public class PersonActivity extends AppCompatActivity {
             Drawable genderIcon = null;
             if (groupPosition == 0) //events
             {
+                //can add color here easily by using eventIds - getting the eventType and then looking at the color associated with that type
                 genderIcon = new IconDrawable(convertView.getContext(), FontAwesomeIcons.fa_map_marker).
                         colorRes(R.color.black).sizeDp(40);
             }

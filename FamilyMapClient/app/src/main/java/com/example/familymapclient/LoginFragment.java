@@ -21,8 +21,13 @@ import com.google.gson.Gson;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -342,6 +347,8 @@ public class LoginFragment extends Fragment {
         mapEventstoPersons(instance); //a map of personIds to a set of associated events
     }
 
+    //so how can I sort my events based on their year? and then I need to sort alphabetically off name after that?
+    //have i maybe done something like this on one of my first 2 labs?
     public void mapEventstoPersons(Datacache instance)
     {
         int i = 0;
@@ -353,9 +360,9 @@ public class LoginFragment extends Fragment {
             }
             else
             {
-                Set<Event> eventSet = new HashSet<Event>();
-                eventSet.add(e);
-                instance.getEventsMap().put(e.getPersonID(), eventSet);
+                List<Event> eventList = new ArrayList<>();
+                eventList.add(e);
+                instance.getEventsMap().put(e.getPersonID(), eventList);
             }
             //fill event types while we are here :)
             if (!instance.getEventTypes().containsKey(e.getEventType().toLowerCase()))
@@ -365,6 +372,12 @@ public class LoginFragment extends Fragment {
             }
         }
     }
+
+//    private void sort(Set<Event> events)
+//    {
+//        for (Event e :
+//    }
+
 
     //get the father and then go through and get the father's father etc until it is null
     //pass in a user will need to be recursive

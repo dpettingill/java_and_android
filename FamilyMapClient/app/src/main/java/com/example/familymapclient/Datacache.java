@@ -2,8 +2,10 @@ package com.example.familymapclient;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import Model.Event;
 import Model.Person;
@@ -19,7 +21,7 @@ public class Datacache {
 
     //maps
     private final Map<String, Person> personsMap = new HashMap<>(); //maps personIds to persons
-    private final Map<String, Set<Event>> eventsMap = new HashMap<>(); //maps personIds to sets of events
+    private final Map<String, List<Event>> eventsMap = new HashMap<>(); //maps personIds to sets of events
 
     //immediate family
     private final Set<Person> immediateFamilyMales = new HashSet<>();
@@ -57,7 +59,7 @@ public class Datacache {
         return personsMap;
     }
 
-    public Map<String, Set<Event>> getEventsMap() {
+    public Map<String, List<Event>> getEventsMap() {
         return eventsMap;
     }
 

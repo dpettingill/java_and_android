@@ -172,8 +172,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 //get Person and Event from MarkerTag
                 MarkerTag mt = (MarkerTag) marker.getTag();
                 Person person = instance.getPersonsMap().get(mt.getPersonId()); //use the person id to get the person
-                Set<Event> mySet = instance.getEventsMap().get(mt.getPersonId()); //use the person id to get the set of events
-                for (Event e : mySet) { //find the right event
+                List<Event> myList = instance.getEventsMap().get(mt.getPersonId()); //use the person id to get the set of events
+                for (Event e : myList) { //find the right event
                     if (e.getEventID() == mt.getEventId()) {
                         clickedEvent = e;
                     }
@@ -268,7 +268,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     private void lifeStoryLines(Datacache instance, Person person)
     {
-        Set<Event> events = instance.getEventsMap().get(person.getPersonID());
+        List<Event> events = instance.getEventsMap().get(person.getPersonID());
         Iterator<Event> it = events.iterator();
         Event event1 = it.next();
         Event event2 = null;
