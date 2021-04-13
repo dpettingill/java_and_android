@@ -34,6 +34,10 @@ import Model.Event;
 import Model.Person;
 
 public class PersonActivity extends AppCompatActivity {
+    private static final int FATHER_SIDE = 3;
+    private static final int MOTHER_SIDE = 4;
+    private static final int MALE = 5;
+    private static final int FEMALE = 6;
 
     private List<String> listDataHeader = new ArrayList<String>();
     private HashMap<String, List<String>> listDataChild = new HashMap<String, List<String>>();
@@ -102,6 +106,30 @@ public class PersonActivity extends AppCompatActivity {
         });
     }
 
+    private boolean checkPersonAgainstSettings(Datacache instance)
+    {
+        if (!instance.getMapMarkerSettings()[MALE] && currentPerson.getGender().equals("m")) {
+            return false;
+        }
+        else if (!instance.getMapMarkerSettings()[FEMALE] && currentPerson.getGender().equals("f")) {
+            return false;
+        }
+        else if (!instance.getMapMarkerSettings()[FATHER_SIDE] &&
+                (instance.getFatherSideMales().contains(currentPerson) ||
+                        (instance.getFatherSideFemales().contains(currentPerson)))) {
+            return false;
+        }
+        else if (!instance.getMapMarkerSettings()[MOTHER_SIDE] &&
+                (instance.getMotherSideMales().contains(currentPerson) ||
+                        (instance.getMotherSideFemales().contains(currentPerson)))) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
     private void prepareListData(Datacache instance)
     {
         listDataHeader.add("Life Events");
@@ -112,10 +140,12 @@ public class PersonActivity extends AppCompatActivity {
         List<String> events = new ArrayList<String>();
         for (Event e : instance.getEventsMap().get(currentPerson.getPersonID())) //loop through each event assoc w/person
         {
-            String eventInfo = e.getEventType().toUpperCase() + ": " + e.getCity() + ", " + e.getCountry()
-                    + " (" + Integer.toString(e.getYear()) + ")";
-            events.add(eventInfo);
-            eventIds.add(e.getEventID());
+            if (checkPersonAgainstSettings(instance)) {
+                String eventInfo = e.getEventType().toUpperCase() + ": " + e.getCity() + ", " + e.getCountry()
+                        + " (" + Integer.toString(e.getYear()) + ")";
+                events.add(eventInfo);
+                eventIds.add(e.getEventID());
+            }
         }
 
         //get persons family data here
