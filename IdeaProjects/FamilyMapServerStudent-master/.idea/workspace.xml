@@ -10,11 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e6c8a4f-27cc-4776-a76d-33060710916f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/Datacache.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/Datacache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/MapFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/MapFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/res/layout/fragment_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/res/layout/fragment_map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/EventActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/EventActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/PersonActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../FamilyMapClient/app/src/main/java/com/example/familymapclient/PersonActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FamilyMapServer.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyMapServer.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +75,7 @@
       <workItem from="1616704900212" duration="9045000" />
       <workItem from="1617210923557" duration="2569000" />
       <workItem from="1617670226377" duration="1588000" />
-      <workItem from="1617999902063" duration="1095000" />
+      <workItem from="1617999902063" duration="1841000" />
     </task>
     <servers />
   </component>

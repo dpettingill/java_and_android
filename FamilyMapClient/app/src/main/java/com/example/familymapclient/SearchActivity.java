@@ -215,7 +215,9 @@ public class SearchActivity extends AppCompatActivity {
             Datacache instance = Datacache.getInstance();
             if(viewType == PERSON_VIEW_TYPE)
             {
-
+                instance.setMyPerson(person);
+                intent = new Intent(itemView.getContext(), PersonActivity.class);
+                startActivity(intent);
             }
             else
             {

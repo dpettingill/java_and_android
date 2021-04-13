@@ -21,7 +21,9 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import Model.Event;
 import Model.Person;
@@ -132,17 +134,41 @@ public class PersonActivity extends AppCompatActivity {
             family.add(spouseInfo);
             personIds.add(spouse.getPersonID());
         }
-        //find out who the person's child is if they have one...?
+        Person child = findChild(instance, currentPerson);
+        if (child != null)
+        {
+            String childInfo = child.getFirstName() + " " + child.getLastName() + " (Child)";
+            family.add(childInfo);
+            personIds.add(child.getPersonID());
+        }
 
-
+        //add these to our map
         listDataChild.put(listDataHeader.get(0), events);
         listDataChild.put(listDataHeader.get(1), family);
+    }
+
+    private Person findChild(Datacache instance, Person person)
+    {
+        for (Person child : instance.getPersonsMap().values()) {
+            if (person.getGender().equals("m") && child.getFatherID() != null) {
+                if (child.getFatherID().equals(person.getPersonID())) {
+                    return child;
+                }
+            } else if (person.getGender().equals("f") && child.getMotherID() != null) {
+                if (child.getMotherID().equals(person.getPersonID())) {
+                    return child;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish(); // close this activity and return to preview activity (if there is any)
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
